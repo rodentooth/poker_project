@@ -14,10 +14,56 @@ public class Ranking {
     10 = Highest rank
 
      */
-    public int rank_hand(ArrayList<Card> hand){
+
+    public static int compare_hands(ArrayList<Card> hand1,ArrayList<Card> hand2){
+
+        if (rank_hand(hand1)==-1){
+            System.out.println("Hand 1 conatins more than 5 cards. But why?");
+            return -1;
+        }
+        if (rank_hand(hand2)==-1){
+            System.out.println("Hand 2 conatins more than 5 cards. But why?");
+            return -1;
+        }
+
+
+        if (rank_hand(hand1)>rank_hand(hand2))
+            return 1;
+
+        else if (rank_hand(hand1)<rank_hand(hand2))
+            return 2;
+
+        else{
+            //count together the values of the hands. The smaller value wins. (in the enums, Ace is first, so ace equals 0)
+            System.out.println("hands are a tie. counting together the values");
+
+            int valueof_hand1 = 0;
+            int valueof_hand2 = 0;
+
+            for(Card c :hand1){
+                valueof_hand1 += c.getRank().ordinal();
+            }
+            for(Card c :hand2){
+                valueof_hand2 += c.getRank().ordinal();
+            }
+            if(valueof_hand1<valueof_hand2){
+                return 1;
+            }
+            else if(valueof_hand1>valueof_hand2){
+                return 2;
+            }
+            else{
+                return 0;
+            }
+        }
+    }
+
+
+
+        public static int rank_hand(ArrayList<Card> hand){
 
         if(hand.size()!=5)
-        return 0;
+        return -1;
 
         //sort the hand
         sort_hand(hand);
@@ -35,6 +81,20 @@ public class Ranking {
         Boolean Pair = true;
         Boolean High_card = true;
 
+        //Storage for counters
+        int same_kind_counter_1=0;
+        int same_kind_counter_2=0;
+        int same_kind_counter_3=0;
+        int same_kind_counter_4=0;
+
+
+
+        //This booleans get triggered to count multiple pairs (Two pair, three of a kind or full house)
+        Boolean countertrigger=false;
+        //this is only important for three of a kind and two pair.
+        Boolean countertrigger2=false;
+        Boolean countertrigger3=false;
+
 
         //check if it could be a royal flush:
         if(hand.get(0).getRank().ordinal()!=0)
@@ -45,29 +105,129 @@ public class Ranking {
            - Royal Flush
            - Straight flush
            - Straight
+           - Four of a Kind
          */
-        for(int i=0;i<hand.size();i++){
+        for(int i=0;i<hand.size()-1;i++){
 
             //If it's not five card in sequence, it can't be the following:
-            if(hand.get(i).getRank().ordinal()!=hand.get(i+1).getRank().ordinal()){
+            if(hand.get(i).getRank().ordinal()!=hand.get(i+1).getRank().ordinal()-1){
                 Royal_Flush =false;
                 Straight_Flush =false;
                 Straight =false;
             }
 
-            //if it's not the same suit all along, it cant be a straight flush
-            if((hand.get(i).getSuit().ordinal()!=hand.get(i+1).getSuit().ordinal()))
-                Straight_Flush =false;
+            //if it's not the same suit all along, it cant be a straight flush and flush and royal flush
+            if((hand.get(i).getSuit().ordinal()!=hand.get(i+1).getSuit().ordinal())) {
+                Royal_Flush =false;
+                Straight_Flush = false;
+                Flush = false;
+            }
 
+
+            if(hand.get(i).getRank()==hand.get(i+1).getRank()) {
+                if(!countertrigger) {
+                    same_kind_counter_1++;
+                }else {
+                    if (!countertrigger2) {
+                        same_kind_counter_2++;
+                    }else {
+
+                        if (!countertrigger3) {
+                            same_kind_counter_3++;
+                        } else {
+                            same_kind_counter_4++;
+                        }
+
+                    }
+                }
+            }else{
+                if(!countertrigger)
+                    countertrigger=true;
+                else
+                    if(!countertrigger2)
+                        countertrigger2=true;
+                    else
+                        countertrigger3=true;
+            }
+        }
+
+
+        //check counters to see if there are pairs
+        if(same_kind_counter_1<3 && same_kind_counter_2<3) {
+            Four_of_a_kind = false;
+        }else{
+            //It's four of a kind and nothing less
+            Three_of_a_kind=false;
+            Pair = false;
+            Two_pair=false;
+            Full_house=false;
 
         }
 
-        //todo the other hand rankings
+        if(same_kind_counter_1<2 && same_kind_counter_2<2 && same_kind_counter_3<2){
+            Three_of_a_kind=false;
+            Full_house=false;
+        }else{
+            //It's three of a kind and nothing less
+            Pair = false;
+            Two_pair=false;
+
+            //check if it's a full house
+            if(same_kind_counter_1==1 || same_kind_counter_2==1 || same_kind_counter_3==1 || same_kind_counter_4==1) {
+                Three_of_a_kind = false;
+            }else{
+                Full_house=false;
+            }
+            }
+
+        //no pairs:
+        if(same_kind_counter_1<1 && same_kind_counter_2<1 && same_kind_counter_3<1 && same_kind_counter_4<1) {
+            Pair = false;
+            Two_pair=false;
+        }else{
+            //two of a pair check
+            if((same_kind_counter_1==1 && same_kind_counter_2==1) || (same_kind_counter_1==1 && same_kind_counter_3==1) || (same_kind_counter_1==1 && same_kind_counter_4==1) || (same_kind_counter_2==1 && same_kind_counter_3==1) || (same_kind_counter_2==1 && same_kind_counter_4==1) || (same_kind_counter_3==1 && same_kind_counter_4==1)){
+                //it's two pair and nothing less
+                Pair = false;
+
+            }else {
+                //else it's a pair and nothing else
+                Two_pair=false;
+                }
+        }
+
+        //Full house evaluation
+        if((same_kind_counter_1==2 && same_kind_counter_2==1) ||same_kind_counter_1==1 && same_kind_counter_2==2){
+            Two_pair=false;
+            Three_of_a_kind=false;
+            Pair = false;
+        }
 
 
+        //check what to return:
 
-        return 0;
-    }
+        if(Royal_Flush)
+            return 10;
+        if(Straight_Flush)
+            return 9;
+        if(Four_of_a_kind)
+            return 8;
+        if(Full_house)
+            return 7;
+        if(Flush)
+            return 6;
+        if(Straight)
+            return 5;
+        if(Three_of_a_kind)
+            return 4;
+        if(Two_pair)
+            return 3;
+        if(Pair)
+            return 2;
+
+
+        return 1;
+        }
 
     public static ArrayList<Card> sort_hand(ArrayList<Card> hand){
 
@@ -97,10 +257,6 @@ public class Ranking {
 
             return hand;
 
-
-
     }
-
-
 
 }

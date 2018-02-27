@@ -30,22 +30,31 @@ public class Main extends Application {
         //ArrayList<Card> stack = Stack.createStack();
 
         ArrayList<Card> stack = new ArrayList<>();
-        stack.add(new Card(Suit.Clubs, Rank.Two));
-        stack.add(new Card(Suit.Clubs, Rank.Ace));
-        stack.add(new Card(Suit.Hearts, Rank.Queen));
-        stack.add(new Card(Suit.Hearts, Rank.King));
-        stack.add(new Card(Suit.Spades, Rank.Nine));
+        stack.add(new Card(Suit.Hearts, Rank.Nine));
+        stack.add(new Card(Suit.Clubs, Rank.Nine));
+        stack.add(new Card(Suit.Diamonds, Rank.Nine));
+        stack.add(new Card(Suit.Clubs, Rank.Ten));
+        stack.add(new Card(Suit.Clubs, Rank.Jack));
+
+        ArrayList<Card> stack2 = new ArrayList<>();
+        stack2.add(new Card(Suit.Hearts, Rank.Ten));
+        stack2.add(new Card(Suit.Clubs, Rank.Ten));
+        stack2.add(new Card(Suit.Diamonds, Rank.Ten));
+        stack2.add(new Card(Suit.Clubs, Rank.Nine));
+        stack2.add(new Card(Suit.Clubs, Rank.Jack));
 
 
-        //Outprint the unsorted stack
-        for(Card c : (stack))
-            System.out.println(c.toString());
 
-        System.out.println("Sorting......");
 
         //Outprint the stack
-        for(Card c : Ranking.sort_hand(stack))
-            System.out.println(c.toString());
+
+
+        //Outprint the rank:
+        System.out.println("Hand 1 has: "+Ranking.rank_hand(stack));
+        System.out.println("Hand 2 has: "+Ranking.rank_hand(stack2));
+
+        System.out.println(Ranking.compare_hands(stack,stack2));
+
 
 
 
