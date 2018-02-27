@@ -10,9 +10,9 @@ public class Card {
     public Card(Suit s, Rank r){
 
         //defining the color of the cards. If spades or clubs, color is black, else it's Red
-        Color c = Color.Black;
+        Color c = main.Stack.Color.Black;
         if(s.ordinal()==1 || s.ordinal()==3)
-            c = Color.Red;
+            c = main.Stack.Color.Red;
 
         this.Color =c;
         this.Suit =s;

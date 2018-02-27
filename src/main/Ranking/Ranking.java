@@ -96,16 +96,18 @@ public class Ranking {
         Boolean countertrigger3=false;
 
 
-        //check if it could be a royal flush:
+            //check if the first card is an ace, if it could be a royal flush:
         if(hand.get(0).getRank().ordinal()!=0)
             Royal_Flush =false;
 
 
-        /*loop through the hand to see if it could be a:
+        /*loop through the hand to see:
+            if it could be a:
            - Royal Flush
            - Straight flush
            - Straight
            - Four of a Kind
+           and to determine pairs.
          */
         for(int i=0;i<hand.size()-1;i++){
 
@@ -124,6 +126,20 @@ public class Ranking {
             }
 
 
+            /*counting Pairs. It goes up to 4 counter, because: same_kind_counter_4 is for a pair that is at the end of our hand. practical example:
+
+            Spades Ace
+            Spades Nine
+            Spades Eight
+            Diamonds Four
+            Hearts Four
+
+            ▼▼▼▼▼▼▼▼
+            Diamonds Four
+            Hearts Four
+            ▲▲▲▲▲▲▲▲
+            This is a Pair at the end of the hand which can't be reached by counter 1,2 and 3 because everytime a card next to the compared card is not the same as the compared card, the current counter stops to count for pairs.
+             */
             if(hand.get(i).getRank()==hand.get(i+1).getRank()) {
                 if(!countertrigger) {
                     same_kind_counter_1++;
@@ -149,10 +165,14 @@ public class Ranking {
                     else
                         countertrigger3=true;
             }
+            //end counting Pairs.
         }
+
+            //end loop through the hand
 
 
         //check counters to see if there are pairs
+
         if(same_kind_counter_1<3 && same_kind_counter_2<3) {
             Four_of_a_kind = false;
         }else{
@@ -164,6 +184,7 @@ public class Ranking {
 
         }
 
+            //check if there are less than 3 similiar cards
         if(same_kind_counter_1<2 && same_kind_counter_2<2 && same_kind_counter_3<2){
             Three_of_a_kind=false;
             Full_house=false;
@@ -186,7 +207,13 @@ public class Ranking {
             Two_pair=false;
         }else{
             //two of a pair check
-            if((same_kind_counter_1==1 && same_kind_counter_2==1) || (same_kind_counter_1==1 && same_kind_counter_3==1) || (same_kind_counter_1==1 && same_kind_counter_4==1) || (same_kind_counter_2==1 && same_kind_counter_3==1) || (same_kind_counter_2==1 && same_kind_counter_4==1) || (same_kind_counter_3==1 && same_kind_counter_4==1)){
+            if (
+                    (same_kind_counter_1 == 1 && same_kind_counter_2 == 1) ||
+                            (same_kind_counter_1 == 1 && same_kind_counter_3 == 1) ||
+                            (same_kind_counter_1 == 1 && same_kind_counter_4 == 1) ||
+                            (same_kind_counter_2 == 1 && same_kind_counter_3 == 1) ||
+                            (same_kind_counter_2 == 1 && same_kind_counter_4 == 1) ||
+                            (same_kind_counter_3 == 1 && same_kind_counter_4 == 1)) {
                 //it's two pair and nothing less
                 Pair = false;
 
@@ -197,12 +224,13 @@ public class Ranking {
         }
 
         //Full house evaluation
-        if((same_kind_counter_1==2 && same_kind_counter_2==1) ||same_kind_counter_1==1 && same_kind_counter_2==2){
+            if ((same_kind_counter_1 == 2 && same_kind_counter_2 == 1) || same_kind_counter_1 == 1 && same_kind_counter_2 == 2) {
             Two_pair=false;
             Three_of_a_kind=false;
             Pair = false;
         }
 
+            //end check counters
 
         //check what to return:
 
@@ -229,7 +257,7 @@ public class Ranking {
         return 1;
         }
 
-    public static ArrayList<Card> sort_hand(ArrayList<Card> hand){
+    private static ArrayList<Card> sort_hand(ArrayList<Card> hand) {
 
         //sort algorithm used from my last semester code.
         //////////////////////
