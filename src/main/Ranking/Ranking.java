@@ -17,6 +17,8 @@ public class Ranking {
 
     public static int compare_hands(ArrayList<Card> hand1,ArrayList<Card> hand2){
 
+        //todo:  implement Kicker & Tie in case of no kicker or same kicker
+
         if (rank_hand(hand1)==-1){
             System.out.println("Hand 1 conatins more than 5 cards. But why?");
             return -1;
@@ -257,7 +259,7 @@ public class Ranking {
         return 1;
         }
 
-    private static ArrayList<Card> sort_hand(ArrayList<Card> hand) {
+    public static ArrayList<Card> sort_hand(ArrayList<Card> hand) {
 
         //sort algorithm used from my last semester code.
         //////////////////////
