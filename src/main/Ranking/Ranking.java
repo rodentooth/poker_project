@@ -9,15 +9,13 @@ public class Ranking {
     /*Method to determine the value of a hand.
 
     Evaluation:
-    0  = Not valid. Either wrong amount of cards in hand or something else.
+   -1  = Not valid. Either wrong amount of cards in hand or something else.
     1  = Lowest rank
     10 = Highest rank
 
      */
 
     public static int compare_hands(ArrayList<Card> hand1,ArrayList<Card> hand2){
-
-        //todo:  implement Kicker & Tie in case of no kicker or same kicker
 
         if (rank_hand(hand1)==-1){
             System.out.println("Hand 1 conatins more than 5 cards. But why?");
@@ -37,17 +35,16 @@ public class Ranking {
 
         else{
             //count together the values of the hands. The smaller value wins. (in the enums, Ace is first, so ace equals 0)
-            System.out.println("hands are a tie. counting together the values");
+            System.out.println("hands are a tie. Evaluate highest card...\n");
 
-            int valueof_hand1 = 0;
-            int valueof_hand2 = 0;
 
-            for(Card c :hand1){
-                valueof_hand1 += c.getRank().ordinal();
-            }
-            for(Card c :hand2){
-                valueof_hand2 += c.getRank().ordinal();
-            }
+            int valueof_hand1 = get_highest_card(hand1).getRank().ordinal();
+            System.out.println("highest Kicker of hand 1 is: " + get_highest_card(hand1).getRank() + "\n");
+
+            int valueof_hand2 = get_highest_card(hand2).getRank().ordinal();
+            System.out.println("highest Kicker of hand 2 is: " + get_highest_card(hand2).getRank() + "\n");
+
+
             if(valueof_hand1<valueof_hand2){
                 return 1;
             }
@@ -140,7 +137,7 @@ public class Ranking {
             Diamonds Four
             Hearts Four
             ▲▲▲▲▲▲▲▲
-            This is a Pair at the end of the hand which can't be reached by counter 1,2 and 3 because everytime a card next to the compared card is not the same as the compared card, the current counter stops to count for pairs.
+            This is a Pair at the end of the hand which can't be reached by counter 1,2 and 3 because every time a card next to the compared card is not the same as the compared card, the current counter stops to count for pairs.
              */
             if(hand.get(i).getRank()==hand.get(i+1).getRank()) {
                 if(!countertrigger) {
@@ -259,6 +256,10 @@ public class Ranking {
         return 1;
         }
 
+    /**
+     * @param hand The stack of cards which needs to be sorted.
+     * @return
+     */
     public static ArrayList<Card> sort_hand(ArrayList<Card> hand) {
 
         //sort algorithm used from my last semester code.
@@ -266,26 +267,77 @@ public class Ranking {
         //insertsort
         /////////////////////
 
-            // loop through all numbers in the list
-            for(int i=0;i<hand.size();i++){
-                //current index to a changeable index
-                int j=i;
-                //as long as the changeable index is above 0 and the number in the list at the index is lower than its neighbour below do the following:
-                while(j>0 && hand.get(j).getRank().ordinal()    <   hand.get(j-1).getRank().ordinal()){
+        // loop through all numbers in the list
+        for (int i = 0; i < hand.size(); i++) {
+            //current index to a changeable index which counts down while comparing
+            int j = i;
+            //as long as the changeable index is above 0 and the number in the list at the index is lower than its neighbour below do the following:
+            while (j > 0 && hand.get(j).getRank().ordinal() < hand.get(j - 1).getRank().ordinal()) {
 
-                    //save the number in the list at the index
-                    Card x =hand.get(j);
+                //save the number in the list at the index
+                Card x = hand.get(j);
 
-                    //swap numbers
-                    hand.set(j,hand.get(j-1));
-                    hand.set(j-1,x);
+                //swap numbers
+                hand.set(j, hand.get(j - 1));
+                hand.set(j - 1, x);
 
-                    //decrease the changeable index
-                    j--;
+                //decrease the changeable index
+                j--;
+            }
+        }
+
+        return hand;
+
+    }
+
+    public static Card get_highest_card(ArrayList<Card> hand) {
+
+        //evaluate the highest card in case of a tie:
+
+        //sort hand
+        sort_hand(hand);
+        //get the enum rank of the card
+        Hand_Ranks rank = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand) - 10)];
+
+        /*
+        loop to search kicker for:
+        - Four of a kind
+        - Three of a kind
+        - two pair
+        - Pair
+        - High hand
+         */
+        if (rank == Hand_Ranks.Four_of_a_kind ||
+                rank == Hand_Ranks.Three_of_a_kind ||
+                rank == Hand_Ranks.Two_pair ||
+                rank == Hand_Ranks.Pair ||
+                rank == Hand_Ranks.High_card) {
+
+            for (int i = 0; i < hand.size() - 1; i++) {
+
+                //If the next card and the card before is not equal to the current card, the current card is a kicker
+                if (i == 0 && hand.get(i).getRank() != hand.get(i + 1).getRank()) {
+                    return hand.get(i);
+                } else if (i != 0) {
+                    if (hand.get(i).getRank() != hand.get(i + 1).getRank() && hand.get(i).getRank() != hand.get(i - 1).getRank()) {
+                        return hand.get(i);
+                    }
                 }
             }
+        }/*
+         kicker for:
+        - Royal Flush
+        - Straight Flush
+        - Full House
+        - Flush
+        - Straight
 
-            return hand;
+        It's just the highest card. hand is sorted desc. so 0 is highest.
+         */ else {
+            return hand.get(0);
+
+        }
+        return hand.get(0);
 
     }
 
