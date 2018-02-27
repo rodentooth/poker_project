@@ -7,7 +7,13 @@ public class Card {
     private Rank Rank;
 
 
-    Card(Color c, Suit s, Rank r){
+    public Card(Suit s, Rank r){
+
+        //defining the color of the cards. If spades or clubs, color is black, else it's Red
+        Color c = Color.Black;
+        if(s.ordinal()==1 || s.ordinal()==3)
+            c = Color.Red;
+
         this.Color =c;
         this.Suit =s;
         this.Rank =r;
