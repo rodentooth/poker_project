@@ -34,16 +34,118 @@ public class Ranking {
             return 2;
 
         else{
-            //count together the values of the hands. The smaller value wins. (in the enums, Ace is first, so ace equals 0)
-            System.out.println("hands are a tie. Evaluate highest card...\n");
+            /*
+            evaluate ties:
+
+            if there are pairs, it evaluates the ranking of the pair. After that:
+
+            if there are kickers in the hands, the highest, unique kicker counts ( if both have the same ACE as a kicker, the program determines the next smaller kicker until it has found an unique identifier. if it can't find one, it's a tie,
+            if there are no kickers in the hand, the highest card counts. if it's the same card, it's a tie.
+            if it's a full house, the highest tripple pair counts. if the tripple pair is the same, it's a tie.
+             */
+            System.out.println("hands are a tie.\n");
+
+            int valueof_hand1 = 0;
+            int valueof_hand2 = 0;
+            Hand_Ranks rank_hand1 = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)];
+            Hand_Ranks rank_hand2 = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand2) - 10)];
+
+            //check pairs if there are any and delete them
+            while (has_kicker(rank_hand1) && valueof_hand1 == valueof_hand2 && get_highest_pair(hand1, rank_hand1) != null) {
+                System.out.println("Evaluate highest pair...\n");
+
+                //check again if it's null because stupid ide
+                Card highestpair1 = get_highest_pair(hand1, rank_hand1);
+                if (highestpair1 != null) {
+                    valueof_hand1 = highestpair1.getRank().ordinal();
+                    System.out.println("highest pair of hand 1 is: " + highestpair1.getRank());
+                }
+
+                Card highestpair2 = get_highest_pair(hand2, rank_hand2);
+                if (highestpair2 != null) {
+                    valueof_hand2 = highestpair2.getRank().ordinal();
+                    System.out.println("highest pair of hand 2 is: " + highestpair2.getRank() + "\n");
+                }
+
+                if (valueof_hand1 == valueof_hand2) {
+                    System.out.println("Both Pairs are of the same height. Evaluate next smaller Pair\n");
+                    //check if there are any pairs left
+                    if (get_highest_pair(hand1, rank_hand1) != null) {
+
+                        //there are pairs to delete. because the elements are shifted every time element gets removed, we start by deleting the fourth card and move downwards.
+                        Card first_card_in_pair_hand1 = get_highest_pair(hand1, rank_hand1);
+
+                        if (rank_hand1 == Hand_Ranks.Four_of_a_kind)
+                            hand1.remove(hand1.indexOf(first_card_in_pair_hand1) + 3);
+                        if (rank_hand1 == Hand_Ranks.Three_of_a_kind)
+                            hand1.remove(hand1.indexOf(first_card_in_pair_hand1) + 2);
+                        hand1.remove(hand1.indexOf(first_card_in_pair_hand1) + 1);
+                        hand1.remove(hand1.indexOf(first_card_in_pair_hand1));
 
 
-            int valueof_hand1 = get_highest_card(hand1).getRank().ordinal();
-            System.out.println("highest Kicker of hand 1 is: " + get_highest_card(hand1).getRank());
+                        //same for hand 2
+                        Card first_card_in_pair_hand2 = get_highest_pair(hand2, rank_hand2);
 
-            int valueof_hand2 = get_highest_card(hand2).getRank().ordinal();
-            System.out.println("highest Kicker of hand 2 is: " + get_highest_card(hand2).getRank() + "\n");
+                        if (rank_hand2 == Hand_Ranks.Four_of_a_kind)
+                            hand2.remove(hand2.indexOf(first_card_in_pair_hand2) + 3);
+                        if (rank_hand2 == Hand_Ranks.Three_of_a_kind)
+                            hand2.remove(hand2.indexOf(first_card_in_pair_hand2) + 2);
+                        hand2.remove(hand2.indexOf(first_card_in_pair_hand2) + 1);
+                        hand2.remove(hand2.indexOf(first_card_in_pair_hand2));
+                    }
 
+                }
+
+            }
+
+
+            while (valueof_hand1 == valueof_hand2 && hand1.size() > 0) {
+
+                if (has_kicker(rank_hand1)) {
+                    System.out.println("No pairs left. Evaluating Kickers...\n");
+
+                    //remove the kickers if there are any, and evaluate again.
+                    valueof_hand1 = get_highest_card(hand1, rank_hand1).getRank().ordinal();
+                    System.out.println("highest Kicker of hand 1 is: " + get_highest_card(hand1, rank_hand1).getRank());
+
+                    valueof_hand2 = get_highest_card(hand2, rank_hand2).getRank().ordinal();
+                    System.out.println("highest Kicker of hand 2 is: " + get_highest_card(hand2, rank_hand2).getRank() + "\n");
+
+                    if (valueof_hand1 == valueof_hand2) {
+                        System.out.println("Both kicker are of the same height. Evaluate next smaller Kicker\n");
+
+                        //remove the kickers if there are any, and evaluate again.
+                        hand1.remove(get_highest_card(hand1, rank_hand1));
+                        hand2.remove(get_highest_card(hand2, rank_hand2));
+
+                    } else {
+                        Boolean winner = valueof_hand1 < valueof_hand2;
+                        System.out.println(winner ? get_highest_card(hand1, rank_hand1).getRank() + " beats " + get_highest_card(hand2, rank_hand2).getRank() : get_highest_card(hand2, rank_hand2).getRank() + " beats " + get_highest_card(hand1, rank_hand1).getRank());
+
+                    }
+                } else {
+                    //It's not a hand with a kicker in it. so we evaluate the highest card:
+                    System.out.println("Evaluate the higher Rank...\n");
+
+                    valueof_hand1 = get_highest_card(hand1, rank_hand1).getRank().ordinal();
+                    System.out.println("highest Card of hand 1 is: " + get_highest_card(hand1, rank_hand1).getRank());
+
+                    valueof_hand2 = get_highest_card(hand2, rank_hand2).getRank().ordinal();
+                    System.out.println("highest Card of hand 2 is: " + get_highest_card(hand2, rank_hand2).getRank() + "\n");
+
+                    if (valueof_hand1 != valueof_hand2) {
+
+                        Boolean winner = valueof_hand1 < valueof_hand2;
+                        System.out.println(winner ? get_highest_card(hand1, rank_hand1).getRank() + " beats " + get_highest_card(hand2, rank_hand2).getRank() : get_highest_card(hand2, rank_hand2).getRank() + " beats " + get_highest_card(hand1, rank_hand1).getRank());
+
+                    } else {
+                        //tie
+                        break;
+                    }
+                }
+            }
+
+            //todo: insert code for full house evaluation here
 
             if(valueof_hand1<valueof_hand2){
                 return 1;
@@ -78,7 +180,6 @@ public class Ranking {
         Boolean Three_of_a_kind = true;
         Boolean Two_pair = true;
         Boolean Pair = true;
-        Boolean High_card = true;
 
         //Storage for counters
         int same_kind_counter_1=0;
@@ -287,16 +388,72 @@ public class Ranking {
 
     }
 
-    public static Card get_highest_card(ArrayList<Card> hand) {
+
+    private static Card get_highest_pair(ArrayList<Card> hand, Hand_Ranks rank) {
+
+        //evaluate the highest Pair in case of a tie:
+
+        //sort hand
+        sort_hand(hand);
+
+        /*
+        loop to search highest pair for:
+        - Four of a kind
+        - Three of a kind
+        - two pair
+        - Pair
+        - High hand
+         */
+        if (has_kicker(rank)) {
+
+            for (int i = 0; i < hand.size() - 1; i++) {
+
+                //If the next card is equal to the current card, the current card belongs to a pair
+                if (hand.get(i).getRank() == hand.get(i + 1).getRank()) {
+                    return hand.get(i);
+                }
+            }
+            //no pairs found
+            return null;
+        }
+        return null;
+    }
+
+    private static boolean has_kicker(Hand_Ranks rank) {
+
+        /*here we evaluate if the hand is of the ranks:
+
+        - Four of a kind
+        - Three of a kind
+        - two pair
+        - Pair
+        - High hand
+
+        Which are all containing one or more kicker cards
+
+        or if they are other cards.
+
+        return true = has kicker in it
+         */
+
+        //get the enum rank of the card
+
+        return rank == Hand_Ranks.Four_of_a_kind ||
+                rank == Hand_Ranks.Three_of_a_kind ||
+                rank == Hand_Ranks.Two_pair ||
+                rank == Hand_Ranks.Pair ||
+                rank == Hand_Ranks.High_card;
+    }
 
 
-        //Todo: full house is evaluated by its tripple pair
+    private static Card get_highest_card(ArrayList<Card> hand, Hand_Ranks rank) {
+
+
+        //Todo: full house is evaluated by comparing its tripple pair (just return the rank of tripple pair)
         //evaluate the highest card in case of a tie:
 
         //sort hand
         sort_hand(hand);
-        //get the enum rank of the card
-        Hand_Ranks rank = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand) - 10)];
 
         /*
         loop to search kicker for:
@@ -306,11 +463,7 @@ public class Ranking {
         - Pair
         - High hand
          */
-        if (rank == Hand_Ranks.Four_of_a_kind ||
-                rank == Hand_Ranks.Three_of_a_kind ||
-                rank == Hand_Ranks.Two_pair ||
-                rank == Hand_Ranks.Pair ||
-                rank == Hand_Ranks.High_card) {
+        if (has_kicker(rank)) {
 
             for (int i = 0; i < hand.size() - 1; i++) {
 
@@ -323,6 +476,9 @@ public class Ranking {
                     }
                 }
             }
+            if (hand.size() == 1) {
+                return hand.get(0);
+            }
         }/*
          kicker for:
         - Royal Flush
@@ -332,11 +488,9 @@ public class Ranking {
         - Straight
 
         It's just the highest card. hand is sorted desc. so 0 is highest.
-         */ else {
-            return hand.get(0);
-
-        }
+         */
         return hand.get(0);
+
 
     }
 

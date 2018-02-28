@@ -33,13 +33,27 @@ public class Main extends Application {
 
         //first hand dealing out
         ArrayList<Card> hand1 = new ArrayList<>();
+        /*hand1.add(new Card(Suit.Hearts, Rank.Ace));
+        hand1.add(new Card(Suit.Hearts, Rank.King));
+        hand1.add(new Card(Suit.Hearts, Rank.Queen));
+        hand1.add(new Card(Suit.Hearts, Rank.Jack));
+        hand1.add(new Card(Suit.Hearts, Rank.Ten));
+        */
         for (int i = 0; i < 5; i++) {
             hand1.add(stack.get(0));
             stack.remove(0);
         }
 
+
         //second hand dealing out
         ArrayList<Card> hand2 = new ArrayList<>();
+        /*hand2.add(new Card(Suit.Hearts, Rank.Ace));
+        hand2.add(new Card(Suit.Hearts, Rank.King)); 
+        hand2.add(new Card(Suit.Hearts, Rank.Queen));
+        hand2.add(new Card(Suit.Hearts, Rank.Jack)); 
+        hand2.add(new Card(Suit.Hearts, Rank.Ten));  
+           */
+
         for (int i = 0; i < 5; i++) {
             hand2.add(stack.get(0));
             stack.remove(0);
@@ -58,8 +72,8 @@ public class Main extends Application {
         System.out.println("\n");
 
         //Outprint the rank:
-        System.out.println("Hand 1 has: " + Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)]);
-        System.out.println("Hand 2 has: " + Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand2) - 10)]);
+        System.out.println("Hand 1 has: " + (String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)])).replace("_", " "));
+        System.out.println("Hand 2 has: " + String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand2) - 10)]).replace("_", " "));
 
 
         System.out.println("\n");
