@@ -39,18 +39,20 @@ public class Ranking {
 
             if there are pairs, it evaluates the ranking of the pair. After that:
 
-            if there are kickers in the hands, the highest, unique kicker counts ( if both have the same ACE as a kicker, the program determines the next smaller kicker until it has found an unique identifier. if it can't find one, it's a tie,
+            if there are kickers in the hands, the highest, unique kicker counts ( if both have the same ACE as a kicker, the program determines the next smaller kicker until it has found an unique identifier ) if it can't find one, it's a tie,
             if there are no kickers in the hand, the highest card counts. if it's the same card, it's a tie.
-            if it's a full house, the highest tripple pair counts. if the tripple pair is the same, it's a tie.
+            if it's a full house, the highest tripple pair counts. if the tripple pair is the same, it's a tie. <-todo not yet implemented
              */
-            System.out.println("hands are a tie.\n");
+            System.out.println("Hands are a tie.\n");
 
             int valueof_hand1 = 0;
             int valueof_hand2 = 0;
+
+            //get the enum of the ranks (Hand_ranks are top down, rank_hand gives out Bottom-up, so we need to change that:)
             Hand_Ranks rank_hand1 = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)];
             Hand_Ranks rank_hand2 = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand2) - 10)];
 
-            //check pairs if there are any and delete them
+            //check pairs if there are any, compare them and and delete them afterwards, so they won't be compared multiple times.
             while (has_kicker(rank_hand1) && valueof_hand1 == valueof_hand2 && get_highest_pair(hand1, rank_hand1) != null) {
                 System.out.println("Evaluate highest pair...\n");
 
@@ -449,7 +451,7 @@ public class Ranking {
     private static Card get_highest_card(ArrayList<Card> hand, Hand_Ranks rank) {
 
 
-        //Todo: full house is evaluated by comparing its tripple pair (just return the rank of tripple pair)
+        //Todo: full house is evaluated by comparing its triple pair (just return the rank of tripple pair)
         //evaluate the highest card in case of a tie:
 
         //sort hand
@@ -489,7 +491,10 @@ public class Ranking {
 
         It's just the highest card. hand is sorted desc. so 0 is highest.
          */
-        return hand.get(0);
+        if (hand.size() > 0) {
+            return hand.get(0);
+        }
+        return null;
 
 
     }

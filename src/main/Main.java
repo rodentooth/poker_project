@@ -28,6 +28,9 @@ public class Main extends Application {
     public static void main(String[] args) {
         //launch(args);
 
+
+        /**Game test with 2 hands. see other test below! */
+
         //generate new stack of cards
         ArrayList<Card> stack = Stack.createStack();
 
@@ -59,6 +62,7 @@ public class Main extends Application {
             stack.remove(0);
         }
 
+        /*
 
         //Outprint the hands
         for (Card c : Ranking.sort_hand(hand1))
@@ -70,6 +74,7 @@ public class Main extends Application {
             System.out.println(c.toString());
 
         System.out.println("\n");
+
 
         //Outprint the rank:
         System.out.println("Hand 1 has: " + (String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)])).replace("_", " "));
@@ -91,6 +96,75 @@ public class Main extends Application {
 
         if (winner == -1)
             System.out.println("mmh there's an error. but why?");
+*/
+
+
+        //////////////////////////////
+        //TEST WITH MULTIPLE PLAYERS//
+        //////////////////////////////
+        int players = 10;//////////////
+        //MAX 10 PLAYERS!!////////////
+        //////////////////////////////
+
+
+        ArrayList<Card> test_stack = Stack.createStack();
+
+
+        ArrayList<ArrayList<Card>> Player_Cards = new ArrayList<>();
+        for (int i = 0; i < players; i++) {
+            Player_Cards.add(new ArrayList<>());
+            for (int j = 0; j < 5; j++) {
+                Player_Cards.get(i).add(test_stack.get(0));
+                test_stack.remove(0);
+            }
+        }
+
+        System.out.println("There are " + players + " Players in this game. Their Cards are:\n");
+
+        for (ArrayList<Card> A : Player_Cards) {
+            System.out.println("Cards of player NO. " + (Player_Cards.indexOf(A) + 1) + " :\n");
+            for (Card C : A) {
+                System.out.println(C.toString());
+            }
+            System.out.println("Player  NO. " + (Player_Cards.indexOf(A) + 1) + " has: " + (String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(A) - 10)])).replace("_", " "));
+
+            System.out.println();
+        }
+
+        int W = 0;
+        for (int i = 1; i < Player_Cards.size(); i++) {
+            System.out.println("\nPlayer " + (W + 1) + " Plays against " + (1 + i) + "");
+
+            int winner = Ranking.compare_hands(Player_Cards.get(W), Player_Cards.get(i));
+            if (winner == 1)
+                System.out.println("Player " + (W + 1) + " wins over Player " + (1 + i));
+            if (winner == 2) {
+                System.out.println("Player " + (1 + i) + " wins over player " + (1 + W));
+                W = i;
+
+
+            }
+            if (winner == 0) {
+                System.out.println("Tie!");
+                int W2 = 0;
+                for (ArrayList<Card> B : Player_Cards) {
+                    int winner2 = Ranking.compare_hands(Player_Cards.get(W2), B);
+                    if (winner2 == 1)
+                        System.out.println("Hand 1 wins!");
+                    if (winner2 == 2)
+                        W = Player_Cards.indexOf(B);
+
+                }
+                if (W2 == W) {
+                    System.out.println("Player " + Player_Cards.indexOf(Player_Cards.get(i)) + " and Player " + Player_Cards.indexOf(W) + " are winner!!");
+                }
+            }
+        }
+        System.out.println("Player " + (W + 1) + " is winner!!");
+
+
+        //TEST ENDE
+        /////////////////
 
 
         System.exit(1);
