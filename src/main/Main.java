@@ -49,22 +49,20 @@ public class Main extends Application {
         //Outprint the hands
         for (Card c : Ranking.sort_hand(hand1))
             System.out.println(c.toString());
-        System.out.println("Hand 1 has: " + Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)]);
 
         System.out.println("\n");
 
         for (Card c : Ranking.sort_hand(hand2))
             System.out.println(c.toString());
+
+        System.out.println("\n");
+
+        //Outprint the rank:
+        System.out.println("Hand 1 has: " + Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)]);
         System.out.println("Hand 2 has: " + Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand2) - 10)]);
 
 
         System.out.println("\n");
-
-
-
-        //Outprint the rank:
-        System.out.println("Hand 1 has: " + Ranking.rank_hand(hand1));
-        System.out.println("Hand 2 has: " + Ranking.rank_hand(hand2));
 
 
         int winner = Ranking.compare_hands(hand1, hand2);

@@ -39,7 +39,7 @@ public class Ranking {
 
 
             int valueof_hand1 = get_highest_card(hand1).getRank().ordinal();
-            System.out.println("highest Kicker of hand 1 is: " + get_highest_card(hand1).getRank() + "\n");
+            System.out.println("highest Kicker of hand 1 is: " + get_highest_card(hand1).getRank());
 
             int valueof_hand2 = get_highest_card(hand2).getRank().ordinal();
             System.out.println("highest Kicker of hand 2 is: " + get_highest_card(hand2).getRank() + "\n");
@@ -87,8 +87,8 @@ public class Ranking {
         int same_kind_counter_4=0;
 
 
-
-        //This booleans get triggered to count multiple pairs (Two pair, three of a kind or full house)
+            //This booleans get triggered to count multiple pairs (Two pair, three of a kind or full house) or pairs at the end of the hand.
+            // see comments below for more info
         Boolean countertrigger=false;
         //this is only important for three of a kind and two pair.
         Boolean countertrigger2=false;
@@ -256,10 +256,7 @@ public class Ranking {
         return 1;
         }
 
-    /**
-     * @param hand The stack of cards which needs to be sorted.
-     * @return
-     */
+
     public static ArrayList<Card> sort_hand(ArrayList<Card> hand) {
 
         //sort algorithm used from my last semester code.
@@ -292,6 +289,8 @@ public class Ranking {
 
     public static Card get_highest_card(ArrayList<Card> hand) {
 
+
+        //Todo: full house is evaluated by its tripple pair
         //evaluate the highest card in case of a tie:
 
         //sort hand
@@ -328,7 +327,7 @@ public class Ranking {
          kicker for:
         - Royal Flush
         - Straight Flush
-        - Full House
+        - Full House <----- todo: IS EVALUATED DIFFERENTLY!
         - Flush
         - Straight
 
