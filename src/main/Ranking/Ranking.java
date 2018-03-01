@@ -15,7 +15,10 @@ public class Ranking {
 
      */
 
-    public static int compare_hands(ArrayList<Card> hand1,ArrayList<Card> hand2){
+    public static int compare_hands(ArrayList<Card> hand_1, ArrayList<Card> hand_2) {
+
+        ArrayList<Card> hand1 = new ArrayList<>(hand_1);
+        ArrayList<Card> hand2 = new ArrayList<>(hand_2);
 
         if (rank_hand(hand1)==-1){
             System.out.println("Hand 1 conatins more than 5 cards. But why?");
@@ -41,7 +44,7 @@ public class Ranking {
 
             if there are kickers in the hands, the highest, unique kicker counts ( if both have the same ACE as a kicker, the program determines the next smaller kicker until it has found an unique identifier ) if it can't find one, it's a tie,
             if there are no kickers in the hand, the highest card counts. if it's the same card, it's a tie.
-            if it's a full house, the highest tripple pair counts. if the tripple pair is the same, it's a tie. <-todo not yet implemented
+            if it's a full house, the highest tripple pair counts. if the tripple pair is the same, it's a tie.
              */
             System.out.println("Hands are a tie.\n");
 
@@ -127,6 +130,11 @@ public class Ranking {
                     }
                 } else {
                     //It's not a hand with a kicker in it. so we evaluate the highest card:
+
+
+                    //TODO: insert code for full house evaluation here
+
+
                     System.out.println("Evaluate the higher Rank...\n");
 
                     valueof_hand1 = get_highest_card(hand1, rank_hand1).getRank().ordinal();
@@ -134,6 +142,10 @@ public class Ranking {
 
                     valueof_hand2 = get_highest_card(hand2, rank_hand2).getRank().ordinal();
                     System.out.println("highest Card of hand 2 is: " + get_highest_card(hand2, rank_hand2).getRank() + "\n");
+
+
+                    //TODO or maybe here, because otherwise it would change the determination again
+
 
                     if (valueof_hand1 != valueof_hand2) {
 
@@ -147,7 +159,6 @@ public class Ranking {
                 }
             }
 
-            //TODO: insert code for full house evaluation here
 
             if(valueof_hand1<valueof_hand2){
                 return 1;
@@ -285,6 +296,7 @@ public class Ranking {
             Two_pair=false;
             Full_house=false;
 
+
         }
 
             //check if there are less than 3 similiar cards
@@ -297,7 +309,6 @@ public class Ranking {
             Two_pair=false;
 
             
-            //todo check if wrong
             //check if it's a full house
             if(same_kind_counter_1==1 || same_kind_counter_2==1 || same_kind_counter_3==1 || same_kind_counter_4==1) {
                 Three_of_a_kind = false;
@@ -455,6 +466,7 @@ public class Ranking {
 
 
         //Todo: full house is evaluated by comparing its triple pair (just return the rank of tripple pair)
+        //Todo so you can also implement the determination here
         //evaluate the highest card in case of a tie:
 
         //sort hand
@@ -488,13 +500,17 @@ public class Ranking {
          kicker for:
         - Royal Flush
         - Straight Flush
-        - Full House <----- todo: IS EVALUATED DIFFERENTLY!
+        - Full House
         - Flush
         - Straight
 
         It's just the highest card. hand is sorted desc. so 0 is highest.
          */
         if (hand.size() > 0) {
+
+            //TODO that means you can write the code right here if you want
+
+
             return hand.get(0);
         }
         return null;

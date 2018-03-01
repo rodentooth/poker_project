@@ -27,7 +27,8 @@ public class Stack {
 
 
         //randomize stack with a seed of the current time
-        long seed = System.nanoTime();
+        //TODO long seed = System.nanoTime();
+        long seed = 3473;
         Collections.shuffle(stack,new Random(seed));
 
         //return the shuffled stack, ready to use.
