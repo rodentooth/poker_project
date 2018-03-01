@@ -54,7 +54,7 @@ public class Main extends Application {
         hand2.add(new Card(Suit.Hearts, Rank.King)); 
         hand2.add(new Card(Suit.Hearts, Rank.Queen));
         hand2.add(new Card(Suit.Hearts, Rank.Jack)); 
-        hand2.add(new Card(Suit.Hearts, Rank.Ten));  
+        hand2.add(new Card(Suit.Hearts, Rank.Ten));
            */
 
         for (int i = 0; i < 5; i++) {
@@ -135,6 +135,8 @@ public class Main extends Application {
         for (int i = 1; i < Player_Cards.size(); i++) {
             System.out.println("\nPlayer " + (W + 1) + " Plays against " + (1 + i) + "");
 
+            //TODO -> If we pass the Hand array lists directly, they get edited directly.
+
             int winner = Ranking.compare_hands(Player_Cards.get(W), Player_Cards.get(i));
             if (winner == 1)
                 System.out.println("Player " + (W + 1) + " wins over Player " + (1 + i));
@@ -156,11 +158,11 @@ public class Main extends Application {
 
                 }
                 if (W2 == W) {
-                    System.out.println("Player " + Player_Cards.indexOf(Player_Cards.get(i)) + " and Player " + Player_Cards.indexOf(W) + " are winner!!");
+                    System.out.println("Player " + Player_Cards.indexOf(Player_Cards.get(i)) + " and Player " + Player_Cards.indexOf(Player_Cards.get(W)) + " are winner!!");
                 }
             }
         }
-        System.out.println("Player " + (W + 1) + " is winner!!");
+        System.out.println("Player " + (W + 1) + " wins with " + (String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(Player_Cards.get(W)) - 10)])).replace("_", " "));
 
 
         //TEST ENDE
