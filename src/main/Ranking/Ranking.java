@@ -147,7 +147,7 @@ public class Ranking {
                 }
             }
 
-            //todo: insert code for full house evaluation here
+            //TODO: insert code for full house evaluation here
 
             if(valueof_hand1<valueof_hand2){
                 return 1;
@@ -240,6 +240,7 @@ public class Ranking {
             Diamonds Four
             Hearts Four
             ▲▲▲▲▲▲▲▲
+            
             This is a Pair at the end of the hand which can't be reached by counter 1,2 and 3 because every time a card next to the compared card is not the same as the compared card, the current counter stops to count for pairs.
              */
             if(hand.get(i).getRank()==hand.get(i+1).getRank()) {
@@ -295,6 +296,8 @@ public class Ranking {
             Pair = false;
             Two_pair=false;
 
+            
+            //todo check if wrong
             //check if it's a full house
             if(same_kind_counter_1==1 || same_kind_counter_2==1 || same_kind_counter_3==1 || same_kind_counter_4==1) {
                 Three_of_a_kind = false;
