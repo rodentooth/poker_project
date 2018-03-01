@@ -1,6 +1,6 @@
-package main.Ranking;
+package main.Model.Ranking;
 
-import main.Stack.Card;
+import main.Model.Stack.Card;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Ranking {
 
      */
 
-    public static int compare_hands(ArrayList<Card> hand_1, ArrayList<Card> hand_2) {
+    public int compare_hands(ArrayList<Card> hand_1, ArrayList<Card> hand_2) {
 
         ArrayList<Card> hand1 = new ArrayList<>(hand_1);
         ArrayList<Card> hand2 = new ArrayList<>(hand_2);
@@ -52,8 +52,8 @@ public class Ranking {
             int valueof_hand2 = 0;
 
             //get the enum of the ranks (Hand_ranks are top down, rank_hand gives out Bottom-up, so we need to change that:)
-            Hand_Ranks rank_hand1 = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand1) - 10)];
-            Hand_Ranks rank_hand2 = Hand_Ranks.values()[Math.abs(Ranking.rank_hand(hand2) - 10)];
+            Hand_Ranks rank_hand1 = Hand_Ranks.values()[Math.abs(rank_hand(hand1) - 10)];
+            Hand_Ranks rank_hand2 = Hand_Ranks.values()[Math.abs(rank_hand(hand2) - 10)];
 
             //check pairs if there are any, compare them and and delete them afterwards, so they won't be compared multiple times.
             while (has_kicker(rank_hand1) && valueof_hand1 == valueof_hand2 && get_highest_pair(hand1, rank_hand1) != null) {
@@ -173,11 +173,10 @@ public class Ranking {
     }
 
 
-
-        public static int rank_hand(ArrayList<Card> hand){
+    public int rank_hand(ArrayList<Card> hand) {
 
         if(hand.size()!=5)
-        return -1;
+            return -1;
 
         //sort the hand
         sort_hand(hand);
@@ -201,15 +200,15 @@ public class Ranking {
         int same_kind_counter_4=0;
 
 
-            //This booleans get triggered to count multiple pairs (Two pair, three of a kind or full house) or pairs at the end of the hand.
-            // see comments below for more info
+        //This booleans get triggered to count multiple pairs (Two pair, three of a kind or full house) or pairs at the end of the hand.
+        // see comments below for more info
         Boolean countertrigger=false;
         //this is only important for three of a kind and two pair.
         Boolean countertrigger2=false;
         Boolean countertrigger3=false;
 
 
-            //check if the first card is an ace, if it could be a royal flush:
+        //check if the first card is an ace, if it could be a royal flush:
         if(hand.get(0).getRank().ordinal()!=0)
             Royal_Flush =false;
 
@@ -251,7 +250,7 @@ public class Ranking {
             Diamonds Four
             Hearts Four
             ▲▲▲▲▲▲▲▲
-            
+
             This is a Pair at the end of the hand which can't be reached by counter 1,2 and 3 because every time a card next to the compared card is not the same as the compared card, the current counter stops to count for pairs.
              */
             if(hand.get(i).getRank()==hand.get(i+1).getRank()) {
@@ -273,16 +272,15 @@ public class Ranking {
             }else{
                 if(!countertrigger)
                     countertrigger=true;
+                else if (!countertrigger2)
+                    countertrigger2 = true;
                 else
-                    if(!countertrigger2)
-                        countertrigger2=true;
-                    else
-                        countertrigger3=true;
+                    countertrigger3 = true;
             }
             //end counting Pairs.
         }
 
-            //end loop through the hand
+        //end loop through the hand
 
 
         //check counters to see if there are pairs
@@ -299,7 +297,7 @@ public class Ranking {
 
         }
 
-            //check if there are less than 3 similiar cards
+        //check if there are less than 3 similiar cards
         if(same_kind_counter_1<2 && same_kind_counter_2<2 && same_kind_counter_3<2){
             Three_of_a_kind=false;
             Full_house=false;
@@ -308,14 +306,14 @@ public class Ranking {
             Pair = false;
             Two_pair=false;
 
-            
+
             //check if it's a full house
             if(same_kind_counter_1==1 || same_kind_counter_2==1 || same_kind_counter_3==1 || same_kind_counter_4==1) {
                 Three_of_a_kind = false;
             }else{
                 Full_house=false;
             }
-            }
+        }
 
         //no pairs:
         if(same_kind_counter_1<1 && same_kind_counter_2<1 && same_kind_counter_3<1 && same_kind_counter_4<1) {
@@ -336,17 +334,17 @@ public class Ranking {
             }else {
                 //else it's a pair and nothing else
                 Two_pair=false;
-                }
+            }
         }
 
         //Full house evaluation
-            if ((same_kind_counter_1 == 2 && same_kind_counter_2 == 1) || same_kind_counter_1 == 1 && same_kind_counter_2 == 2) {
+        if ((same_kind_counter_1 == 2 && same_kind_counter_2 == 1) || same_kind_counter_1 == 1 && same_kind_counter_2 == 2) {
             Two_pair=false;
             Three_of_a_kind=false;
             Pair = false;
         }
 
-            //end check counters
+        //end check counters
 
         //check what to return:
 
@@ -371,10 +369,10 @@ public class Ranking {
 
 
         return 1;
-        }
+    }
 
 
-    public static ArrayList<Card> sort_hand(ArrayList<Card> hand) {
+    public ArrayList<Card> sort_hand(ArrayList<Card> hand) {
 
         //sort algorithm used from my last semester code.
         //////////////////////
@@ -405,7 +403,7 @@ public class Ranking {
     }
 
 
-    private static Card get_highest_pair(ArrayList<Card> hand, Hand_Ranks rank) {
+    private Card get_highest_pair(ArrayList<Card> hand, Hand_Ranks rank) {
 
         //evaluate the highest Pair in case of a tie:
 
@@ -435,7 +433,7 @@ public class Ranking {
         return null;
     }
 
-    private static boolean has_kicker(Hand_Ranks rank) {
+    private Boolean has_kicker(Hand_Ranks rank) {
 
         /*here we evaluate if the hand is of the ranks:
 
@@ -462,7 +460,7 @@ public class Ranking {
     }
 
 
-    private static Card get_highest_card(ArrayList<Card> hand, Hand_Ranks rank) {
+    private Card get_highest_card(ArrayList<Card> hand, Hand_Ranks rank) {
 
 
         //Todo: full house is evaluated by comparing its triple pair (just return the rank of tripple pair)

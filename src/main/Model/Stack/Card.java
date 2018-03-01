@@ -1,4 +1,4 @@
-package main.Stack;
+package main.Model.Stack;
 
 public class Card {
 
@@ -10,24 +10,24 @@ public class Card {
     public Card(Suit s, Rank r){
 
         //defining the color of the cards. If spades or clubs, color is black, else it's Red
-        Color c = main.Stack.Color.Black;
+        Color c = main.Model.Stack.Color.Black;
         if(s.ordinal()==1 || s.ordinal()==3)
-            c = main.Stack.Color.Red;
+            c = main.Model.Stack.Color.Red;
 
         this.Color =c;
         this.Suit =s;
         this.Rank =r;
     }
 
-    public main.Stack.Color getColor() {
+    public main.Model.Stack.Color getColor() {
         return this.Color;
     }
 
-    public main.Stack.Suit getSuit() {
+    public main.Model.Stack.Suit getSuit() {
         return this.Suit;
     }
 
-    public main.Stack.Rank getRank() {
+    public main.Model.Stack.Rank getRank() {
         return this.Rank;
     }
 
