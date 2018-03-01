@@ -132,8 +132,6 @@ public class Ranking {
                     //It's not a hand with a kicker in it. so we evaluate the highest card:
 
 
-                    //TODO: insert code for full house evaluation here
-
 
                     System.out.println("Evaluate the higher Rank...\n");
 
@@ -467,8 +465,6 @@ public class Ranking {
     private Card get_highest_card(ArrayList<Card> hand, Hand_Ranks rank) {
 
 
-        //Todo: full house is evaluated by comparing its triple pair (just return the rank of tripple pair)
-        //Todo so you can also implement the determination here
         //evaluate the highest card in case of a tie:
 
         //sort hand
@@ -510,10 +506,8 @@ public class Ranking {
          */
         if (hand.size() > 0) {
 
-            //TODO that means you can write the code right here if you want
-        	
         	if(rank == Hand_Ranks.Full_house) {
-        		if(hand.get(1) == hand.get(2)) {
+                if (hand.get(1).getRank() == hand.get(2).getRank()) {
         			return hand.get(0);
         		} else {
         			return hand.get(4);
