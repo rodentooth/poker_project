@@ -144,9 +144,9 @@ public class Ranking {
                     System.out.println("highest Card of hand 2 is: " + get_highest_card(hand2, rank_hand2).getRank() + "\n");
 
 
-                    //TODO or maybe here, because otherwise it would change the determination again
                     
-                    if(rank_hand1 == Hand_Ranks.Full_house) {
+                     {
+                    	
                     	
                     }
 
@@ -511,6 +511,15 @@ public class Ranking {
         if (hand.size() > 0) {
 
             //TODO that means you can write the code right here if you want
+        	
+        	if(rank == Hand_Ranks.Full_house) {
+        		if(hand.get(1) == hand.get(2)) {
+        			return hand.get(0);
+        		} else {
+        			return hand.get(4);
+        		}
+        	
+        	}
 
 
             return hand.get(0);
