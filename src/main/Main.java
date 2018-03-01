@@ -136,7 +136,7 @@ public class Main extends Application {
         for (int i = 1; i < Player_Cards.size(); i++) {
             System.out.println("\nPlayer " + (W + 1) + " Plays against " + (1 + i) + "");
 
-            //TODO -> If we pass the Hand array lists directly, they get edited directly.
+            
 
             int winner = Ranking.compare_hands(Player_Cards.get(W), Player_Cards.get(i));
             if (winner == 1)

@@ -145,6 +145,10 @@ public class Ranking {
 
 
                     //TODO or maybe here, because otherwise it would change the determination again
+                    
+                    if(rank_hand1 == Hand_Ranks.Full_house) {
+                    	
+                    }
 
 
                     if (valueof_hand1 != valueof_hand2) {
