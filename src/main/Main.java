@@ -62,7 +62,7 @@ public class Main extends Application {
             stack.remove(0);
         }
 
-        /*
+        
 
         //Outprint the hands
         for (Card c : Ranking.sort_hand(hand1))
@@ -96,9 +96,10 @@ public class Main extends Application {
 
         if (winner == -1)
             System.out.println("mmh there's an error. but why?");
-*/
 
 
+        
+/*
         //////////////////////////////
         //TEST WITH MULTIPLE PLAYERS//
         //////////////////////////////
@@ -165,7 +166,7 @@ public class Main extends Application {
 
         //TEST ENDE
         /////////////////
-
+*/
 
         System.exit(1);
 

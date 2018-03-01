@@ -70,7 +70,7 @@ public class Ranking {
                 }
 
                 if (valueof_hand1 == valueof_hand2) {
-                    System.out.println("Both Pairs are of the same height. Evaluate next smaller Pair\n");
+                    System.out.println("Both Pairs are of the same value. Evaluate next smaller Pair\n");
                     //check if there are any pairs left
                     if (get_highest_pair(hand1, rank_hand1) != null) {
 
