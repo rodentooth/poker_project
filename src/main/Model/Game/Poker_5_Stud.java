@@ -101,6 +101,8 @@ public class Poker_5_Stud {
             }
         }
 
+        Ranking r = new Ranking();
+
         System.out.println("There are " + players + " Players in this game. Their Cards are:\n");
 
         for (ArrayList<Card> A : Player_Cards) {
@@ -108,7 +110,7 @@ public class Poker_5_Stud {
             for (Card C : A) {
                 System.out.println(C.toString());
             }
-            System.out.println("Player  NO. " + (Player_Cards.indexOf(A) + 1) + " has: " + (String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(A) - 10)])).replace("_", " "));
+            System.out.println("Player  NO. " + (Player_Cards.indexOf(A) + 1) + " has: " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(A) - 10)])).replace("_", " "));
 
             System.out.println();
         }
@@ -119,7 +121,8 @@ public class Poker_5_Stud {
 
             //TODO -> If we pass the Hand array lists directly, they get edited directly.
 
-            int winner = Ranking.compare_hands(Player_Cards.get(W), Player_Cards.get(i));
+
+            int winner = r.compare_hands(Player_Cards.get(W), Player_Cards.get(i));
             if (winner == 1)
                 System.out.println("Player " + (W + 1) + " wins over Player " + (1 + i));
             if (winner == 2) {
@@ -132,7 +135,7 @@ public class Poker_5_Stud {
                 System.out.println("Tie!");
                 int W2 = 0;
                 for (ArrayList<Card> B : Player_Cards) {
-                    int winner2 = Ranking.compare_hands(Player_Cards.get(W2), B);
+                    int winner2 = r.compare_hands(Player_Cards.get(W2), B);
                     if (winner2 == 1)
                         System.out.println("Hand 1 wins!");
                     if (winner2 == 2)
@@ -144,7 +147,7 @@ public class Poker_5_Stud {
                 }
             }
         }
-        System.out.println("Player " + (W + 1) + " wins with " + (String.valueOf(Hand_Ranks.values()[Math.abs(Ranking.rank_hand(Player_Cards.get(W)) - 10)])).replace("_", " "));
+        System.out.println("Player " + (W + 1) + " wins with " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(Player_Cards.get(W)) - 10)])).replace("_", " "));
 
 
         //TEST ENDE
