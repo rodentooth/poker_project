@@ -8,9 +8,12 @@ import main.View.main_menu;
 
 public class Main extends Application {
 
+
+	
     Poker_5_Stud model;
     main_menu view;
     Controller controller;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -23,9 +26,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        view = new main_menu(primaryStage);
+
         model = new Poker_5_Stud();
+        view = new main_menu(primaryStage);
         controller = new Controller();
+//        view.start();
 
     }
 }
