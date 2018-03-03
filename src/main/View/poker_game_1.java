@@ -20,14 +20,40 @@ public class poker_game_1 {
     public poker_game_1(Stage primaryStage) {
 // create the player pane (maybe a separate class? and then just call the panes depending on how many players are in the game)
         players = new HBox();
-        GridPane grdpne2 = new GridPane();
+        players.setStyle("-fx-background-color: #0000ff");
+
+        HBox grdpne2 = new HBox();
+        grdpne2.setPrefSize(1000, 500);
+
+        grdpne2.setStyle("-fx-background-color: #ff0000");
+
         players.getChildren().add(grdpne2);
 
-//    		for(int i = 0; i < Main.PLAYER_NUM; i++) {
-//    			Pane PlayerPane = new Pane();
-//    			PlayerPane.setPlayer(model.getPlayer(i));
-//    		}
-//    		players.getChildren().add(btn);
+        for (int i = 0; i < 2; i++) {
+            HBox PlayerPane = new HBox();
+            PlayerPane.setPrefSize(500, 500);
+            PlayerPane.setStyle("-fx-background-color: #00" + i + "f00");
+
+            grdpne2.getChildren().add(PlayerPane);
+
+            for (int j = 0; j < 5; j++) {
+
+                HBox cardPane = new HBox();
+
+                cardPane.setStyle("-fx-background-color: #" + j + "f000" + j);
+
+                cardPane.setPrefSize(100, 200);
+
+                PlayerPane.getChildren().add(cardPane);
+            }
+
+            //PlayerPane.setPlayer(model.getPlayer(i));
+
+
+        }
+
+
+        //players.getChildren().add(btn);
 
 
 //    	controlArea = new HBox();
