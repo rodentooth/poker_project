@@ -12,8 +12,8 @@ public class poker_game_1 {
 
     public Button shuffle_btn;
     public Label deck_txt;
-    Button deal_btn;
-    private HBox players;
+    public Button deal_btn;
+    public HBox players;
     private HBox controlArea;
 
 
@@ -22,35 +22,9 @@ public class poker_game_1 {
         players = new HBox();
         players.setStyle("-fx-background-color: #0000ff");
 
-        HBox grdpne2 = new HBox();
-        grdpne2.setPrefSize(1000, 500);
+        players.setPrefSize(1000, 200);
 
-        grdpne2.setStyle("-fx-background-color: #ff0000");
-
-        players.getChildren().add(grdpne2);
-
-        for (int i = 0; i < 2; i++) {
-            HBox PlayerPane = new HBox();
-            PlayerPane.setPrefSize(500, 500);
-            PlayerPane.setStyle("-fx-background-color: #00" + i + "f00");
-
-            grdpne2.getChildren().add(PlayerPane);
-
-            for (int j = 0; j < 5; j++) {
-
-                HBox cardPane = new HBox();
-
-                cardPane.setStyle("-fx-background-color: #" + j + "f000" + j);
-
-                cardPane.setPrefSize(100, 200);
-
-                PlayerPane.getChildren().add(cardPane);
-            }
-
-            //PlayerPane.setPlayer(model.getPlayer(i));
-
-
-        }
+        players.setStyle("-fx-background-color: #ff0000");
 
 
         //players.getChildren().add(btn);
