@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class poker_game_1 {
@@ -13,15 +14,13 @@ public class poker_game_1 {
     public Button shuffle_btn;
     public Label deck_txt;
     public Button deal_btn;
-    public HBox players;
+    public VBox players;
     private HBox controlArea;
 
 
     public poker_game_1(Stage primaryStage) {
 // create the player pane (maybe a separate class? and then just call the panes depending on how many players are in the game)
-        players = new HBox();
-        players.setStyle("-fx-background-color: #0000ff");
-
+        players = new VBox();
         players.setPrefSize(1000, 200);
 
         players.setStyle("-fx-background-color: #ff0000");

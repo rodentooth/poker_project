@@ -30,7 +30,7 @@ public class poker_game_1_controller {
             TextInputDialog dialog = new TextInputDialog("2");
             dialog.setTitle("Numbers of Player");
             dialog.setHeaderText("Choose, how many players should be in this game!");
-            dialog.setContentText("Please enter a value equal or above 2:");
+            dialog.setContentText("Please enter a value equal or above 2, but not higher than 10:");
 
             int playerNumber = 0;
 // Traditional way to get the response value.
@@ -43,10 +43,29 @@ public class poker_game_1_controller {
                 }
             }
 
+
 // The Java 8 way to get the response value (with lambda expression).
             result.ifPresent(name -> System.out.println("Your name: " + name));
 
+
             for (int i = 0; i < playerNumber; i++) {
+
+                HBox section;
+                if (i % 2 == 0) {
+                    section = new HBox();
+                    System.out.println("i can be divided ");
+                    section.setStyle("-fx-background-color: #0000ff");
+                    section.setPrefSize(1000, 200);
+                    view.players.getChildren().add(section);
+
+
+                } else {
+
+                    section = (HBox) view.players.getChildren().get(view.players.getChildren().size() - 1);
+
+                }
+
+
                 HBox PlayerPane = new HBox();
                 PlayerPane.setPrefSize(500, 200);
                 PlayerPane.setStyle("-fx-background-color: #00" + i + "f00");
@@ -55,7 +74,7 @@ public class poker_game_1_controller {
 
                 PlayerPane.setSpacing(10);
 
-                view.players.getChildren().add(PlayerPane);
+                section.getChildren().add(PlayerPane);
 
                 for (int j = 0; j < 5; j++) {
 
