@@ -156,4 +156,22 @@ public class Poker_5_Stud {
 */
     }
 
+    public ArrayList<ArrayList<Card>> getHands(int players) {
+
+
+        ArrayList<Card> test_stack = Stack.createStack();
+
+
+        ArrayList<ArrayList<Card>> Player_Cards = new ArrayList<>();
+        for (int i = 0; i < players; i++) {
+            Player_Cards.add(new ArrayList<>());
+            for (int j = 0; j < 5; j++) {
+                Player_Cards.get(i).add(test_stack.get(0));
+                test_stack.remove(0);
+            }
+        }
+
+        return Player_Cards;
+    }
+
 }
