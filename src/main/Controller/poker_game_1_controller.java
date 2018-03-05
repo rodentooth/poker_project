@@ -3,6 +3,7 @@ package main.Controller;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
 import main.Model.Stack.Card;
@@ -115,7 +116,7 @@ public class poker_game_1_controller {
                 if (i % 2 == 0) {
                     section = new HBox();
                     section.setStyle("-fx-background-color: #00" + i + "0ff");
-                    section.setPrefSize(1000, 200);
+                    section.setPrefSize(1000, 300);
                     view.players.getChildren().add(section);
 
 
@@ -127,7 +128,7 @@ public class poker_game_1_controller {
 
                 }
 
-                HBox box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                VBox box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
 
                 box1.setStyle("-fx-background-color: #00" + i + "f00");
 

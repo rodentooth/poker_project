@@ -21,9 +21,9 @@ public class poker_game_1 {
     public poker_game_1(Stage primaryStage) {
 // create the player pane (maybe a separate class? and then just call the panes depending on how many players are in the game)
         players = new VBox();
-        players.setPrefSize(1000, 200);
+      //  players.setPrefSize(1000, 200);
 
-        players.setStyle("-fx-background-color: #ff0000");
+        players.setStyle("-fx-background-color: #0061ff");
 
 
         //players.getChildren().add(btn);
@@ -37,7 +37,7 @@ public class poker_game_1 {
 //    	controlArea.getChildren().addAll(deck_txt, shuffle_btn, deal_btn);
 
         controlArea = new HBox();
-        controlArea.setSpacing(50);
+      // controlArea.setSpacing(50);
         controlArea.setAlignment(Pos.CENTER);
 
 
@@ -47,9 +47,20 @@ public class poker_game_1 {
         controlArea.setPrefSize(1000, 50);
 
 
-
+        VBox winner_btn_box = new VBox();
+        winner_btn_box.setAlignment(Pos.CENTER);
+        winner_btn_box.setStyle("-fx-background-color: #fffa00");
+        winner_btn_box.prefWidthProperty().bind(controlArea.widthProperty());
         winner_btn = new Button("Get Winner");
+        winner_btn_box.getChildren().add(winner_btn);
+
+        VBox deal_btn_box = new VBox();
+        deal_btn_box.setAlignment(Pos.CENTER);
+        deal_btn_box.setStyle("-fx-background-color: #02f41e");
+        deal_btn_box.prefWidthProperty().bind(controlArea.widthProperty());
         deal_btn = new Button("Deal");
+        deal_btn_box.getChildren().add(deal_btn);
+
 
         VBox deck_txt_box = new VBox();
         deck_txt_box.setAlignment(Pos.CENTER_LEFT);
@@ -61,8 +72,8 @@ public class poker_game_1 {
 
 
         controlArea.getChildren().add(deck_txt_box);
-        controlArea.getChildren().add(winner_btn);
-        controlArea.getChildren().add(deal_btn);
+        controlArea.getChildren().add(winner_btn_box);
+        controlArea.getChildren().add(deal_btn_box);
 
 
         BorderPane root = new BorderPane();
