@@ -1,13 +1,12 @@
 package main.Controller;
 
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
 import main.Model.Stack.Card;
-import main.View.Card_Apperance;
+import main.View.Object_Appearance.Player_Pane_Appearance;
 import main.View.poker_game_1;
 
 import java.util.ArrayList;
@@ -107,10 +106,10 @@ public class poker_game_1_controller {
 
             playerNumber = all_hands.size();
 
-            Card_Apperance card_creator = new Card_Apperance();
 
 
             for (int i = 0; i < playerNumber; i++) {
+                Player_Pane_Appearance Player_Pane_Apperance = new Player_Pane_Appearance();
 
                 HBox section;
                 if (i % 2 == 0) {
@@ -122,26 +121,16 @@ public class poker_game_1_controller {
 
                 } else {
 
+
                     section = (HBox) view.players.getChildren().get(view.players.getChildren().size() - 1);
 
+
                 }
 
+                HBox box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1.setStyle("-fx-background-color: #00" + i + "f00");
 
-                HBox PlayerPane = new HBox();
-                PlayerPane.setPrefSize(500, 200);
-                PlayerPane.setStyle("-fx-background-color: #00" + i + "f00");
-
-                PlayerPane.setPadding(new Insets(15, 12, 15, 12));
-
-                PlayerPane.setSpacing(10);
-
-                section.getChildren().add(PlayerPane);
-
-                for (Card c : all_hands.get(i)) {
-
-
-                    PlayerPane.getChildren().add(card_creator.Card_Apperance(c));
-                }
+                section.getChildren().add(box1);
 
                 //PlayerPane.setPlayer(model.getPlayer(i));
 
