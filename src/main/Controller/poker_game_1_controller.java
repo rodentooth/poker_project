@@ -128,6 +128,7 @@ public class poker_game_1_controller {
                 }
 
                 HBox box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+
                 box1.setStyle("-fx-background-color: #00" + i + "f00");
 
                 section.getChildren().add(box1);
