@@ -1,5 +1,6 @@
 package main.View;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,11 +20,14 @@ public class main_menu {
 
 
 		VBox controlArea = new VBox();
-    	GridPane grdpne = new GridPane();
+		controlArea.setAlignment(Pos.CENTER);
+
+		GridPane grdpne = new GridPane();
     	grdpne.getStyleClass().add("grdpne");
 
 
 		play = new Button("Play!");
+
 		deck_txt = new Label("Main Menu");
     	controlArea.getChildren().add(grdpne);
 

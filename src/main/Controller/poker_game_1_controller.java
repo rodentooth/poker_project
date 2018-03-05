@@ -94,7 +94,14 @@ public class poker_game_1_controller {
             }
 
             // The Java 8 way to get the response value (with lambda expression).
-            result.ifPresent(name -> System.out.println("Your name: " + name));
+            result.ifPresent(number -> System.out.println("Player amount: " + number));
+
+
+            if (view.players.getChildren() != null)
+                view.players.getChildren().clear();
+
+
+
 
             all_hands = model.getHands(playerNumber);
 
@@ -108,7 +115,7 @@ public class poker_game_1_controller {
                 HBox section;
                 if (i % 2 == 0) {
                     section = new HBox();
-                    section.setStyle("-fx-background-color: #0000ff");
+                    section.setStyle("-fx-background-color: #00" + i + "0ff");
                     section.setPrefSize(1000, 200);
                     view.players.getChildren().add(section);
 
@@ -146,6 +153,7 @@ public class poker_game_1_controller {
             // OR
             Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
 
+            stageTheLabelBelongs.sizeToScene();
 
         });
 

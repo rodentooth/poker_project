@@ -1,5 +1,6 @@
 package main.View;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,7 +38,12 @@ public class poker_game_1 {
 //    	controlArea.getChildren().addAll(deck_txt, shuffle_btn, deal_btn);
 
         controlArea = new HBox();
+        controlArea.setAlignment(Pos.CENTER);
+
+
         GridPane grdpne = new GridPane();
+        grdpne.setAlignment(Pos.CENTER);
+
         grdpne.getStyleClass().add("grdpne");
         grdpne.setPrefSize(1000, 50);
 
