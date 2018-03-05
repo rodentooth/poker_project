@@ -10,9 +10,6 @@ public class Main extends Application {
 
 
 
-    //git test 2
-
-
     Poker_5_Stud model;
     main_menu view;
     main_menu_controller controller;
