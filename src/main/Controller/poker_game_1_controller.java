@@ -50,7 +50,7 @@ public class poker_game_1_controller {
                 	go_to_winner_pane=0;
 
 
-                int go_to_winner_section = Math.abs(winner_int / 2) - 1;
+                int go_to_winner_section = (int) (Math.round((double) winner_int / 2f) - 1);
                 HBox section = (HBox) view.players.getChildren().get(go_to_winner_section);
                 HBox winner_pane = (HBox) (section.getChildren().get(go_to_winner_pane));
                 winner_pane.setStyle("-fx-background-color: #fffa00");
