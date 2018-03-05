@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.Controller.poker_game_1_controller;
 import main.Model.Stack.Card;
 
 import java.util.ArrayList;
@@ -17,8 +16,7 @@ public class Player_Pane_Appearance {
 
         Card_Apperance card_creator = new Card_Apperance();
 
-
-        Label player_number = new Label("Player xy");
+        Label player_number = new Label("Player xy" );
 
         HBox player_number_box = new HBox();
         player_number_box.getChildren().add(player_number);
@@ -54,7 +52,7 @@ public class Player_Pane_Appearance {
 
         HBox win_lose_box = new HBox();
         win_lose_box.getChildren().add(win_lose);
-        win_lose_box.setStyle("-fx-background-color: #00fff2");
+        win_lose_box.setStyle("-fx-background-color: #ff7700");
         win_lose_box.setAlignment(Pos.CENTER);
 
 
