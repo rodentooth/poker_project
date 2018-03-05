@@ -39,6 +39,8 @@ public class poker_game_1 {
         controlArea = new HBox();
         GridPane grdpne = new GridPane();
         grdpne.getStyleClass().add("grdpne");
+        grdpne.setPrefSize(1000, 50);
+
 
 
         winner_btn = new Button("Get Winner");

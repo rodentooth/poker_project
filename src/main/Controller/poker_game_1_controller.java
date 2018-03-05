@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
 import main.Model.Stack.Card;
@@ -32,12 +33,26 @@ public class poker_game_1_controller {
         view.winner_btn.setOnAction((event) -> {
 
 
+        	int winner_int;
             if (all_hands == null) {
 
                 view.deck_txt.setText("You have to deal out!");
 
             } else {
-                view.deck_txt.setText("Player " + model.get_winner(all_hands) + " is winner!");
+            	winner_int = model.get_winner(all_hands);
+                view.deck_txt.setText("Player " + winner_int + " is winner!");
+                
+                int go_to_winner_pane;
+                if(winner_int%2==0)
+                	go_to_winner_pane=1;
+                else
+                	go_to_winner_pane=0;
+
+                HBox section = (HBox) view.players.getChildren().get((int)(winner_int/2)-1);
+                HBox winner_pane = (HBox) (section.getChildren().get(go_to_winner_pane));
+                winner_pane.setStyle("-fx-background-color: #fffa00");
+
+
 
             }
         });

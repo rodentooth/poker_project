@@ -18,7 +18,7 @@ public class Card_Apperance {
         Text Rank = new Text(c.getRank().toString());
         Text Suit = new Text(c.getSuit().toString());
 
-        inside_card.getChildren().addAll(Rank, Suit);
+        inside_card.getChildren().addAll(Suit,Rank);
         inside_card.setPrefSize(100, 200);
 
         inside_card.setStyle("-fx-background-color: #FFFFFF");
