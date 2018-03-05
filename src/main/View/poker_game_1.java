@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -38,26 +37,32 @@ public class poker_game_1 {
 //    	controlArea.getChildren().addAll(deck_txt, shuffle_btn, deal_btn);
 
         controlArea = new HBox();
+        controlArea.setSpacing(50);
         controlArea.setAlignment(Pos.CENTER);
 
 
-        GridPane grdpne = new GridPane();
-        grdpne.setAlignment(Pos.CENTER);
+        controlArea.setAlignment(Pos.CENTER);
 
-        grdpne.getStyleClass().add("grdpne");
-        grdpne.setPrefSize(1000, 50);
+        controlArea.getStyleClass().add("controlArea");
+        controlArea.setPrefSize(1000, 50);
 
 
 
         winner_btn = new Button("Get Winner");
         deal_btn = new Button("Deal");
+
+        VBox deck_txt_box = new VBox();
+        deck_txt_box.setAlignment(Pos.CENTER_LEFT);
+        deck_txt_box.prefWidthProperty().bind(controlArea.widthProperty());
+        deck_txt_box.setStyle("-fx-background-color: #ff0000");
+
         deck_txt = new Label("Deck");
+        deck_txt_box.getChildren().add(deck_txt);
 
 
-        controlArea.getChildren().add(grdpne);
-        grdpne.add(deck_txt, 0, 0, 1, 1);
-        grdpne.add(winner_btn, 1, 0, 1, 1);
-        grdpne.add(deal_btn, 2, 0, 1, 1);
+        controlArea.getChildren().add(deck_txt_box);
+        controlArea.getChildren().add(winner_btn);
+        controlArea.getChildren().add(deal_btn);
 
 
         BorderPane root = new BorderPane();

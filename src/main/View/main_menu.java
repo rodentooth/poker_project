@@ -24,6 +24,8 @@ public class main_menu {
 
 		GridPane grdpne = new GridPane();
     	grdpne.getStyleClass().add("grdpne");
+        GridPane grdpne2 = new GridPane();
+        grdpne2.getStyleClass().add("grdpne");
 
 
 		play = new Button("Play!");
@@ -31,10 +33,11 @@ public class main_menu {
 		deck_txt = new Label("Main Menu");
     	controlArea.getChildren().add(grdpne);
 
-
 		//controlArea.getChildren().add(flwpne);
 		controlArea.getChildren().add(deck_txt);
 		controlArea.getChildren().add(play);
+
+        controlArea.getChildren().add(grdpne2);
 
 
     	BorderPane root = new BorderPane();
