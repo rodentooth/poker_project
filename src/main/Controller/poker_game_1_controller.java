@@ -19,11 +19,28 @@ public class poker_game_1_controller {
     Poker_5_Stud model;
     poker_game_1 view;
 
+    ArrayList<ArrayList<Card>> all_hands = null;
+
+
 
     public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view) {
 
         this.view = view;
         this.model = model;
+
+
+        view.winner_btn.setOnAction((event) -> {
+
+
+            if (all_hands == null) {
+
+                view.deck_txt.setText("You have to deal out!");
+
+            } else {
+                view.deck_txt.setText("Player " + model.get_winner(all_hands) + " is winner!");
+
+            }
+        });
 
 
         view.deal_btn.setOnAction((event) -> {
@@ -61,7 +78,7 @@ public class poker_game_1_controller {
             // The Java 8 way to get the response value (with lambda expression).
             result.ifPresent(name -> System.out.println("Your name: " + name));
 
-            ArrayList<ArrayList<Card>> all_hands = model.getHands(playerNumber);
+            all_hands = model.getHands(playerNumber);
 
             playerNumber = all_hands.size();
 
@@ -116,29 +133,6 @@ public class poker_game_1_controller {
 
 
 
-        view.shuffle_btn.setOnAction((event) -> {
-
-            System.out.println("You clicked me!");
-            view.deck_txt.setText("Shuffeling...");
-
-
-            //Here I want to swap the screen!
-
-            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            // OR
-            Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
-            // these two of them return the same stage
-            // Swap screen::
-
-
-            //poker_game_1 gameView = new poker_game_1(stageTheLabelBelongs);
-            //controller = new main_menu_controller(model, gameView);
-
-
-            //stageTheLabelBelongs.setScene(new Scene(new Pane()));
-
-
-        });
 
 /*
         // register ourselves to handle window-closing event

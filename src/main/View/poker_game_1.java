@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class poker_game_1 {
 
-    public Button shuffle_btn;
+    public Button winner_btn;
     public Label deck_txt;
     public Button deal_btn;
     public VBox players;
@@ -41,14 +41,14 @@ public class poker_game_1 {
         grdpne.getStyleClass().add("grdpne");
 
 
-        shuffle_btn = new Button("Shuffle");
+        winner_btn = new Button("Get Winner");
         deal_btn = new Button("Deal");
         deck_txt = new Label("Deck");
 
 
         controlArea.getChildren().add(grdpne);
         grdpne.add(deck_txt, 0, 0, 1, 1);
-        grdpne.add(shuffle_btn, 1, 0, 1, 1);
+        grdpne.add(winner_btn, 1, 0, 1, 1);
         grdpne.add(deal_btn, 2, 0, 1, 1);
 
 
