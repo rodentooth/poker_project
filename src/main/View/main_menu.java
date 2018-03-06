@@ -1,11 +1,11 @@
 package main.View;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,16 +19,40 @@ public class main_menu {
     public main_menu(Stage primaryStage) {
 
 
-		VBox controlArea = new VBox();
-		controlArea.setAlignment(Pos.CENTER);
+        //Titel
+        HBox node0 = new HBox();
+        deck_txt = new Label("Poker 5 Stud");
+        node0.getChildren().add(deck_txt);
 
-		GridPane grdpne = new GridPane();
+        //Number of Players
+        HBox node1 = new HBox();
+        Label lbl2 = new Label("How many Players?");
+        ComboBox playerDropdown = new ComboBox();
+        node1.getChildren().add(lbl2);
+        node1.getChildren().add(playerDropdown);
+
+        //Names
+        HBox node2 = new HBox();
+        Label lbl3 = new Label("Names: ");
+        node2.getChildren().add(lbl3);
+
+        //Textfields for names
+        HBox node3 = new HBox();
+        TextField player1 = new TextField("Player 1");
+        node3.getChildren().add(player1);
+
+        //Button to Play
+        HBox node4 = new HBox();
+        play = new Button("Play!");
+        node4.getChildren().add(play);
+
+		/*GridPane grdpne = new GridPane();
     	grdpne.getStyleClass().add("grdpne");
         GridPane grdpne2 = new GridPane();
         grdpne2.getStyleClass().add("grdpne");
 
 
-		play = new Button("Play!");
+
 
 		deck_txt = new Label("Main Menu");
     	controlArea.getChildren().add(grdpne);
@@ -38,13 +62,17 @@ public class main_menu {
 		controlArea.getChildren().add(play);
 
         controlArea.getChildren().add(grdpne2);
+*/
+
+        VBox root = new VBox();
+        root.getChildren().add(node0);
+        root.getChildren().add(node1);
+        root.getChildren().add(node2);
+        root.getChildren().add(node3);
+        root.getChildren().add(node4);
 
 
-    	BorderPane root = new BorderPane();
-		root.setCenter(controlArea);
-
-
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 500, 300);
         scene.getStylesheets().add(
                 getClass().getResource("poker.css").toExternalForm());
         primaryStage.setTitle("Hello World");
