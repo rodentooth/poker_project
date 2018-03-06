@@ -52,9 +52,14 @@ public class poker_game_1_controller {
 
                 int go_to_winner_section = (int) (Math.round((double) winner_int / 2f) - 1);
                 HBox section = (HBox) view.players.getChildren().get(go_to_winner_section);
-                HBox winner_pane = (HBox) (section.getChildren().get(go_to_winner_pane));
+                VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
                 winner_pane.setStyle("-fx-background-color: #fffa00");
 
+
+                //todo marugg change the text in the winner fields
+                /*Label lbl1 = (Label) (winner_pane.getChildren().get(0));
+                Label lbl2 = (Label) (winner_pane.getChildren().get(1));
+                Label lbl3 = (Label) (winner_pane.getChildren().get(2));*/
 
 
             }
