@@ -2,6 +2,7 @@ package main.Controller;
 
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -80,6 +81,7 @@ public class poker_game_1_controller {
             choices.add(10);
 
 
+
             view.deck_txt.setText("dealing out...");
 
             ChoiceDialog<Integer> dialog = new ChoiceDialog<>(2, choices);
@@ -137,7 +139,12 @@ public class poker_game_1_controller {
 
                 box1.setStyle("-fx-background-color: #00" + i + "f00");
 
+
+                Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
+                lbl1.setText("Player No. " + (i + 1));
+
                 section.getChildren().add(box1);
+
 
                 //PlayerPane.setPlayer(model.getPlayer(i));
 
