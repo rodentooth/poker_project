@@ -4,18 +4,27 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientSocket {
+public class SendSocket {
 
     //Inspiration from tutorial:  https://javabeginners.de/Netzwerk/Socketverbindung.php
 
+    public PrintStream ps;
 
-    public ClientSocket() {
+    int i = 0;
+
+    public SendSocket() {
         Socket socket = null;
         try {
             socket = new Socket("localhost", 3141);
 
             OutputStream raus = socket.getOutputStream();
-            PrintStream ps = new PrintStream(raus, true);
+
+            socket.setSoTimeout(30000);
+            socket.setKeepAlive(true);
+            //socket.connect(address);
+
+
+            ps = new PrintStream(raus, true);
             ps.println("Hallo Welt!");
             ps.println("Hallo Otto!");
 
@@ -24,7 +33,15 @@ public class ClientSocket {
             BufferedReader buff = new BufferedReader(new InputStreamReader(rein));
 
             while (buff.ready()) {
-                System.out.println(buff.readLine());
+                //System.out.println(buff.readLine());
+
+                String modifiedSentence;
+                while ((modifiedSentence = buff.readLine()) != null) {
+                    System.out.println("FROM SERVER: " + modifiedSentence);
+
+                    send("hallo ");
+
+                }
             }
 
         } catch (UnknownHostException e) {
@@ -49,7 +66,14 @@ public class ClientSocket {
     public static void main(String[] args) {
 
 
-        ClientSocket CS = new ClientSocket();
+        SendSocket CS = new SendSocket();
+
+    }
+
+    public void send(String s) {
+
+        if (ps != null)
+            ps.println(s + " " + (i++));
 
     }
 

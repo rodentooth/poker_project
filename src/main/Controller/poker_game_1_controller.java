@@ -49,29 +49,26 @@ public class poker_game_1_controller {
                 view.deck_txt.setText("Player " + winner_int + " is winner!");
 
                 //TODO fixit if u can
-                Label lblNew = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
-                for (int i = 0; i < playerNumber; i++) {
+
+                //Label lblNew = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
+                //NAME!!! ^^^^   , din alte dings
 
 
-                    if (model.get_winner(all_hands) == (i + 1)) {
-                        lblNew.setText("Winner");
+                VBox winner_pane = get_Specific_player_pane(winner_int);
+
+                winner_pane.setStyle("-fx-background-color: #fffa00");
+
+
+                for (int i = 1; i < (all_hands.size() + 1); i++) {
+
+                    Label winner_loser_label = (Label) (((HBox) (get_Specific_player_pane(i)).getChildren().get(3)).getChildren().get(0));
+
+                    if (winner_int == (i)) {
+                        winner_loser_label.setText("Winner");
                     } else {
-                        lblNew.setText("loser");
+                        winner_loser_label.setText("loser");
                     }
                 }
-
-
-                int go_to_winner_pane;
-                if(winner_int%2==0)
-                	go_to_winner_pane=1;
-                else
-                	go_to_winner_pane=0;
-
-
-                int go_to_winner_section = (int) (Math.round((double) winner_int / 2f) - 1);
-                HBox section = (HBox) view.players.getChildren().get(go_to_winner_section);
-                VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
-                winner_pane.setStyle("-fx-background-color: #fffa00");
 
 
                 // todo marugg change the text in the winner fields
@@ -195,6 +192,25 @@ public class poker_game_1_controller {
             Platform.exit();
         });
 */
+
+
+    }
+
+
+    private VBox get_Specific_player_pane(int index) {
+
+
+        int go_to_winner_pane;
+        if (index % 2 == 0)
+            go_to_winner_pane = 1;
+        else
+            go_to_winner_pane = 0;
+        int go_to_winner_section = (int) (Math.round((double) index / 2f) - 1);
+        HBox section = (HBox) view.players.getChildren().get(go_to_winner_section);
+        VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
+
+
+        return winner_pane;
 
     }
 }
