@@ -48,7 +48,7 @@ public class Player_Pane_Appearance {
         evaluated_hand_box.setStyle("-fx-background-color: #00fff2");
         evaluated_hand_box.setAlignment(Pos.CENTER);
 
-        Label win_lose = new Label("You win / you lose");
+        Label win_lose = new Label("You are a...");
 
         HBox win_lose_box = new HBox(8);
         win_lose_box.getChildren().add(win_lose);

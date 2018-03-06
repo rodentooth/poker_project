@@ -10,7 +10,10 @@ import java.util.ArrayList;
 public class Poker_5_Stud {
 
 
+    int playerNumb = 0;
+
     public Poker_5_Stud() {
+
     }
 
     public ArrayList<ArrayList<Card>> getHands(int players) {

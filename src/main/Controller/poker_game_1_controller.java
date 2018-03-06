@@ -21,7 +21,8 @@ public class poker_game_1_controller {
 
     Poker_5_Stud model;
     poker_game_1 view;
-
+    VBox box1;
+    int playerNumber;
     ArrayList<ArrayList<Card>> all_hands = null;
 
 
@@ -30,6 +31,7 @@ public class poker_game_1_controller {
 
         this.view = view;
         this.model = model;
+
 
 
         view.winner_btn.setOnAction((event) -> {
@@ -45,6 +47,18 @@ public class poker_game_1_controller {
                 //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
             	winner_int = model.get_winner(all_hands);
                 view.deck_txt.setText("Player " + winner_int + " is winner!");
+
+                //TODO fixit if u can
+                Label lblNew = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
+                for (int i = 0; i < playerNumber; i++) {
+
+
+                    if (model.get_winner(all_hands) == (i + 1)) {
+                        lblNew.setText("Winner");
+                    } else {
+                        lblNew.setText("loser");
+                    }
+                }
 
 
                 int go_to_winner_pane;
@@ -92,13 +106,14 @@ public class poker_game_1_controller {
             dialog.setHeaderText("Choose, how many players should be in this game!");
             dialog.setContentText("Please enter a value equal or above 2, but not higher than 10:");
 
-            int playerNumber = 0;
+            playerNumber = 0;
 // Traditional way to get the response value.
             Optional<Integer> result = dialog.showAndWait();
             if (result.isPresent()) {
                 System.out.println("Players in our game: " + result.get());
                 if (result.get() == (int) result.get()) {
                     playerNumber = result.get();
+
 
                 }
             }
@@ -138,7 +153,7 @@ public class poker_game_1_controller {
 
                 }
 
-                VBox box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
 
                 box1.setStyle("-fx-background-color: #00" + i + "f00");
 
@@ -149,12 +164,9 @@ public class poker_game_1_controller {
                 Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
                 lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(new Ranking().rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
 
-                Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
-                if (model.get_winner(all_hands) == (i + 1)) {
-                    lbl3.setText("Winner");
-                } else {
-                    lbl3.setText("loser");
-                }
+                //Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
+                //lbl3.setText("You are a ...");
+
 
                 section.getChildren().add(box1);
 

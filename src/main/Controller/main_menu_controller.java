@@ -19,6 +19,7 @@ public class main_menu_controller {
 
         view.play.setOnAction((event) -> {
 
+
             System.out.println("You clicked me!");
             view.deck_txt.setText("That's the main menu");
 
