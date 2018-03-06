@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
+import main.Model.Ranking.Hand_Ranks;
+import main.Model.Ranking.Ranking;
 import main.Model.Stack.Card;
 import main.View.Object_Appearance.Player_Pane_Appearance;
 import main.View.poker_game_1;
@@ -43,7 +45,8 @@ public class poker_game_1_controller {
                 //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
             	winner_int = model.get_winner(all_hands);
                 view.deck_txt.setText("Player " + winner_int + " is winner!");
-                
+
+
                 int go_to_winner_pane;
                 if(winner_int%2==0)
                 	go_to_winner_pane=1;
@@ -57,7 +60,7 @@ public class poker_game_1_controller {
                 winner_pane.setStyle("-fx-background-color: #fffa00");
 
 
-                //todo marugg change the text in the winner fields
+                // todo marugg change the text in the winner fields
                 /*Label lbl1 = (Label) (winner_pane.getChildren().get(0));
                 Label lbl2 = (Label) (winner_pane.getChildren().get(1));
                 Label lbl3 = (Label) (winner_pane.getChildren().get(2));*/
@@ -142,6 +145,16 @@ public class poker_game_1_controller {
 
                 Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
                 lbl1.setText("Player No. " + (i + 1));
+
+                Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
+                lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(new Ranking().rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
+
+                Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
+                if (model.get_winner(all_hands) == (i + 1)) {
+                    lbl3.setText("Winner");
+                } else {
+                    lbl3.setText("loser");
+                }
 
                 section.getChildren().add(box1);
 

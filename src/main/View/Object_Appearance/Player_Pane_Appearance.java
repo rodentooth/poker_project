@@ -27,9 +27,9 @@ public class Player_Pane_Appearance {
 
         HBox PlayerPane = new HBox();
 
-        PlayerPane.setPrefSize(500, 150);
+        PlayerPane.setPrefSize(500, 100);
 
-        PlayerPane.setPadding(new Insets(15, 12, 15, 12));
+        PlayerPane.setPadding(new Insets(0, 12, 0, 12));
 
         PlayerPane.setSpacing(10);
 
@@ -50,13 +50,14 @@ public class Player_Pane_Appearance {
 
         Label win_lose = new Label("You win / you lose");
 
-        HBox win_lose_box = new HBox();
+        HBox win_lose_box = new HBox(8);
         win_lose_box.getChildren().add(win_lose);
         win_lose_box.setStyle("-fx-background-color: #ff7700");
         win_lose_box.setAlignment(Pos.CENTER);
 
 
-        VBox PlayerPaneAll = new VBox();
+        VBox PlayerPaneAll = new VBox(10);
+        PlayerPaneAll.setPadding(new Insets(10, 10, 10, 10));
         PlayerPaneAll.getChildren().add(player_number_box);
         PlayerPaneAll.getChildren().add(PlayerPane);
         PlayerPaneAll.getChildren().add(evaluated_hand_box);
