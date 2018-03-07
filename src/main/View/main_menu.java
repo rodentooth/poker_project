@@ -26,12 +26,12 @@ public class main_menu {
 
 
         //Titel
-        HBox node0 = new HBox();
+        HBox container_title = new HBox();
         deck_txt = new Label("Poker 5 Stud");
-        node0.getChildren().add(deck_txt);
+        container_title.getChildren().add(deck_txt);
 
         //Number of Players
-        HBox node1 = new HBox();
+        HBox container_game_setup = new HBox();
         Label lbl2 = new Label("How many Players?");
         ObservableList<String> options =
                 FXCollections.observableArrayList(
@@ -40,8 +40,8 @@ public class main_menu {
                         "4"
                 );
         playerDropdown = new ComboBox(options);
-        node1.getChildren().add(lbl2);
-        node1.getChildren().add(playerDropdown);
+        container_game_setup.getChildren().add(lbl2);
+        container_game_setup.getChildren().add(playerDropdown);
 
         //Names
         HBox node2 = new HBox();
@@ -86,8 +86,8 @@ public class main_menu {
          * todo VARIABLENÄME KOLLEG was isch do nid guet? das sind doch alles nodes vode vbox oder?^^
          */
         VBox root = new VBox();
-        root.getChildren().add(node0);
-        root.getChildren().add(node1);
+        root.getChildren().add(container_title);
+        root.getChildren().add(container_game_setup);
         root.getChildren().add(node2);
         root.getChildren().add(node3);
         root.getChildren().add(node4);
