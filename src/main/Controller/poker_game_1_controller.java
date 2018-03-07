@@ -48,10 +48,9 @@ public class poker_game_1_controller {
             	winner_int = model.get_winner(all_hands);
                 view.deck_txt.setText("Player " + winner_int + " is winner!");
 
-                //TODO fixit if u can
 
                 //Label lblNew = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
-                //NAME!!! ^^^^   , din alte dings
+                //todo  ^^^^^^  NAME!!! , din alte dings
 
 
                 VBox winner_pane = get_Specific_player_pane(winner_int);
@@ -71,10 +70,6 @@ public class poker_game_1_controller {
                 }
 
 
-                // todo marugg change the text in the winner fields
-                /*Label lbl1 = (Label) (winner_pane.getChildren().get(0));
-                Label lbl2 = (Label) (winner_pane.getChildren().get(1));
-                Label lbl3 = (Label) (winner_pane.getChildren().get(2));*/
 
 
             }
