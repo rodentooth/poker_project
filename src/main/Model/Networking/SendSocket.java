@@ -1,8 +1,12 @@
 package main.Model.Networking;
 
+import main.Model.Stack.Card;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SendSocket {
 
@@ -12,10 +16,10 @@ public class SendSocket {
 
     int i = 0;
 
-    public SendSocket() {
+    public SendSocket(String host) {
         Socket socket = null;
         try {
-            socket = new Socket("localhost", 3141);
+            socket = new Socket(host, 3141);
 
             OutputStream raus = socket.getOutputStream();
 
@@ -23,10 +27,15 @@ public class SendSocket {
             socket.setKeepAlive(true);
             //socket.connect(address);
 
+            ArrayList<ArrayList<Card>> aplaycards = new ArrayList<>();
+
+            new ObjectOutputStream(raus).writeObject(aplaycards);
+
 
             ps = new PrintStream(raus, true);
             ps.println("Hallo Welt!");
             ps.println("Hallo Otto!");
+
 
             InputStream rein = socket.getInputStream();
             System.out.println("verf\u00FCgbare Bytes: " + rein.available());
@@ -37,11 +46,11 @@ public class SendSocket {
 
                 String modifiedSentence;
                 while ((modifiedSentence = buff.readLine()) != null) {
+
                     System.out.println("FROM SERVER: " + modifiedSentence);
 
-                    send("hallo ");
-
                 }
+
             }
 
         } catch (UnknownHostException e) {
@@ -66,14 +75,33 @@ public class SendSocket {
     public static void main(String[] args) {
 
 
-        SendSocket CS = new SendSocket();
+        //SendSocket CS = new SendSocket("localhost");
+        //send(CS.ps);
 
+
+        PostRequest PR = new PostRequest();
+
+        if (PR.send("http://apod.frozensparks.com/pokergame.php", "Fritz", "12323324")) {
+            System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
+        }
     }
 
-    public void send(String s) {
+    public static void send(PrintStream ps) {
 
-        if (ps != null)
-            ps.println(s + " " + (i++));
+
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Enter a text: ");
+
+//once finished
+
+        while (reader.hasNextLine()) {
+
+            if (ps != null)
+                ps.println(reader.next());
+
+
+        }
+        reader.close();
 
     }
 
