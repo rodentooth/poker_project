@@ -77,13 +77,13 @@ public class main_menu {
 
         controlArea.getChildren().add(grdpne2);
 */
-        //todo ^^^^^^^^^ nie kommentierte code pushe.
+        //todo ^^^^^^^^^ nie kommentierte code pushe. Jooooo das hanni nur gmacht dass mr en no hend falls das nid guet isch woni gmacht han...
         // wenner unnötig isch > lösche
         // wenn ned > bruche
 
 
         /**
-         * todo VARIABLENÄME KOLLEG
+         * todo VARIABLENÄME KOLLEG was isch do nid guet? das sind doch alles nodes vode vbox oder?^^
          */
         VBox root = new VBox();
         root.getChildren().add(node0);
