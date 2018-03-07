@@ -37,8 +37,10 @@ public class PostRequest {
             while (buff.ready()) {
                 //System.out.println(buff.readLine());
 
-                while ((postResult = buff.readLine()) != null) {
+                String temp_result;
+                while ((temp_result = buff.readLine()) != null) {
 
+                    postResult = temp_result;
                     System.out.println("FROM SERVER: " + postResult);
 
                 }
@@ -52,8 +54,8 @@ public class PostRequest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return postResult != null;
 
-        return false;
     }
 
 }
