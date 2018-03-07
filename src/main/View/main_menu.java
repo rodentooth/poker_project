@@ -22,7 +22,7 @@ public class main_menu {
     public main_menu(Stage primaryStage) {
 
 
-        //TODO Knopf für online game
+        //TODO Knopf für online game  UND NÄÄÄme ich wirde schwarz ma
 
 
         //Titel
@@ -58,6 +58,8 @@ public class main_menu {
         play = new Button("Play!");
         node4.getChildren().add(play);
 
+
+
 		/*GridPane grdpne = new GridPane();
     	grdpne.getStyleClass().add("grdpne");
         GridPane grdpne2 = new GridPane();
@@ -75,6 +77,10 @@ public class main_menu {
 
         controlArea.getChildren().add(grdpne2);
 */
+        //todo ^^^^^^^^^ nie kommentierte code pushe.
+        // wenner unnötig isch > lösche
+        // wenn ned > bruche
+
 
         /**
          * todo VARIABLENÄME KOLLEG
