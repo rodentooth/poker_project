@@ -42,8 +42,15 @@ public class main_menu_controller {
 
             for (int i = 0; i < number_of_players; i++) {
 
-                savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
-                System.out.println(savedNames.get(i));
+                if (!(((TextField) (view.node3.getChildren().get(i))).getText().isEmpty())) {
+                    savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
+                    System.out.println(savedNames.get(i));
+                } else {
+                    ((TextField) (view.node3.getChildren().get(i))).setText("Player " + (i + 1));
+                    savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
+                    System.out.println(savedNames.get(i));
+
+                }
             }
 
             System.out.println("You clicked me!");
