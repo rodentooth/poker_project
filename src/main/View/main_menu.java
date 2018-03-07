@@ -22,6 +22,9 @@ public class main_menu {
     public main_menu(Stage primaryStage) {
 
 
+        //TODO Knopf für online game
+
+
         //Titel
         HBox node0 = new HBox();
         deck_txt = new Label("Poker 5 Stud");
@@ -73,6 +76,9 @@ public class main_menu {
         controlArea.getChildren().add(grdpne2);
 */
 
+        /**
+         * todo VARIABLENÄME KOLLEG
+         */
         VBox root = new VBox();
         root.getChildren().add(node0);
         root.getChildren().add(node1);
