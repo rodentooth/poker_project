@@ -34,7 +34,7 @@ public class Poker_5_Stud {
         return Player_Cards;
     }
 
-    public int get_winner(ArrayList<ArrayList<Card>> Cards) {
+    public int getWinner(ArrayList<ArrayList<Card>> Cards) {
 
         int W = 0;
         Ranking r = new Ranking();

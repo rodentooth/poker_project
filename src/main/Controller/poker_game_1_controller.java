@@ -37,7 +37,7 @@ public class poker_game_1_controller {
         view.winner_btn.setOnAction((event) -> {
 
 
-        	int winner_int;
+            int winner_index;
             if (all_hands == null) {
 
                 view.deck_txt.setText("You have to deal out!");
@@ -45,16 +45,15 @@ public class poker_game_1_controller {
             } else {
 
                 //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
-            	winner_int = model.get_winner(all_hands);
-                view.deck_txt.setText("Player " + winner_int + " is winner!");
+                winner_index = model.getWinner(all_hands);
+                view.deck_txt.setText("Player " + winner_index + " is winner!");
 
-                //TODO fixit if u can
 
                 //Label lblNew = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
-                //NAME!!! ^^^^   , din alte dings
+                //todo  ^^^^^^  NAME!!! , din alte dings
 
 
-                VBox winner_pane = get_Specific_player_pane(winner_int);
+                VBox winner_pane = get_Specific_player_pane(winner_index);
 
                 winner_pane.setStyle("-fx-background-color: #fffa00");
 
@@ -63,7 +62,7 @@ public class poker_game_1_controller {
 
                     Label winner_loser_label = (Label) (((HBox) (get_Specific_player_pane(i)).getChildren().get(3)).getChildren().get(0));
 
-                    if (winner_int == (i)) {
+                    if (winner_index == (i)) {
                         winner_loser_label.setText("Winner");
                     } else {
                         winner_loser_label.setText("loser");
@@ -71,10 +70,6 @@ public class poker_game_1_controller {
                 }
 
 
-                // todo marugg change the text in the winner fields
-                /*Label lbl1 = (Label) (winner_pane.getChildren().get(0));
-                Label lbl2 = (Label) (winner_pane.getChildren().get(1));
-                Label lbl3 = (Label) (winner_pane.getChildren().get(2));*/
 
 
             }
