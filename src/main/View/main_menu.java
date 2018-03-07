@@ -1,10 +1,11 @@
 package main.View;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,6 +16,8 @@ public class main_menu {
 
 	public Button play;
 	public Label deck_txt;
+    public ComboBox playerDropdown;
+    public HBox node3;
 
     public main_menu(Stage primaryStage) {
 
@@ -27,7 +30,13 @@ public class main_menu {
         //Number of Players
         HBox node1 = new HBox();
         Label lbl2 = new Label("How many Players?");
-        ComboBox playerDropdown = new ComboBox();
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "2",
+                        "3",
+                        "4"
+                );
+        playerDropdown = new ComboBox(options);
         node1.getChildren().add(lbl2);
         node1.getChildren().add(playerDropdown);
 
@@ -37,9 +46,9 @@ public class main_menu {
         node2.getChildren().add(lbl3);
 
         //Textfields for names
-        HBox node3 = new HBox();
-        TextField player1 = new TextField("Player 1");
-        node3.getChildren().add(player1);
+        node3 = new HBox();
+
+
 
         //Button to Play
         HBox node4 = new HBox();

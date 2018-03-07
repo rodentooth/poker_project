@@ -1,6 +1,7 @@
 package main.Controller;
 
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
 import main.View.main_menu;
@@ -17,6 +18,18 @@ public class main_menu_controller {
         this.model = model;
 
 
+        view.playerDropdown.setOnAction((event) -> {
+
+            System.out.println(view.playerDropdown.getValue());
+            int number = Integer.valueOf((String) view.playerDropdown.getValue());
+
+            for (int i = 0; i < number; i++) {
+                TextField playerName = new TextField();
+                playerName.setPromptText("Player " + (i + 1));
+                view.node3.getChildren().add(playerName);
+            }
+
+        });
         view.play.setOnAction((event) -> {
 
 
