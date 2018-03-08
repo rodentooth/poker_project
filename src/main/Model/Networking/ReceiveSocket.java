@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -13,18 +14,26 @@ public class ReceiveSocket {
     private final ServerSocket server;
     private Boolean stop = false;
 
-    public ReceiveSocket(int port) throws IOException {
-        server = new ServerSocket(port);
+    public ReceiveSocket(int port, int backlog, String bindAddr) throws IOException {
+        server = new ServerSocket(port, backlog, InetAddress.getByName(bindAddr));
+
 
 
     }
 
     //todo test method: delete
     public static void main(String[] args) {
+/*
+        ReceiveSocket server = null;
+        try {
+            server = new ReceiveSocket(port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        server.verbinde();
 
-
-
+*/
     }
 
     public void verbinde() {

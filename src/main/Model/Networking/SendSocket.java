@@ -4,7 +4,6 @@ import main.Model.Stack.Card;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class SendSocket {
     public SendSocket(String host) {
         Socket socket = null;
         try {
-            socket = new Socket(host, 3141);
+            socket = new Socket(host, 12700);
 
             OutputStream raus = socket.getOutputStream();
 
@@ -75,33 +74,18 @@ public class SendSocket {
     //todo test method: delete
     public static void main(String[] args) {
 
+/*
+        SendSocket CS = new SendSocket("localhost");
+        send(CS.ps);
 
-
+*/
 
 
         PostRequest PR = new PostRequest();
 
-        String ip = null; //you get the IP as a String
+        getIPaddress p = new getIPaddress();
 
-        URL whatismyip = null;
-        BufferedReader in = null;
-
-        try {
-            whatismyip = new URL("http://checkip.amazonaws.com");
-
-            in = new BufferedReader(new InputStreamReader(
-                    whatismyip.openStream()));
-
-
-            ip = in.readLine();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-        System.out.println(ip);
-
+        String ip = p.ip();
 
         if (PR.send("http://apod.frozensparks.com/pokergame.php", "hoi juel", ip)) {
             System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
@@ -114,16 +98,17 @@ public class SendSocket {
 
                 System.out.println("Trying to connect to " + IP);
 
-
                 SendSocket CS = new SendSocket(IP);
                 send(CS.ps);
+
+
             } else {
 
                 System.out.println("Create Host, Waiting for connections...");
 
                 ReceiveSocket server = null;
                 try {
-                    server = new ReceiveSocket(3141);
+                    server = new ReceiveSocket(12700, 5, ip);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -132,6 +117,7 @@ public class SendSocket {
 
             }
         }
+
     }
 
     public static void send(PrintStream ps) {
