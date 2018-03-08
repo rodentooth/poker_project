@@ -154,7 +154,10 @@ public class poker_game_1_controller {
                 lbl1.setText("Player No. " + (i + 1));
 
                 Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
-                lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(new Ranking().rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
+
+                Ranking r = new Ranking();
+
+                lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
 
                 //Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
                 //lbl3.setText("You are a ...");

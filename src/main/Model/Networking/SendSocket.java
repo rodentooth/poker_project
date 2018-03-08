@@ -3,6 +3,7 @@ package main.Model.Networking;
 import main.Model.Stack.Card;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -75,19 +76,26 @@ public class SendSocket {
     public static void main(String[] args) {
 
 /*
-        SendSocket CS = new SendSocket("localhost");
+        SendSocket CS = new SendSocket("178.197.232.180");
         send(CS.ps);
-
 */
+
 
 
         PostRequest PR = new PostRequest();
 
         getIPaddress p = new getIPaddress();
 
-        String ip = p.ip();
+        String ip = null;
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
 
-        if (PR.send("http://apod.frozensparks.com/pokergame.php", "hoi juel", ip)) {
+        System.out.println("IP:  " + ip);
+
+        if (PR.send("http://apod.frozensparks.com/pokergame.php", "Emanuel", ip)) {
             System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
 
             if ((PR.postResult).contains(",")) {
@@ -108,7 +116,7 @@ public class SendSocket {
 
                 ReceiveSocket server = null;
                 try {
-                    server = new ReceiveSocket(12700, 5, ip);
+                    server = new ReceiveSocket(12700, 5, InetAddress.getLocalHost().getHostAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
