@@ -18,6 +18,8 @@ public class main_menu {
 	public Label deck_txt;
     public ComboBox playerDropdown;
     public HBox node3;
+    public VBox node4;
+    public boolean playerNumberEntered = false;
 
     public main_menu(Stage primaryStage) {
 
@@ -37,9 +39,15 @@ public class main_menu {
                 FXCollections.observableArrayList(
                         "2",
                         "3",
-                        "4"
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10"
                 );
         playerDropdown = new ComboBox(options);
+        //playerDropdown.getSelectionModel().selectFirst();
         container_game_setup.getChildren().add(lbl2);
         container_game_setup.getChildren().add(playerDropdown);
 
@@ -54,35 +62,16 @@ public class main_menu {
 
 
         //Button to Play
-        HBox node4 = new HBox();
+        node4 = new VBox();
         play = new Button("Play!");
+        Label enterPlayerNumber = new Label("Please, enter number of players to continue.");
+        play.setDisable(true);
         node4.getChildren().add(play);
+        node4.getChildren().add(enterPlayerNumber);
 
 
 
-		/*GridPane grdpne = new GridPane();
-    	grdpne.getStyleClass().add("grdpne");
-        GridPane grdpne2 = new GridPane();
-        grdpne2.getStyleClass().add("grdpne");
-
-
-
-
-		deck_txt = new Label("Main Menu");
-    	controlArea.getChildren().add(grdpne);
-
-		//controlArea.getChildren().add(flwpne);
-		controlArea.getChildren().add(deck_txt);
-		controlArea.getChildren().add(play);
-
-        controlArea.getChildren().add(grdpne2);
-*/
-        //todo ^^^^^^^^^ nie kommentierte code pushe. Jooooo das hanni nur gmacht dass mr en no hend falls das nid guet isch woni gmacht han...
-        // wenner unnötig isch > lösche
-        // wenn ned > bruche
-
-
-        /**
+        /*
          * todo VARIABLENÄME KOLLEG was isch do nid guet? das sind doch alles nodes vode vbox oder?^^
          */
         VBox root = new VBox();
@@ -93,7 +82,7 @@ public class main_menu {
         root.getChildren().add(node4);
 
 
-        Scene scene = new Scene(root, 500, 300);
+        Scene scene = new Scene(root, 700, 400);
         scene.getStylesheets().add(
                 getClass().getResource("poker.css").toExternalForm());
         primaryStage.setTitle("Hello World");

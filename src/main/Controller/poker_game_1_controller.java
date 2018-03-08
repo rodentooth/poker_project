@@ -1,7 +1,6 @@
 package main.Controller;
 
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -14,20 +13,16 @@ import main.View.Object_Appearance.Player_Pane_Appearance;
 import main.View.poker_game_1;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class poker_game_1_controller {
 
     Poker_5_Stud model;
     poker_game_1 view;
     VBox box1;
-    int playerNumber;
     ArrayList<ArrayList<Card>> all_hands = null;
 
 
-
-    public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view) {
+    public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
         this.view = view;
         this.model = model;
@@ -78,55 +73,17 @@ public class poker_game_1_controller {
 
         view.deal_btn.setOnAction((event) -> {
 
-            List<Integer> choices = new ArrayList<>();
-            choices.add(2);
-            choices.add(3);
-            choices.add(4);
-            choices.add(5);
-            choices.add(6);
-            choices.add(7);
-            choices.add(8);
-            choices.add(9);
-            choices.add(10);
-
-
-
-            view.deck_txt.setText("dealing out...");
-
-            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(2, choices);
-            dialog.setTitle("Numbers of Player");
-            dialog.setHeaderText("Choose, how many players should be in this game!");
-            dialog.setContentText("Please enter a value equal or above 2, but not higher than 10:");
-
-            playerNumber = 0;
-// Traditional way to get the response value.
-            Optional<Integer> result = dialog.showAndWait();
-            if (result.isPresent()) {
-                System.out.println("Players in our game: " + result.get());
-                if (result.get() == (int) result.get()) {
-                    playerNumber = result.get();
-
-
-                }
-            }
-
-            // The Java 8 way to get the response value (with lambda expression).
-            result.ifPresent(number -> System.out.println("Player amount: " + number));
+            System.out.println("Players in our game: " + savedNames.size());
 
 
             if (view.players.getChildren() != null)
                 view.players.getChildren().clear();
 
 
+            all_hands = model.getHands(savedNames.size());
 
 
-            all_hands = model.getHands(playerNumber);
-
-            playerNumber = all_hands.size();
-
-
-
-            for (int i = 0; i < playerNumber; i++) {
+            for (int i = 0; i < all_hands.size(); i++) {
                 Player_Pane_Appearance Player_Pane_Apperance = new Player_Pane_Appearance();
 
                 HBox section;

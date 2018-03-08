@@ -27,4 +27,14 @@ public class Card_Apperance {
 
         return inside_card;
     }
+
+    public Pane Empty_Card_Apperance(Card c) {
+
+        VBox inside_card = new VBox();
+        inside_card.setPrefSize(100, 200);
+
+        //pic ine
+        return inside_card;
+
+    }
 }

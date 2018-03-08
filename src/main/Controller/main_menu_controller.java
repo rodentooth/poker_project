@@ -15,7 +15,7 @@ public class main_menu_controller {
     main_menu view;
 
     int number_of_players;
-    ArrayList<String> savedNames = new ArrayList<>();
+    public ArrayList<String> savedNames = new ArrayList<>();
 
     public main_menu_controller(Poker_5_Stud model, main_menu view) {
 
@@ -24,6 +24,8 @@ public class main_menu_controller {
 
 
         view.playerDropdown.setOnAction((event) -> {
+
+            view.node3.getChildren().clear();
 
             System.out.println(view.playerDropdown.getValue());
             number_of_players = Integer.valueOf((String) view.playerDropdown.getValue());
@@ -34,13 +36,19 @@ public class main_menu_controller {
                 view.node3.getChildren().add(playerName);
             }
 
+            view.play.setDisable(false);
+            if (view.play.isDisable() == false) {
+                view.node4.getChildren().remove(1);
+            }
 
         });
 
 
         view.play.setOnAction((event) -> {
 
+
             for (int i = 0; i < number_of_players; i++) {
+
 
                 if (!(((TextField) (view.node3.getChildren().get(i))).getText().isEmpty())) {
                     savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
@@ -52,6 +60,7 @@ public class main_menu_controller {
 
                 }
             }
+
 
             System.out.println("You clicked me!");
             view.deck_txt.setText("That's the main menu");
@@ -67,7 +76,7 @@ public class main_menu_controller {
 
 
             poker_game_1 gameView = new poker_game_1(stageTheLabelBelongs);
-            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView);
+            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames);
 
 
             //stageTheLabelBelongs.setScene(new Scene(new Pane()));

@@ -30,13 +30,13 @@ public class SendSocket {
 
             ArrayList<ArrayList<Card>> aplaycards = new ArrayList<>();
 
-            new ObjectOutputStream(raus).writeObject(aplaycards);
+            //  new ObjectOutputStream(raus).writeObject(aplaycards);
 
 
             ps = new PrintStream(raus, true);
             ps.println("Hallo Welt!");
             ps.println("Hallo Otto!");
-
+            ps.flush();
 
             InputStream rein = socket.getInputStream();
             System.out.println("verf\u00FCgbare Bytes: " + rein.available());
