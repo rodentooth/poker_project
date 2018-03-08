@@ -4,6 +4,7 @@ import main.Model.Stack.Card;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -75,14 +76,61 @@ public class SendSocket {
     public static void main(String[] args) {
 
 
-        //SendSocket CS = new SendSocket("localhost");
-        //send(CS.ps);
+
 
 
         PostRequest PR = new PostRequest();
 
-        if (PR.send("http://apod.frozensparks.com/pokergame.php", "Fritz", "12323324")) {
+        String ip = null; //you get the IP as a String
+
+        URL whatismyip = null;
+        BufferedReader in = null;
+
+        try {
+            whatismyip = new URL("http://checkip.amazonaws.com");
+
+            in = new BufferedReader(new InputStreamReader(
+                    whatismyip.openStream()));
+
+
+            ip = in.readLine();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        System.out.println(ip);
+
+
+        if (PR.send("http://apod.frozensparks.com/pokergame.php", "hoi juel", ip)) {
             System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
+
+            if ((PR.postResult).contains(",")) {
+                String string = PR.postResult;
+                String[] parts = string.split(",");
+                String IP = parts[0]; // 004
+                String part2 = parts[1]; // 034556
+
+                System.out.println("Trying to connect to " + IP);
+
+
+                SendSocket CS = new SendSocket(IP);
+                send(CS.ps);
+            } else {
+
+                System.out.println("Create Host, Waiting for connections...");
+
+                ReceiveSocket server = null;
+                try {
+                    server = new ReceiveSocket(3141);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                server.verbinde();
+
+            }
         }
     }
 

@@ -22,14 +22,7 @@ public class ReceiveSocket {
     //todo test method: delete
     public static void main(String[] args) {
 
-        ReceiveSocket server = null;
-        try {
-            server = new ReceiveSocket(3141);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        server.verbinde();
 
 
     }
