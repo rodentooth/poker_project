@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,6 +17,8 @@ public class poker_game_1 {
     public Button deal_btn;
     public VBox players;
     private HBox controlArea;
+    public AnchorPane anchorpane;
+    public BorderPane root;
 
 
     public poker_game_1(Stage primaryStage) {
@@ -25,6 +28,8 @@ public class poker_game_1 {
 
         players.setStyle("-fx-background-color: #0061ff");
 
+
+        anchorpane = new AnchorPane();
 
         //players.getChildren().add(btn);
 
@@ -76,7 +81,7 @@ public class poker_game_1 {
         controlArea.getChildren().add(deal_btn_box);
 
 
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
         root.setCenter(players);
         root.setBottom(controlArea);
 

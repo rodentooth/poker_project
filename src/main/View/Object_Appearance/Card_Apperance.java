@@ -10,20 +10,24 @@ public class Card_Apperance {
 
     public Pane Card_Apperance(Card c) {
 
-        Pane p = new Pane();
 
-        VBox inside_card2 = new VBox();
+        Pane inside_card2 = new Pane();
 
         //inside_card.setPadding(new Insets(15, 12, 15, 12));
 
         ImageView imageView2 = new ImageView();
-        imageView2.setFitWidth(100);
+        imageView2.setFitWidth(50);
         imageView2.setPreserveRatio(true);
         imageView2.setSmooth(true);
         imageView2.setCache(true);
+        imageView2.fitWidthProperty().bind(inside_card2.widthProperty());
 
+
+        System.out.println("Card_Images/" + c.getSuit().toString() + "/" + c.getSuit().toString() + "_" + c.getRank().toString() + ".png");
 
         Image shortImageUrl = new Image("Card_Images/" + c.getSuit().toString() + "/" + c.getSuit().toString() + "_" + c.getRank().toString() + ".png");
+
+
         imageView2.setImage(shortImageUrl);
 
         /*
@@ -56,7 +60,7 @@ public class Card_Apperance {
         Image image25 = new Image("Card_Images/Hearts/Hearts_Two.png");
         Image image26 = new Image("Card_Images/Diamonds/Diamonds_Ace.png");
         Image image27 = new Image("Card_Images/Diamonds/Diamonds_Eight.png");
-        Image image28 = new Image("Card_Images/Diamonds/Diamonds_Fivr.png");
+        Image image28 = new Image("Card_Images/Diamonds/Diamonds_Five.png");
         Image image29 = new Image("Card_Images/Diamonds/Diamonds_Four.png");
         Image image30 = new Image("Card_Images/Diamonds/Diamonds_Jack.png");
         Image image31 = new Image("Card_Images/Diamonds/Diamonds_King.png");
@@ -249,10 +253,10 @@ public class Card_Apperance {
 
         inside_card2.getChildren().add(imageView2);
         inside_card2.setPrefSize(100, 200);
+        inside_card2.setMaxSize(100, 200);
 
         inside_card2.setStyle("-fx-background-color: #FFFFFF");
 
-        p.getChildren().add(inside_card2);
 
         return inside_card2;
     }
@@ -264,13 +268,14 @@ public class Card_Apperance {
         Image image = new Image("Card_Images/cardBack.png");
         ImageView imageView = new ImageView();
         imageView.setImage(image);
-        imageView.setFitWidth(100);
+        //imageView.setFitWidth(100);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
 
 
         inside_card.setPrefSize(100, 200);
+        inside_card.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         inside_card.getChildren().add(imageView);
         //pic ine
 

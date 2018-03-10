@@ -1,9 +1,10 @@
 package main.Controller;
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
 import main.Model.Ranking.Hand_Ranks;
@@ -26,6 +27,9 @@ public class poker_game_1_controller {
 
         this.view = view;
         this.model = model;
+        view.players.setSpacing(10);
+        view.players.setPadding(new Insets(10, 10, 10, 10));
+
 
 
 
@@ -71,6 +75,9 @@ public class poker_game_1_controller {
         });
 
 
+        view.players.setMaxWidth(Double.MAX_VALUE);
+        view.players.setMaxHeight(Double.MAX_VALUE);
+
         view.deal_btn.setOnAction((event) -> {
 
             System.out.println("Players in our game: " + savedNames.size());
@@ -80,7 +87,9 @@ public class poker_game_1_controller {
                 view.players.getChildren().clear();
 
 
+
             all_hands = model.getHands(savedNames.size());
+
 
 
             for (int i = 0; i < all_hands.size(); i++) {
@@ -89,9 +98,10 @@ public class poker_game_1_controller {
                 HBox section;
                 if (i % 2 == 0) {
                     section = new HBox();
-                    section.setStyle("-fx-background-color: #00" + i + "0ff");
+                    // section.setStyle("-fx-background-color: #00" + i + "0ff");
                     section.setPrefSize(1000, 300);
                     view.players.getChildren().add(section);
+
 
 
                 } else {
@@ -102,13 +112,27 @@ public class poker_game_1_controller {
 
                 }
 
+
+                section.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+                AnchorPane.setTopAnchor(view.players, 10.0);
+                AnchorPane.setBottomAnchor(view.players, 10.0);
+                AnchorPane.setRightAnchor(view.players, 10.0);
+                AnchorPane.setTopAnchor(section, 10.0);
+
+                section.setSpacing(10);
                 box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
 
-                box1.setStyle("-fx-background-color: #00" + i + "f00");
+                box1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+
+                box1.setStyle("-fx-background-color: #003700");
+                box1.setBorder(new Border(new BorderStroke(Color.BLACK,
+                        BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
 
 
                 Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
-                lbl1.setText("Player No. " + (i + 1));
+                lbl1.setText(savedNames.get(i));
 
                 Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
 
