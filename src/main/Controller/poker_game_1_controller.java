@@ -96,7 +96,7 @@ public class poker_game_1_controller {
                 Player_Pane_Appearance Player_Pane_Apperance = new Player_Pane_Appearance();
 
                 HBox section;
-                if (i % 2 == 0) {
+                if (((all_hands.size() <= 5) && (i % 2 == 0)) || ((all_hands.size() > 5) && (i % 4 == 0))) {
                     section = new HBox();
                     // section.setStyle("-fx-background-color: #00" + i + "0ff");
                     section.setPrefSize(1000, 300);
