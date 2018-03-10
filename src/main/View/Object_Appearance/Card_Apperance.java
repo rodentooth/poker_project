@@ -13,6 +13,21 @@ public class Card_Apperance {
         Pane p = new Pane();
 
         VBox inside_card2 = new VBox();
+
+        //inside_card.setPadding(new Insets(15, 12, 15, 12));
+
+        ImageView imageView2 = new ImageView();
+        imageView2.setFitWidth(100);
+        imageView2.setPreserveRatio(true);
+        imageView2.setSmooth(true);
+        imageView2.setCache(true);
+
+
+        Image shortImageUrl = new Image("Card_Images/" + c.getSuit().toString() + "/" + c.getSuit().toString() + "_" + c.getRank().toString() + ".png");
+        imageView2.setImage(shortImageUrl);
+
+        /*
+        String card = new String(c.getSuit().toString() + c.getRank().toString());
         Image image = new Image("Card_Images/Spades/Spades_Ace.png");
         Image image1 = new Image("Card_Images/Spades/Spades_King.png");
         Image image2 = new Image("Card_Images/Spades/Spades_Queen.png");
@@ -67,16 +82,6 @@ public class Card_Apperance {
         Image image51 = new Image("Card_Images/Clubs/Clubs_Two.png");
 
 
-        //inside_card.setPadding(new Insets(15, 12, 15, 12));
-
-        ImageView imageView2 = new ImageView();
-        imageView2.setFitWidth(100);
-        imageView2.setPreserveRatio(true);
-        imageView2.setSmooth(true);
-        imageView2.setCache(true);
-
-
-        String card = new String(c.getSuit().toString() + c.getRank().toString());
 
         switch (card) {
             case "SpadesAce":
@@ -237,6 +242,7 @@ public class Card_Apperance {
                 break;
 
         }
+*/
 
         //Text Rank = new Text(c.getRank().toString());
         //Text Suit = new Text(c.getSuit().toString());
