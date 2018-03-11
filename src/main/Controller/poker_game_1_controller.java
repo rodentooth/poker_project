@@ -88,7 +88,7 @@ public class poker_game_1_controller {
         view.players.setMaxWidth(Double.MAX_VALUE);
         view.players.setMaxHeight(Double.MAX_VALUE);
 
-        view.deal_btn.setOnAction((event) -> {
+        view.deal_btn.setOnAction((javafx.event.ActionEvent event) -> {
 
             if (once) {
 
@@ -106,6 +106,23 @@ public class poker_game_1_controller {
 
                         rt.play();
 
+/*
+                        while (rt.getStatus()== Animation.Status.RUNNING){
+
+                            if (rt.getCurrentTime().toMillis()>1500){
+
+                            }
+                        }
+*/
+                        if (rt.getCurrentTime().toMillis() > 1500) {
+                            ((Pane) p.getChildren().get(0)).getChildren().remove(1);
+
+                        }
+
+                        rt.setOnFinished((javafx.event.ActionEvent event2) -> {
+                            ((Pane) p.getChildren().get(0)).getChildren().remove(1);
+
+                        });
                     }
                 }
             }

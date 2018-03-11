@@ -1,12 +1,10 @@
 package main.View.Object_Appearance;
 
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
 import main.Model.Stack.Card;
 
 public class Card_Apperance {
@@ -15,8 +13,8 @@ public class Card_Apperance {
 
 
         Pane container = new Pane();
-        StackPane inside_card2 = new StackPane();
-        inside_card2.setAlignment(Pos.CENTER);
+        Pane inside_card2 = new Pane();
+        //inside_card2.setAlignment(Pos.CENTER);
 
 
         //inside_card.setPadding(new Insets(15, 12, 15, 12));
@@ -47,6 +45,10 @@ public class Card_Apperance {
         imageView.fitWidthProperty().bind(inside_card2.widthProperty());
 
 
+        imageView2.getTransforms().add(new Translate(-100, 0, 0));
+        //imageView.getTransforms().add(new Translate(50,0,0));
+
+
         inside_card2.getChildren().add(imageView2);
         inside_card2.getChildren().add(imageView);
 
@@ -61,6 +63,7 @@ public class Card_Apperance {
         return container;
     }
 
+    /*
     public Pane Empty_Card_Apperance(Card c) {
 
         VBox inside_card = new VBox();
@@ -83,4 +86,5 @@ public class Card_Apperance {
         return inside_card;
 
     }
+    */
 }
