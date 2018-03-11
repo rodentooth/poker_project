@@ -54,10 +54,6 @@ public class poker_game_1_controller {
                 view.deck_txt.setText("Player " + winner_index + " is winner!");
 
 
-                //Label lblNew = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
-                //todo  ^^^^^^  NAME!!! , din alte dings
-
-
                 VBox winner_pane = get_Specific_player_pane(winner_index);
 
                 winner_pane.setStyle("-fx-background-color: #fffa00");

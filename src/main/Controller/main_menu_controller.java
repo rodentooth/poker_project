@@ -2,8 +2,10 @@ package main.Controller;
 
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Model.Game.Poker_5_Stud;
+import main.Model.Stack.Card;
 import main.View.main_menu;
 import main.View.poker_game_1;
 
@@ -13,15 +15,18 @@ public class main_menu_controller {
 
     Poker_5_Stud model;
     main_menu view;
+    poker_game_1 pg_view;
 
     int number_of_players;
     public ArrayList<String> savedNames = new ArrayList<>();
+    ArrayList<ArrayList<Card>> all_hands = null;
+    VBox box1;
 
-    public main_menu_controller(Poker_5_Stud model, main_menu view) {
+    public main_menu_controller(Poker_5_Stud model, main_menu view, poker_game_1 pg_view) {
 
         this.view = view;
         this.model = model;
-
+        this.pg_view = pg_view;
 
         view.playerDropdown.setOnAction((event) -> {
 
@@ -75,7 +80,7 @@ public class main_menu_controller {
             // Swap screen::
 
 
-            poker_game_1 gameView = new poker_game_1(stageTheLabelBelongs);
+            poker_game_1 gameView = new poker_game_1(stageTheEventSourceNodeBelongs);
             poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames);
 
 

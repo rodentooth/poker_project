@@ -33,6 +33,7 @@ public class poker_game_1 {
                 "-fx-background-size: cover, auto;");
 
 
+
         anchorpane = new AnchorPane();
 
         //players.getChildren().add(btn);
@@ -46,14 +47,9 @@ public class poker_game_1 {
 //    	controlArea.getChildren().addAll(deck_txt, shuffle_btn, deal_btn);
 
         controlArea = new HBox();
-      // controlArea.setSpacing(50);
         controlArea.setAlignment(Pos.CENTER);
-
-
-        controlArea.setAlignment(Pos.CENTER);
-
         controlArea.getStyleClass().add("controlArea");
-        controlArea.setPrefSize(1000, 50);
+        controlArea.setPrefSize(1000, 60);
 
 
         VBox winner_btn_box = new VBox();
@@ -62,6 +58,7 @@ public class poker_game_1 {
         winner_btn_box.prefWidthProperty().bind(controlArea.widthProperty());
         winner_btn = new Button("Get Winner");
         winner_btn_box.getChildren().add(winner_btn);
+
 
         VBox deal_btn_box = new VBox();
         deal_btn_box.setAlignment(Pos.CENTER);
