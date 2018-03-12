@@ -25,7 +25,7 @@ public class poker_game_1_controller {
     poker_game_1 view;
     VBox box1;
     ArrayList<ArrayList<Card>> all_hands = null;
-    Boolean once = false;
+    Boolean once = true;
 
 
     public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
@@ -35,8 +35,6 @@ public class poker_game_1_controller {
         this.model = model;
         view.players.setSpacing(10);
         view.players.setPadding(new Insets(10, 10, 10, 10));
-
-
 
 
         view.winner_btn.setOnAction((event) -> {
@@ -69,6 +67,10 @@ public class poker_game_1_controller {
                         winner_loser_label.setText("loser");
                     }
                 }
+
+
+                view.deal_btn.setText("new Game");
+                view.deal_btn.setDisable(false);
 
                 //dealout(savedNames);
 
@@ -117,12 +119,19 @@ public class poker_game_1_controller {
 
                         rt.setOnFinished((javafx.event.ActionEvent event2) -> {
                             ((Pane) p.getChildren().get(0)).getChildren().remove(1);
+                            view.deal_btn.setDisable(true);
 
                         });
                     }
                 }
+                once = false;
+
+            } else {
+                view.deal_btn.setText("Reveal Cards");
+                dealout(savedNames);
+                once = true;
+
             }
-            once = true;
         });
 
 
