@@ -15,6 +15,9 @@ import main.Model.Stack.Card;
 import main.View.Object_Appearance.Player_Pane_Appearance;
 import main.View.poker_game_1;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static javafx.scene.transform.Rotate.Y_AXIS;
@@ -69,7 +72,7 @@ public class poker_game_1_controller {
                 }
 
 
-                view.deal_btn.setText("new Game");
+                view.deal_btn.setText("Play again");
                 view.deal_btn.setDisable(false);
 
                 //dealout(savedNames);
@@ -102,8 +105,18 @@ public class poker_game_1_controller {
                         rt.setAxis(Y_AXIS);
                         rt.setCycleCount(1);
 
-                        rt.play();
 
+                        Timer timer = new Timer((j + 1) * (i + 1) * 100, new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                rt.play();
+                                //timer.stop();
+                            }
+                        });
+                        //timer.setInitialDelay();
+                        timer.setRepeats(false);
+
+                        timer.start();
 /*
                         while (rt.getStatus()== Animation.Status.RUNNING){
 
@@ -125,6 +138,8 @@ public class poker_game_1_controller {
                     }
                 }
                 once = false;
+                view.winner_btn.setDisable(false);
+
 
             } else {
                 view.deal_btn.setText("Reveal Cards");
@@ -151,6 +166,8 @@ public class poker_game_1_controller {
     }
 
     private void dealout(ArrayList<String> savedNames) {
+        view.winner_btn.setDisable(true);
+
         System.out.println("Players in our game: " + savedNames.size());
 
 
