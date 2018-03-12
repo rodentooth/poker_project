@@ -70,7 +70,7 @@ public class poker_game_1_controller {
                     }
                 }
 
-                dealout(savedNames);
+                //dealout(savedNames);
 
 
 
