@@ -44,8 +44,11 @@ public class SendSocket {
             //BufferedReader buff = new BufferedReader(new InputStreamReader(rein));
 
 
-            FileInputStream fis = new FileInputStream("t.tmp");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            //FileInputStream fis = new FileInputStream();
+            ObjectInputStream ois = new ObjectInputStream(rein);
+
+
+
 
             while (true) {
                 //System.out.println(buff.readLine());
@@ -53,8 +56,8 @@ public class SendSocket {
                 hands = new ArrayList<>();
 
 
-                int i = ois.readInt();
-                hands = (ArrayList<ArrayList<Card>>) ois.readObject();
+                //int i = ois.readInt();
+                byte[] bytes = (byte[]) ois.readObject();
                 //Date date = (Date) ois.readObject();
 
                 ois.close();
@@ -67,6 +70,23 @@ public class SendSocket {
 
                 }
 */
+
+                ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+                ObjectInput in = null;
+                try {
+                    in = new ObjectInputStream(bis);
+                    hands = (ArrayList<ArrayList<Card>>) in.readObject();
+                } finally {
+                    try {
+                        if (in != null) {
+                            in.close();
+                        }
+                    } catch (IOException ex) {
+                        // ignore close exception
+                    }
+                }
+
+
             }
 
         } catch (UnknownHostException e) {

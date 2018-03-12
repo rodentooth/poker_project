@@ -64,20 +64,40 @@ public class ReceiveSocket {
     }
 
     private void reinRaus(Socket socket) throws IOException {
-        BufferedReader rein = new BufferedReader(new InputStreamReader(socket
-                .getInputStream()));
-        PrintStream raus = new PrintStream(socket.getOutputStream());
-        String s;
 
-        while ((s = rein.readLine()) != null) {
-            if (stop)
-                break;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+            out.writeObject(hands);
+            out.flush();
+            byte[] yourBytes = bos.toByteArray();
 
-            new ObjectOutputStream(raus).writeObject(hands);
-            //raus.println(System.nanoTime() + "  that's a server message: " + s);
+
+            BufferedReader rein = new BufferedReader(new InputStreamReader(socket
+                    .getInputStream()));
+            PrintStream raus = new PrintStream(socket.getOutputStream());
+            String s;
+
+            while ((s = rein.readLine()) != null) {
+                if (stop)
+                    break;
+
+                new ObjectOutputStream(raus).writeObject(yourBytes);
+                //raus.println(System.nanoTime() + "  that's a server message: " + s);
             /*if (!s.equals(""))
                 break;*/
+            }
+
+
+        } finally {
+            try {
+                bos.close();
+            } catch (IOException ex) {
+                // ignore close exception
+            }
         }
+
 
     }
 
