@@ -36,12 +36,15 @@ public class online_poker_game_1_controller {
     public online_poker_game_1_controller(Online_Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
 
+
         this.savedNames = savedNames;
         this.view = view;
         this.model = model;
         view.players.setSpacing(10);
         view.players.setPadding(new Insets(10, 10, 10, 10));
 
+
+        all_hands = model.getOnlineCards();
 
         view.winner_btn.setOnAction((event) -> {
 

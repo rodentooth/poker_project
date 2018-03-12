@@ -33,7 +33,7 @@ public class poker_game_1_controller {
     Boolean once = true;
 
 
-    public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames, ArrayList<ArrayList<Card>> all_hands) {
+    public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
 
         this.view = view;

@@ -1,6 +1,5 @@
 package main.Model.Networking;
 
-import main.Controller.online_poker_game_1_controller;
 import main.Model.Stack.Card;
 
 import java.io.*;
@@ -11,13 +10,15 @@ import java.util.Scanner;
 
 public class SendSocket {
 
+    ArrayList<ArrayList<Card>> hands;
+
     //Inspiration from tutorial:  https://javabeginners.de/Netzwerk/Socketverbindung.php
 
     public PrintStream ps;
 
     int i = 0;
 
-    public SendSocket(String host, online_poker_game_1_controller opg) {
+    public SendSocket(String host) {
         Socket socket = null;
         try {
             socket = new Socket(host, 12700);
@@ -49,12 +50,11 @@ public class SendSocket {
             while (true) {
                 //System.out.println(buff.readLine());
 
-                ArrayList<ArrayList<Card>> hands = new ArrayList<>();
+                hands = new ArrayList<>();
 
 
                 int i = ois.readInt();
                 hands = (ArrayList<ArrayList<Card>>) ois.readObject();
-                opg.dealout(hands);
                 //Date date = (Date) ois.readObject();
 
                 ois.close();
@@ -120,4 +120,8 @@ public class SendSocket {
     }
 
 
+    public ArrayList<ArrayList<Card>> getOnlineCards() {
+
+        return hands;
+    }
 }

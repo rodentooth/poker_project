@@ -17,7 +17,7 @@ import static main.Model.Networking.SendSocket.send;
 public class Online_Poker_5_Stud {
 
 
-
+    SendSocket CS;
     //search for opponents:
     //Create Sendsocket with server target to get possible opponents
 
@@ -48,7 +48,7 @@ public class Online_Poker_5_Stud {
 
                 System.out.println("Trying to connect to " + IP);
 
-                SendSocket CS = new SendSocket(IP);
+                CS = new SendSocket(IP);
                 send(CS.ps);
 
 
@@ -72,6 +72,10 @@ public class Online_Poker_5_Stud {
 
 
 
+    }
+
+    public ArrayList<ArrayList<Card>> getOnlineCards() {
+        return CS.getOnlineCards();
     }
 
     static int getWinnerAsInt(ArrayList<ArrayList<Card>> Cards) {

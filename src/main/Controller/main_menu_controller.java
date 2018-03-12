@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.Model.Game.Online_Poker_5_Stud;
 import main.Model.Game.Poker_5_Stud;
 import main.Model.Stack.Card;
 import main.View.main_menu;
@@ -78,10 +79,13 @@ public class main_menu_controller {
             // these two of them return the same stage
             // Swap screen::
 
-
             poker_game_1 gameView = new poker_game_1(stageTheEventSourceNodeBelongs);
-            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames);
 
+            /*            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames);
+             */
+
+            Online_Poker_5_Stud model2 = new Online_Poker_5_Stud();
+            online_poker_game_1_controller game_2_controller = new online_poker_game_1_controller(model2, gameView, savedNames);
 
             //stageTheLabelBelongs.setScene(new Scene(new Pane()));
 
