@@ -1,9 +1,9 @@
 package main.Model.Networking;
 
+import main.Controller.online_poker_game_1_controller;
 import main.Model.Stack.Card;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class SendSocket {
 
     int i = 0;
 
-    public SendSocket(String host) {
+    public SendSocket(String host, online_poker_game_1_controller opg) {
         Socket socket = null;
         try {
             socket = new Socket(host, 12700);
@@ -30,7 +30,7 @@ public class SendSocket {
 
             ArrayList<ArrayList<Card>> aplaycards = new ArrayList<>();
 
-            //  new ObjectOutputStream(raus).writeObject(aplaycards);
+            //
 
 
             ps = new PrintStream(raus, true);
@@ -40,18 +40,33 @@ public class SendSocket {
 
             InputStream rein = socket.getInputStream();
             //System.out.println("verf\u00FCgbare Bytes: " + rein.available());
-            BufferedReader buff = new BufferedReader(new InputStreamReader(rein));
+            //BufferedReader buff = new BufferedReader(new InputStreamReader(rein));
+
+
+            FileInputStream fis = new FileInputStream("t.tmp");
+            ObjectInputStream ois = new ObjectInputStream(fis);
 
             while (true) {
                 //System.out.println(buff.readLine());
 
-                String modifiedSentence;
+                ArrayList<ArrayList<Card>> hands = new ArrayList<>();
+
+
+                int i = ois.readInt();
+                hands = (ArrayList<ArrayList<Card>>) ois.readObject();
+                opg.dealout(hands);
+                //Date date = (Date) ois.readObject();
+
+                ois.close();
+
+                /*String modifiedSentence;
                 while ((modifiedSentence = buff.readLine()) != null) {
 
+                    hands.add(modifiedSentence);
                     System.out.println("FROM SERVER: " + modifiedSentence);
 
                 }
-
+*/
             }
 
         } catch (UnknownHostException e) {
@@ -59,6 +74,8 @@ public class SendSocket {
             e.printStackTrace();
         } catch (IOException e) {
             System.out.println("IOProbleme...");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (socket != null)
@@ -80,51 +97,6 @@ public class SendSocket {
         send(CS.ps);
 */
 
-
-
-        PostRequest PR = new PostRequest();
-
-        getIPaddress p = new getIPaddress();
-
-        String ip = null;
-        try {
-            ip = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("IP:  " + ip);
-
-        if (PR.send("http://apod.frozensparks.com/pokergame.php", "Emanuel", ip)) {
-            System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
-
-            if ((PR.postResult).contains(",")) {
-                String string = PR.postResult;
-                String[] parts = string.split(",");
-                String IP = parts[0]; // 004
-                String part2 = parts[1]; // 034556
-
-                System.out.println("Trying to connect to " + IP);
-
-                SendSocket CS = new SendSocket(IP);
-                send(CS.ps);
-
-
-            } else {
-
-                System.out.println("Create Host, Waiting for connections...");
-
-                ReceiveSocket server = null;
-                try {
-                    server = new ReceiveSocket(12700, 5, InetAddress.getLocalHost().getHostAddress());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                server.verbinde();
-
-            }
-        }
 
     }
 

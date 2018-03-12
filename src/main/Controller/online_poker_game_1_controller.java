@@ -2,15 +2,13 @@ package main.Controller;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.Model.Game.Poker_5_Stud;
+import main.Model.Game.Online_Poker_5_Stud;
 import main.Model.Ranking.Hand_Ranks;
 import main.Model.Ranking.Ranking;
 import main.Model.Stack.Card;
@@ -23,19 +21,22 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static javafx.scene.transform.Rotate.Y_AXIS;
+import static main.Controller.poker_game_1_controller.getvBox;
 
-public class poker_game_1_controller {
+public class online_poker_game_1_controller {
 
-    Poker_5_Stud model;
+    Online_Poker_5_Stud model;
     poker_game_1 view;
     VBox box1;
     ArrayList<ArrayList<Card>> all_hands = null;
     Boolean once = true;
+    ArrayList<String> savedNames;
 
 
-    public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames, ArrayList<ArrayList<Card>> all_hands) {
+    public online_poker_game_1_controller(Online_Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
 
+        this.savedNames = savedNames;
         this.view = view;
         this.model = model;
         view.players.setSpacing(10);
@@ -78,7 +79,6 @@ public class poker_game_1_controller {
                 view.deal_btn.setDisable(false);
 
                 //dealout(savedNames);
-
 
 
             }
@@ -145,7 +145,7 @@ public class poker_game_1_controller {
 
             } else {
                 view.deal_btn.setText("Reveal Cards");
-                dealout(savedNames);
+                //dealout(savedNames);
                 once = true;
 
             }
@@ -162,22 +162,15 @@ public class poker_game_1_controller {
         });
 */
 
-        dealout(savedNames);
+        //dealout(savedNames);
 
 
     }
 
-    private void dealout(ArrayList<String> savedNames) {
-        view.winner_btn.setDisable(true);
+    public void dealout(ArrayList<ArrayList<Card>> all_hands) {
 
-        System.out.println("Players in our game: " + savedNames.size());
+        this.all_hands = all_hands;
 
-
-        if (view.players.getChildren() != null)
-            view.players.getChildren().clear();
-
-
-        all_hands = model.getHands(savedNames.size());
 
         for (int i = 0; i < all_hands.size(); i++) {
             Player_Pane_Appearance Player_Pane_Apperance = new Player_Pane_Appearance();
@@ -226,10 +219,6 @@ public class poker_game_1_controller {
 
             lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
 
-            //Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
-            //lbl3.setText("You are a ...");
-
-
             section.getChildren().add(box1);
 
 
@@ -244,19 +233,6 @@ public class poker_game_1_controller {
         stageTheLabelBelongs.sizeToScene();
     }
 
-    static VBox getvBox(int index, ObservableList<Node> children) {
-        int go_to_winner_pane;
-        if (index % 2 == 0)
-            go_to_winner_pane = 1;
-        else
-            go_to_winner_pane = 0;
-        int go_to_winner_section = (int) (Math.round((double) index / 2f) - 1);
-        HBox section = (HBox) children.get(go_to_winner_section);
-        VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
-
-
-        return winner_pane;
-    }
 
     private VBox get_Specific_player_pane(int index) {
 
