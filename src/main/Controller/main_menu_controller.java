@@ -15,18 +15,16 @@ public class main_menu_controller {
 
     Poker_5_Stud model;
     main_menu view;
-    poker_game_1 pg_view;
 
     int number_of_players;
     public ArrayList<String> savedNames = new ArrayList<>();
     ArrayList<ArrayList<Card>> all_hands = null;
     VBox box1;
 
-    public main_menu_controller(Poker_5_Stud model, main_menu view, poker_game_1 pg_view) {
+    public main_menu_controller(Poker_5_Stud model, main_menu view) {
 
         this.view = view;
         this.model = model;
-        this.pg_view = pg_view;
 
         view.playerDropdown.setOnAction((event) -> {
 
