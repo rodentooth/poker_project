@@ -39,10 +39,10 @@ public class SendSocket {
             ps.flush();
 
             InputStream rein = socket.getInputStream();
-            System.out.println("verf\u00FCgbare Bytes: " + rein.available());
+            //System.out.println("verf\u00FCgbare Bytes: " + rein.available());
             BufferedReader buff = new BufferedReader(new InputStreamReader(rein));
 
-            while (buff.ready()) {
+            while (true) {
                 //System.out.println(buff.readLine());
 
                 String modifiedSentence;
