@@ -21,6 +21,7 @@ public class main_menu_controller {
     ArrayList<ArrayList<Card>> all_hands = null;
     VBox box1;
 
+    //HALLO
     public main_menu_controller(Poker_5_Stud model, main_menu view) {
 
         this.view = view;
