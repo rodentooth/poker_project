@@ -18,7 +18,7 @@ public class main_menu {
 	public Label deck_txt;
     public ComboBox playerDropdown;
     public HBox node3;
-    public VBox node4;
+    public HBox node4;
     public boolean playerNumberEntered = false;
 
     public main_menu(Stage primaryStage) {
@@ -39,6 +39,7 @@ public class main_menu {
                 FXCollections.observableArrayList(
                         "2",
                         "3",
+                        "4",
                         "5",
                         "6",
                         "7",
@@ -62,12 +63,20 @@ public class main_menu {
 
 
         //Button to Play
-        node4 = new VBox();
-        play = new Button("Play!");
+        node4 = new HBox();
+        play = new Button("Play Online!");
+        Button offlineBtn = new Button("Play Offline");
         Label enterPlayerNumber = new Label("Please, enter number of players to continue.");
         play.setDisable(true);
         node4.getChildren().add(play);
+        node4.getChildren().add(offlineBtn);
         node4.getChildren().add(enterPlayerNumber);
+
+
+
+
+
+
 
 
 
