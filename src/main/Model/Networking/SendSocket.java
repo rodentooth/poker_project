@@ -34,7 +34,6 @@ public class SendSocket {
 
             ps = new PrintStream(raus, true);
             ps.println("Hallo Welt!");
-            ps.println("Hallo Otto!");
             ps.flush();
 
             InputStream rein = socket.getInputStream();
