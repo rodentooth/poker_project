@@ -29,15 +29,20 @@ public class main_menu_controller {
         this.view = view;
         this.model = model;
 
+        view.playerDropdown.setDisable(true);
 
         view.tb1.setOnAction((ActionEvent e) -> {
+            view.offlineBtn.setDisable(true);
             view.onlineBtn.setDisable(false);
             view.playerDropdown.setDisable(true);
             view.leftBox.setStyle("-fx-background-color: #fffa00");
             view.rightBox.setStyle("-fx-background-color: White");
+            view.node3.getChildren().clear();
+
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
+            view.offlineBtn.setDisable(false);
             view.onlineBtn.setDisable(true);
             view.playerDropdown.setDisable(false);
             view.rightBox.setStyle("-fx-background-color: #fffa00");

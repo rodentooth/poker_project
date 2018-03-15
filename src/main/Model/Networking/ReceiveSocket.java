@@ -70,9 +70,9 @@ public class ReceiveSocket {
         ObjectOutput out = null;
         try {
             out = new ObjectOutputStream(bos);
-            out.writeObject(o);
+            out.writeObject(hands);
             out.flush();
-            byte[] yourBytes = bos.toByteArray();
+            //byte[] yourBytes = bos.toByteArray();
 
 
             BufferedReader rein = new BufferedReader(new InputStreamReader(socket
@@ -84,7 +84,7 @@ public class ReceiveSocket {
                 if (stop)
                     break;
 
-                new ObjectOutputStream(raus).writeObject(yourBytes);
+                new ObjectOutputStream(raus).writeObject(hands);
                 //raus.println(System.nanoTime() + "  that's a server message: " + s);
             /*if (!s.equals(""))
                 break;*/

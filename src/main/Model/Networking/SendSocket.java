@@ -57,7 +57,7 @@ public class SendSocket {
 
 
                 //int i = ois.readInt();
-                byte[] bytes = (byte[]) ois.readObject();
+                hands = (ArrayList) ois.readObject();
                 //Date date = (Date) ois.readObject();
 
                 ois.close();
@@ -70,7 +70,7 @@ public class SendSocket {
 
                 }
 */
-
+/*
                 ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
                 ObjectInput in = null;
                 try {
@@ -85,7 +85,7 @@ public class SendSocket {
                         // ignore close exception
                     }
                 }
-
+*/
 
             }
 
