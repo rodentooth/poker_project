@@ -47,7 +47,8 @@ public class main_menu_controller {
             view.leftBox.setStyle("-fx-background-color: #73a400");
             view.rightBox.setStyle("-fx-background-color: #006200");
             view.node3.getChildren().clear();
-            //view.offlineBtn_box.getChildren().add(view.enterPlayerNumber);
+            view.offlineBtn_box.getChildren().get(1).setVisible(true);
+
 
         });
 
@@ -81,10 +82,10 @@ public class main_menu_controller {
 
             view.Names.setVisible(true);
             view.offlineBtn.setVisible(true);
-
+            view.offlineBtn_box.getChildren().get(1).setVisible(false);
 
             if (!view.offlineBtn.isDisable()) {
-                view.offlineBtn_box.getChildren().remove(1);
+                view.offlineBtn_box.getChildren().get(1).setVisible(false);
             }
 
         });
