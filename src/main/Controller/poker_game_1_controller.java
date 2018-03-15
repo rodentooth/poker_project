@@ -61,7 +61,7 @@ public class poker_game_1_controller {
 
                 VBox winner_pane = get_Specific_player_pane(winner_index);
 
-                winner_pane.setStyle("-fx-background-color: #fffa00");
+                winner_pane.setStyle("-fx-background-color: #263700;" + "-fx-background-radius: 20;");
 
 
                 for (int i = 1; i < (all_hands.size() + 1); i++) {
@@ -144,18 +144,6 @@ public class poker_game_1_controller {
                         });
 
                         view.deal_btn.setDisable(true);
-                        long startTime = System.nanoTime();
-/*
-                        while (rt.getStatus()== Animation.Status.RUNNING){
-
-                            if (rt.getCurrentTime().toMillis()>1500){
-
-                            }
-                        }
-
-*/
-
-
                         timer.start();
 
                     }
@@ -224,7 +212,8 @@ public class poker_game_1_controller {
             box1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
 
-            box1.setStyle("-fx-background-color: #003700");
+            box1.setStyle("-fx-background-color: #003700;" +
+                    "-fx-background-radius: 20;");
             box1.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
 

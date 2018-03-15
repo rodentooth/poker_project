@@ -6,7 +6,6 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class SendSocket {
 
@@ -74,27 +73,27 @@ public class SendSocket {
         }
     }
 
+    /*
+        public static void send(PrintStream ps) {
 
-    public static void send(PrintStream ps) {
+
+            Scanner reader = new Scanner(System.in);  // Reading from System.in
+            System.out.println("Enter a text: ");
+
+    //once finished
+
+            while (reader.hasNextLine()) {
+
+                if (ps != null)
+                    ps.println(reader.next());
 
 
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-        System.out.println("Enter a text: ");
-
-//once finished
-
-        while (reader.hasNextLine()) {
-
-            if (ps != null)
-                ps.println(reader.next());
-
+            }
+            reader.close();
 
         }
-        reader.close();
 
-    }
-
-
+    */
     public ArrayList<ArrayList<Card>> getOnlineCards() {
 
         return hands;

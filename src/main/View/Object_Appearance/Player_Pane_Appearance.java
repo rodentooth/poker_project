@@ -82,6 +82,8 @@ public class Player_Pane_Appearance {
         PlayerPaneAll.getChildren().add(PlayerPane);
         PlayerPaneAll.getChildren().add(evaluated_hand_box);
         PlayerPaneAll.getChildren().add(win_lose_box);
+        PlayerPaneAll.setStyle("-fx-background-radius: 30;" +
+                "-fx-border-radius: 30;");
 
 
         return (PlayerPaneAll);

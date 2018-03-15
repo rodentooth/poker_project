@@ -30,7 +30,8 @@ public class main_menu {
     public VBox rightBox;
     public HBox leftBox;
     public Label enterPlayerNumber;
-
+    public Label HowManyPlayers;
+    public Label Names;
     public main_menu(Stage primaryStage) {
 
 
@@ -67,8 +68,8 @@ public class main_menu {
 
         //Number of Players
         HBox container_game_setup = new HBox();
-        Label lbl2 = new Label("How many Players?");
-        lbl2.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        HowManyPlayers = new Label("How many Players?");
+        HowManyPlayers.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "2",
@@ -83,7 +84,7 @@ public class main_menu {
                 );
         playerDropdown = new ComboBox(options);
         //playerDropdown.getSelectionModel().selectFirst();
-        container_game_setup.getChildren().add(lbl2);
+        container_game_setup.getChildren().add(HowManyPlayers);
         container_game_setup.getChildren().add(playerDropdown);
         container_game_setup.setAlignment(Pos.CENTER);
         container_game_setup.setSpacing(40);
@@ -92,10 +93,10 @@ public class main_menu {
 
         //Names
         HBox node2 = new HBox();
-        Label lbl3 = new Label("Names: ");
-        lbl3.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
-        lbl3.setAlignment(Pos.CENTER);
-        node2.getChildren().add(lbl3);
+        Names = new Label("Names: ");
+        Names.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        Names.setAlignment(Pos.CENTER);
+        node2.getChildren().add(Names);
         node2.setAlignment(Pos.CENTER);
 
 

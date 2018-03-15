@@ -37,22 +37,33 @@ public class main_menu_controller {
             view.offlineBtn.setDisable(true);
             view.onlineBtn.setDisable(false);
             view.playerDropdown.setDisable(true);
-            view.leftBox.setStyle("-fx-background-color: #fffa00");
-            view.rightBox.setStyle("-fx-background-color: Green");
+
+            view.Names.setVisible(false);
+            view.offlineBtn.setVisible(false);
+
+            view.playerDropdown.getSelectionModel().clearSelection();
+
+
+            view.leftBox.setStyle("-fx-background-color: #73a400");
+            view.rightBox.setStyle("-fx-background-color: #006200");
             view.node3.getChildren().clear();
-            view.offlineBtn_box.getChildren().add(view.enterPlayerNumber);
+            //view.offlineBtn_box.getChildren().add(view.enterPlayerNumber);
 
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
             view.onlineBtn.setDisable(true);
             view.playerDropdown.setDisable(false);
-            view.rightBox.setStyle("-fx-background-color: #fffa00");
-            view.leftBox.setStyle("-fx-background-color: Green");
+            view.Names.setVisible(false);
+            view.offlineBtn.setVisible(false);
+
+            view.rightBox.setStyle("-fx-background-color: #73a400");
+            view.leftBox.setStyle("-fx-background-color: #006200");
         });
 
 
-
+        view.Names.setVisible(false);
+        view.offlineBtn.setVisible(false);
 
 
         view.playerDropdown.setOnAction((event) -> {
@@ -68,10 +79,11 @@ public class main_menu_controller {
                 view.node3.getChildren().add(playerName);
             }
 
-            view.offlineBtn.setDisable(false);
+            view.Names.setVisible(true);
+            view.offlineBtn.setVisible(true);
 
 
-            if (view.offlineBtn.isDisable() == false) {
+            if (!view.offlineBtn.isDisable()) {
                 view.offlineBtn_box.getChildren().remove(1);
             }
 
