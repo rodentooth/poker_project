@@ -75,6 +75,10 @@ public class ReceiveSocket {
 
         }
 
+    public ArrayList<ArrayList<Card>> getOnlineCards() {
+
+        return hands;
+    }
 
     public void stop() {
         stop = true;

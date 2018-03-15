@@ -185,7 +185,7 @@ public class online_poker_game_1_controller {
         });
 */
 
-        //dealout(savedNames);
+        dealout(all_hands);
 
 
     }
@@ -234,7 +234,7 @@ public class online_poker_game_1_controller {
 
 
             Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
-            lbl1.setText(savedNames.get(i));
+            //lbl1.setText(savedNames.get(i));
 
             Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
 

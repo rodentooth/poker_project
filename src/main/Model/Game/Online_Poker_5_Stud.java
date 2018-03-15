@@ -18,9 +18,12 @@ public class Online_Poker_5_Stud {
 
 
     SendSocket CS;
+    ReceiveSocket server = null;
+
     //search for opponents:
     //Create Sendsocket with server target to get possible opponents
 
+    Boolean AmIHost;
 
     public Online_Poker_5_Stud() {
 
@@ -41,6 +44,7 @@ public class Online_Poker_5_Stud {
             System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
 
             if ((PR.postResult).contains(",")) {
+                AmIHost = false;
                 String string = PR.postResult;
                 String[] parts = string.split(",");
                 String IP = parts[0]; // 004
@@ -54,9 +58,9 @@ public class Online_Poker_5_Stud {
 
             } else {
 
+                AmIHost = true;
                 System.out.println("Create Host, Waiting for connections...");
 
-                ReceiveSocket server = null;
                 try {
                     server = new ReceiveSocket(12700, 5, InetAddress.getLocalHost().getHostAddress(), PokerGame.getHands(2));
                 } catch (IOException e) {
@@ -75,7 +79,10 @@ public class Online_Poker_5_Stud {
     }
 
     public ArrayList<ArrayList<Card>> getOnlineCards() {
-        return CS.getOnlineCards();
+        if (AmIHost)
+            return server.getOnlineCards();
+        else
+            return CS.getOnlineCards();
     }
 
     static int getWinnerAsInt(ArrayList<ArrayList<Card>> Cards) {

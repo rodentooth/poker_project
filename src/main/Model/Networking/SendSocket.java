@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class SendSocket {
 
-    ArrayList<ArrayList<Card>> hands;
+    static ArrayList<ArrayList<Card>> hands;
 
     //Inspiration from tutorial:  https://javabeginners.de/Netzwerk/Socketverbindung.php
 
