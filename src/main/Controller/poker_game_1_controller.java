@@ -174,15 +174,6 @@ public class poker_game_1_controller {
 
 
 
-
-/*
-        // register ourselves to handle window-closing event
-        view.getStage().setOnCloseRequest((event) -> {
-            view.stop();
-            Platform.exit();
-        });
-*/
-
         dealout(savedNames);
 
 
