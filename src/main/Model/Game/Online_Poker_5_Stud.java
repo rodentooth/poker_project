@@ -12,8 +12,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import static main.Model.Networking.SendSocket.send;
-
 public class Online_Poker_5_Stud {
 
 
@@ -53,7 +51,7 @@ public class Online_Poker_5_Stud {
                 System.out.println("Trying to connect to " + IP);
 
                 CS = new SendSocket(IP);
-                send(CS.ps);
+                //send(CS.ps);
 
 
             } else {

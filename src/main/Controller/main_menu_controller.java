@@ -36,7 +36,7 @@ public class main_menu_controller {
             view.onlineBtn.setDisable(false);
             view.playerDropdown.setDisable(true);
             view.leftBox.setStyle("-fx-background-color: #fffa00");
-            view.rightBox.setStyle("-fx-background-color: White");
+            view.rightBox.setStyle("-fx-background-color: Green");
             view.node3.getChildren().clear();
 
         });
@@ -46,7 +46,7 @@ public class main_menu_controller {
             view.onlineBtn.setDisable(true);
             view.playerDropdown.setDisable(false);
             view.rightBox.setStyle("-fx-background-color: #fffa00");
-            view.leftBox.setStyle("-fx-background-color: White");
+            view.leftBox.setStyle("-fx-background-color: Green");
         });
 
 

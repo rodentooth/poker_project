@@ -47,10 +47,11 @@ public class SendSocket {
 
                 hands = (ArrayList) ois.readObject();
 
-                if (hands != null)
+                if (hands != null) {
                     ois.close();
-                break;
-
+                    socket.close();
+                    break;
+                }
             }
 
         } catch (UnknownHostException e) {
