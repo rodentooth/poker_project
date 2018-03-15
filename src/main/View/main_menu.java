@@ -22,6 +22,11 @@ public class main_menu {
     public boolean playerNumberEntered = false;
     public Button offlineBtn;
     public HBox offlineBtn_box;
+    public final ToggleGroup group;
+    public ToggleButton tb1;
+    public ToggleButton tb2;
+    public VBox rightBox;
+    public HBox leftBox;
 
     public main_menu(Stage primaryStage) {
 
@@ -29,14 +34,14 @@ public class main_menu {
         //TODO Knopf für online game  UND NÄÄÄme ich wirde schwarz ma
 
         //Offline/Online
-        final ToggleGroup group = new ToggleGroup();
+        group = new ToggleGroup();
 
 
-        ToggleButton tb1 = new ToggleButton("Online");
+        tb1 = new ToggleButton("Online");
         tb1.setToggleGroup(group);
         tb1.setSelected(true);
 
-        ToggleButton tb2 = new ToggleButton("Offline");
+        tb2 = new ToggleButton("Offline");
         tb2.setToggleGroup(group);
 
         HBox toggleBox = new HBox();
@@ -108,15 +113,15 @@ public class main_menu {
         HBox centerBox = new HBox();
 
 
-        VBox rightBox = new VBox();
+        rightBox = new VBox();
         rightBox.setSpacing(25);
         rightBox.getChildren().addAll(container_game_setup, node2, node3, offlineBtn_box);
         rightBox.setAlignment(Pos.CENTER);
-        rightBox.setStyle("-fx-background-color: #fffa00");
+
         rightBox.prefWidthProperty().bind(centerBox.widthProperty());
 
 
-        HBox leftBox = new HBox();
+        leftBox = new HBox();
         leftBox.getChildren().addAll(onlineBtn);
         leftBox.setAlignment(Pos.CENTER);
         leftBox.prefWidthProperty().bind(centerBox.widthProperty());

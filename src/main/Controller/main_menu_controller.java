@@ -1,5 +1,6 @@
 package main.Controller;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -28,6 +29,25 @@ public class main_menu_controller {
         this.view = view;
         this.model = model;
 
+
+        view.tb1.setOnAction((ActionEvent e) -> {
+            view.onlineBtn.setDisable(false);
+            view.playerDropdown.setDisable(true);
+            view.leftBox.setStyle("-fx-background-color: #fffa00");
+            view.rightBox.setStyle("-fx-background-color: White");
+        });
+
+        view.tb2.setOnAction((ActionEvent e) -> {
+            view.onlineBtn.setDisable(true);
+            view.playerDropdown.setDisable(false);
+            view.rightBox.setStyle("-fx-background-color: #fffa00");
+            view.leftBox.setStyle("-fx-background-color: White");
+        });
+
+
+
+
+
         view.playerDropdown.setOnAction((event) -> {
 
             view.node3.getChildren().clear();
@@ -43,8 +63,8 @@ public class main_menu_controller {
 
             view.offlineBtn.setDisable(false);
 
-            view.onlineBtn.setDisable(false);
-            if (view.onlineBtn.isDisable() == false) {
+
+            if (view.offlineBtn.isDisable() == false) {
                 view.offlineBtn_box.getChildren().remove(1);
             }
 
