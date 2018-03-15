@@ -45,8 +45,11 @@ public class online_poker_game_1_controller {
         view.players.setSpacing(10);
         view.players.setPadding(new Insets(10, 10, 10, 10));
 
-
         all_hands = model.getOnlineCards();
+        while (all_hands.size() == 0) {
+            all_hands = model.getOnlineCards();
+        }
+
 
         view.winner_btn.setOnAction((event) -> {
 
