@@ -105,23 +105,34 @@ public class online_poker_game_1_controller {
                     for (int j = 0; j < (5); j++) {
                         Pane p = (Pane) player_pane.getChildren().get(j);
 
-                        RotateTransition rt = new RotateTransition(Duration.millis(3000), p);
+                        Pane background = (Pane) ((Pane) p.getChildren().get(0)).getChildren().get(1);
+
+                        RotateTransition rt = new RotateTransition(Duration.millis(3000), background);
                         rt.setByAngle(-180);
                         rt.setAxis(Y_AXIS);
                         rt.setCycleCount(1);
 
+                        ///FadeTransition ft = new FadeTransition(Duration.millis(1500),background)zzzzzzz
+
+
+                        //SequentialTransition s = new SequentialTransition(rt, t2, t3);
 
                         Timer timer = new Timer((j + 1) * (i + 1) * 100, new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                rt.play();
                                 //timer.stop();
+
+                                rt.play();
+                                //s.play();
+
                             }
                         });
                         //timer.setInitialDelay();
                         timer.setRepeats(false);
 
                         timer.start();
+                        view.deal_btn.setDisable(true);
+                        long startTime = System.nanoTime();
 /*
                         while (rt.getStatus()== Animation.Status.RUNNING){
 
@@ -129,17 +140,18 @@ public class online_poker_game_1_controller {
 
                             }
                         }
+
 */
-                        if (rt.getCurrentTime().toMillis() > 1500) {
-                            ((Pane) p.getChildren().get(0)).getChildren().remove(1);
+
+
+                        while (true) {
+                            if (System.nanoTime() - startTime > 1500) {
+                                ((Pane) p.getChildren().get(0)).getChildren().remove(1);
+
+                                break;
+                            }
 
                         }
-
-                        rt.setOnFinished((javafx.event.ActionEvent event2) -> {
-                            ((Pane) p.getChildren().get(0)).getChildren().remove(1);
-                            view.deal_btn.setDisable(true);
-
-                        });
                     }
                 }
                 once = false;

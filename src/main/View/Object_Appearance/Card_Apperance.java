@@ -34,7 +34,7 @@ public class Card_Apperance {
 
         imageView2.setImage(shortImageUrl);
 
-        imageView2.getTransforms().add(new Rotate(180, Rotate.Y_AXIS));
+        imageView2.getTransforms().add(new Rotate(90, Rotate.Y_AXIS));
 
 
         ImageView imageView = new ImageView(new Image("main/res/Card_Images/cardBack.png"));
@@ -45,7 +45,7 @@ public class Card_Apperance {
         imageView.fitWidthProperty().bind(inside_card2.widthProperty());
 
 
-        imageView2.getTransforms().add(new Translate(-100, 0, 0));
+        imageView2.getTransforms().add(new Translate(-50, 0, 0));
         //imageView.getTransforms().add(new Translate(50,0,0));
 
 
@@ -55,7 +55,7 @@ public class Card_Apperance {
         inside_card2.setPrefSize(100, 200);
         inside_card2.setMaxSize(100, 200);
 
-        inside_card2.setStyle("-fx-background-color: #FFFFFF");
+        //inside_card2.setStyle("-fx-background-color: #FFFFFF");
         container.setMaxSize(100, 200);
         container.getChildren().add(inside_card2);
 
