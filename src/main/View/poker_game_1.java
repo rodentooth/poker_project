@@ -90,8 +90,6 @@ public class poker_game_1 {
 
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(
-                getClass().getResource("poker.css").toExternalForm());
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(scene);
         primaryStage.show();

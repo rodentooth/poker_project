@@ -2,13 +2,15 @@ package main.View;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 
@@ -27,6 +29,7 @@ public class main_menu {
     public ToggleButton tb2;
     public VBox rightBox;
     public HBox leftBox;
+    public Label enterPlayerNumber;
 
     public main_menu(Stage primaryStage) {
 
@@ -39,7 +42,7 @@ public class main_menu {
 
         tb1 = new ToggleButton("Online");
         tb1.setToggleGroup(group);
-        tb1.setSelected(true);
+
 
         tb2 = new ToggleButton("Offline");
         tb2.setToggleGroup(group);
@@ -52,6 +55,9 @@ public class main_menu {
         //Titel
         VBox container_title = new VBox();
         deck_txt = new Label("Poker 5 Stud");
+        deck_txt.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 100));
+        container_title.setSpacing(20);
+        container_title.setPadding(new Insets(20, 20, 20, 20));
         container_title.getChildren().add(deck_txt);
         container_title.getChildren().add(toggleBox);
         container_title.setAlignment(Pos.CENTER);
@@ -62,6 +68,7 @@ public class main_menu {
         //Number of Players
         HBox container_game_setup = new HBox();
         Label lbl2 = new Label("How many Players?");
+        lbl2.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "2",
@@ -79,12 +86,14 @@ public class main_menu {
         container_game_setup.getChildren().add(lbl2);
         container_game_setup.getChildren().add(playerDropdown);
         container_game_setup.setAlignment(Pos.CENTER);
+        container_game_setup.setSpacing(40);
 
 
 
         //Names
         HBox node2 = new HBox();
         Label lbl3 = new Label("Names: ");
+        lbl3.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         lbl3.setAlignment(Pos.CENTER);
         node2.getChildren().add(lbl3);
         node2.setAlignment(Pos.CENTER);
@@ -99,7 +108,9 @@ public class main_menu {
         offlineBtn_box = new HBox();
         offlineBtn = new Button("Play Offline");
         offlineBtn.setDisable(true);
-        Label enterPlayerNumber = new Label("Please, enter number of players to continue.");
+        enterPlayerNumber = new Label("Please, enter number of players to continue.");
+        enterPlayerNumber.setTextFill(Color.RED);
+        enterPlayerNumber.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         offlineBtn_box.getChildren().addAll(offlineBtn, enterPlayerNumber);
         offlineBtn_box.setAlignment(Pos.CENTER);
 
@@ -117,6 +128,12 @@ public class main_menu {
         rightBox.setSpacing(25);
         rightBox.getChildren().addAll(container_game_setup, node2, node3, offlineBtn_box);
         rightBox.setAlignment(Pos.CENTER);
+        rightBox.setStyle("-fx-background-color: Green");
+
+        rightBox.setBorder(new Border(new BorderStroke(Color.BLACK,
+                BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
+
+
 
         rightBox.prefWidthProperty().bind(centerBox.widthProperty());
 
@@ -125,25 +142,26 @@ public class main_menu {
         leftBox.getChildren().addAll(onlineBtn);
         leftBox.setAlignment(Pos.CENTER);
         leftBox.prefWidthProperty().bind(centerBox.widthProperty());
+        leftBox.setStyle("-fx-background-color: Green");
+        leftBox.setBorder(new Border(new BorderStroke(Color.BLACK,
+                BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
 
 
-        Line middleLine = new Line();
-        middleLine.setStartY(100);
-        middleLine.setEndY(400);
-
-        centerBox.getChildren().addAll(leftBox, middleLine, rightBox);
+        centerBox.getChildren().addAll(leftBox, rightBox);
         centerBox.setAlignment(Pos.CENTER);
 
         BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-image: url('main/res/images/background.jpg'); " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-size: cover, auto;");
         root.setTop(container_title);
         root.setCenter(centerBox);
         //root.setAlignment(centerBox,Pos.CENTER);
 
 
         Scene scene = new Scene(root, 1200, 700);
-        scene.getStylesheets().add(
-                getClass().getResource("poker.css").toExternalForm());
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Poker Project");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
