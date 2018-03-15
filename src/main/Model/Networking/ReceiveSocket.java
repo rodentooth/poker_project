@@ -23,20 +23,7 @@ public class ReceiveSocket {
 
     }
 
-    //todo test method: delete
-    public static void main(String[] args) {
-/*
-        ReceiveSocket server = null;
-        try {
-            server = new ReceiveSocket(port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        server.verbinde();
-
-*/
-    }
 
     public void verbinde() {
 
@@ -65,7 +52,6 @@ public class ReceiveSocket {
 
     private void reinRaus(Socket socket) throws IOException {
 
-        Object o = hands;
         ObjectOutput out = null;
 
 
@@ -74,19 +60,18 @@ public class ReceiveSocket {
 
             BufferedReader rein = new BufferedReader(new InputStreamReader(socket
                     .getInputStream()));
-            PrintStream raus = new PrintStream(socket.getOutputStream());
             String s;
 
             while ((s = rein.readLine()) != null) {
                 if (stop)
                     break;
 
-                new ObjectOutputStream(raus).writeObject(hands);
+                new ObjectOutputStream(socket.getOutputStream()).writeObject(hands);
                 //raus.println(System.nanoTime() + "  that's a server message: " + s);
             /*if (!s.equals(""))
                 break;*/
             }
-
+        stop = true;
 
         }
 

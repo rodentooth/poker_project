@@ -1,9 +1,11 @@
 package main.Controller;
 
 import javafx.animation.RotateTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -95,7 +97,6 @@ public class online_poker_game_1_controller {
         view.players.setMaxHeight(Double.MAX_VALUE);
 
         view.deal_btn.setOnAction((javafx.event.ActionEvent event) -> {
-
             if (once) {
 
                 for (int i = 1; i < (all_hands.size() + 1); i++) {
@@ -105,32 +106,45 @@ public class online_poker_game_1_controller {
                     for (int j = 0; j < (5); j++) {
                         Pane p = (Pane) player_pane.getChildren().get(j);
 
-                        Pane background = (Pane) ((Pane) p.getChildren().get(0)).getChildren().get(1);
 
-                        RotateTransition rt = new RotateTransition(Duration.millis(3000), background);
-                        rt.setByAngle(-180);
+                        ImageView background = (ImageView) (((Pane) p.getChildren().get(0)).getChildren()).get(1);
+                        ImageView foreground = (ImageView) (((Pane) p.getChildren().get(0)).getChildren()).get(0);
+
+
+                        RotateTransition rt = new RotateTransition(Duration.millis(1500), background);
+                        rt.setByAngle(-90);
                         rt.setAxis(Y_AXIS);
                         rt.setCycleCount(1);
 
-                        ///FadeTransition ft = new FadeTransition(Duration.millis(1500),background)zzzzzzz
+                        RotateTransition rt_fg = new RotateTransition(Duration.millis(1500), foreground);
+                        rt_fg.setByAngle(-90);
+                        rt_fg.setAxis(Y_AXIS);
+                        rt_fg.setCycleCount(1);
+
+                        //FadeTransition ft = new FadeTransition(Duration.millis(1500),background);
 
 
-                        //SequentialTransition s = new SequentialTransition(rt, t2, t3);
+                        SequentialTransition s = new SequentialTransition(rt, rt_fg);
+
 
                         Timer timer = new Timer((j + 1) * (i + 1) * 100, new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 //timer.stop();
 
-                                rt.play();
-                                //s.play();
+                                s.play();
+
 
                             }
                         });
                         //timer.setInitialDelay();
                         timer.setRepeats(false);
 
-                        timer.start();
+                        rt.setOnFinished((javafx.event.ActionEvent event2) -> {
+                            //rt_fg.play();
+
+                        });
+
                         view.deal_btn.setDisable(true);
                         long startTime = System.nanoTime();
 /*
@@ -144,14 +158,8 @@ public class online_poker_game_1_controller {
 */
 
 
-                        while (true) {
-                            if (System.nanoTime() - startTime > 1500) {
-                                ((Pane) p.getChildren().get(0)).getChildren().remove(1);
+                        timer.start();
 
-                                break;
-                            }
-
-                        }
                     }
                 }
                 once = false;

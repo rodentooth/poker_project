@@ -27,9 +27,7 @@ public class SendSocket {
 
             socket.setSoTimeout(30000);
             socket.setKeepAlive(true);
-            //socket.connect(address);
 
-            ArrayList<ArrayList<Card>> aplaycards = new ArrayList<>();
 
             //
 
@@ -40,52 +38,19 @@ public class SendSocket {
             ps.flush();
 
             InputStream rein = socket.getInputStream();
-            //System.out.println("verf\u00FCgbare Bytes: " + rein.available());
-            //BufferedReader buff = new BufferedReader(new InputStreamReader(rein));
 
-
-            //FileInputStream fis = new FileInputStream();
             ObjectInputStream ois = new ObjectInputStream(rein);
 
 
-
+            hands = new ArrayList<>();
 
             while (true) {
-                //System.out.println(buff.readLine());
 
-                hands = new ArrayList<>();
-
-
-                //int i = ois.readInt();
                 hands = (ArrayList) ois.readObject();
-                //Date date = (Date) ois.readObject();
 
-                ois.close();
-
-                /*String modifiedSentence;
-                while ((modifiedSentence = buff.readLine()) != null) {
-
-                    hands.add(modifiedSentence);
-                    System.out.println("FROM SERVER: " + modifiedSentence);
-
-                }
-*/
-/*
-                ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-                ObjectInput in = null;
-                try {
-                    in = new ObjectInputStream(bis);
-                    hands = (ArrayList<ArrayList<Card>>) in.readObject();
-                } finally {
-                    try {
-                        if (in != null) {
-                            in.close();
-                        }
-                    } catch (IOException ex) {
-                        // ignore close exception
-                    }
-                }
-*/
+                if (hands != null)
+                    ois.close();
+                break;
 
             }
 
@@ -109,16 +74,6 @@ public class SendSocket {
         }
     }
 
-    //todo test method: delete
-    public static void main(String[] args) {
-
-/*
-        SendSocket CS = new SendSocket("178.197.232.180");
-        send(CS.ps);
-*/
-
-
-    }
 
     public static void send(PrintStream ps) {
 
