@@ -1,4 +1,7 @@
 package main.Model.Stack;
 
-public enum Rank {Ace, King, Queen, Jack, Ten, Nine, Eight, Seven, Six, Five, Four, Three, Two
+import java.io.Serializable;
+
+public enum Rank implements Serializable {
+    Ace, King, Queen, Jack, Ten, Nine, Eight, Seven, Six, Five, Four, Three, Two
 }

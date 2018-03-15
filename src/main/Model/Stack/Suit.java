@@ -1,4 +1,7 @@
 package main.Model.Stack;
 
-public enum Suit {Clubs,Diamonds,Spades,Hearts
+import java.io.Serializable;
+
+public enum Suit implements Serializable {
+    Clubs, Diamonds, Spades, Hearts
 }

@@ -66,13 +66,10 @@ public class ReceiveSocket {
     private void reinRaus(Socket socket) throws IOException {
 
         Object o = hands;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
-            out.writeObject(hands);
-            out.flush();
-            //byte[] yourBytes = bos.toByteArray();
+
+
+        //byte[] yourBytes = bos.toByteArray();
 
 
             BufferedReader rein = new BufferedReader(new InputStreamReader(socket
@@ -91,16 +88,8 @@ public class ReceiveSocket {
             }
 
 
-        } finally {
-            try {
-                bos.close();
-            } catch (IOException ex) {
-                // ignore close exception
-            }
         }
 
-
-    }
 
     public void stop() {
         stop = true;
