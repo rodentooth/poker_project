@@ -18,7 +18,7 @@ public class SendSocket {
 
     int i = 0;
 
-    public SendSocket(String host) {
+    public SendSocket(String host, ArrayList<String> savedNamed) {
         Socket socket = null;
         try {
             socket = new Socket(host, 12700);
@@ -33,7 +33,7 @@ public class SendSocket {
 
 
             ps = new PrintStream(raus, true);
-            ps.println("Hallo Welt!");
+            ps.println(savedNamed.get(0));
             ps.flush();
 
             InputStream rein = socket.getInputStream();
@@ -98,4 +98,6 @@ public class SendSocket {
 
         return hands;
     }
+
+
 }

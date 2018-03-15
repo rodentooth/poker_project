@@ -3,6 +3,7 @@ package main.Controller;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -11,10 +12,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Model.Game.Online_Poker_5_Stud;
+import main.Model.Game.Poker_5_Stud;
 import main.Model.Ranking.Hand_Ranks;
 import main.Model.Ranking.Ranking;
 import main.Model.Stack.Card;
 import main.View.Object_Appearance.Player_Pane_Appearance;
+import main.View.main_menu;
 import main.View.poker_game_1;
 
 import javax.swing.*;
@@ -45,10 +48,60 @@ public class online_poker_game_1_controller {
         view.players.setSpacing(10);
         view.players.setPadding(new Insets(10, 10, 10, 10));
 
+        view.deal_btn.setDisable(true);
+        view.winner_btn.setDisable(true);
+
+        final long[] timeThen = {System.currentTimeMillis()};
+        final long[] waitingtime = {0};
         all_hands = model.getOnlineCards();
-        while (all_hands.size() == 0) {
+
+        view.deal_btn.setText("Reveal Cards");
+
+
+        Thread one = new Thread(() -> {
+
+            while (all_hands.size() == 0 || savedNames.size() != 2) {
+
+                long counter = System.currentTimeMillis() - timeThen[0];
+                if (counter > 1000) {
+                    timeThen[0] = System.currentTimeMillis();
+
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.deck_txt.setText("Waiting for Opponent..." + (waitingtime[0]++));
+                        }
+                    });
+
+                }
             all_hands = model.getOnlineCards();
+                if (!model.getOppName().equals("null")) {
+                    if (model.AmIHost())
+                        savedNames.add(0, model.getOppName());
+                    else
+                        savedNames.add(model.getOppName());
+
+                }
+
+            }
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    continue_game();
+                }
+            });
         }
+        );
+
+        one.start();
+
+    }
+
+    private void continue_game() {
+
+        view.deal_btn.setDisable(false);
 
 
         view.winner_btn.setOnAction((event) -> {
@@ -63,7 +116,7 @@ public class online_poker_game_1_controller {
 
                 //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
                 winner_index = model.getWinner(all_hands);
-                view.deck_txt.setText("Player " + winner_index + " is winner!");
+                view.deck_txt.setText(savedNames.get(winner_index) + " is winner!");
 
 
                 VBox winner_pane = get_Specific_player_pane(winner_index);
@@ -83,7 +136,7 @@ public class online_poker_game_1_controller {
                 }
 
 
-                view.deal_btn.setText("Play again");
+                view.deal_btn.setText("Exit");
                 view.deal_btn.setDisable(false);
 
                 //dealout(savedNames);
@@ -170,9 +223,10 @@ public class online_poker_game_1_controller {
 
 
             } else {
-                view.deal_btn.setText("Reveal Cards");
-                //dealout(savedNames);
-                once = true;
+
+                Poker_5_Stud model = new Poker_5_Stud();
+
+                main_menu_controller controller = new main_menu_controller(model, new main_menu(view.s));
 
             }
         });
@@ -237,7 +291,7 @@ public class online_poker_game_1_controller {
 
 
             Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
-            //lbl1.setText(savedNames.get(i));
+            lbl1.setText(savedNames.get(i));
 
             Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
 

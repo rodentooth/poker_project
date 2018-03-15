@@ -3,6 +3,7 @@ package main.Controller;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Model.Game.Online_Poker_5_Stud;
@@ -12,6 +13,7 @@ import main.View.main_menu;
 import main.View.poker_game_1;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class main_menu_controller {
 
@@ -111,8 +113,26 @@ public class main_menu_controller {
             /*            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames);
              */
 
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setTitle("Text Input Dialog");
+            dialog.setHeaderText("Look, a Text Input Dialog");
+            dialog.setContentText("Please enter your name:");
 
-            Online_Poker_5_Stud model2 = new Online_Poker_5_Stud();
+// Traditional way to get the response value.
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                savedNames.add(result.get());
+                System.out.println("Your name: " + result.get());
+            } else {
+                savedNames.add("Unnamed Player");
+
+            }
+
+// The Java 8 way to get the response value (with lambda expression).
+            result.ifPresent(name -> System.out.println("Your name: " + name));
+
+
+            Online_Poker_5_Stud model2 = new Online_Poker_5_Stud(stageTheEventSourceNodeBelongs, savedNames);
             online_poker_game_1_controller game_2_controller = new online_poker_game_1_controller(model2, gameView, savedNames);
 
             //stageTheLabelBelongs.setScene(new Scene(new Pane()));

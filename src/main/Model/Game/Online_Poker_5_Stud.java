@@ -1,5 +1,11 @@
 package main.Model.Game;
 
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import main.Model.Networking.PostRequest;
 import main.Model.Networking.ReceiveSocket;
 import main.Model.Networking.SendSocket;
@@ -12,20 +18,19 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import static main.Model.Networking.SendSocket.send;
-
 public class Online_Poker_5_Stud {
 
 
     SendSocket CS;
     ReceiveSocket server = null;
+    String Oppname = "null";
 
     //search for opponents:
     //Create Sendsocket with server target to get possible opponents
 
     Boolean AmIHost;
 
-    public Online_Poker_5_Stud() {
+    public Online_Poker_5_Stud(Stage stage, ArrayList<String> savedNamed) {
 
         Poker_5_Stud PokerGame = new Poker_5_Stud();
 
@@ -40,7 +45,7 @@ public class Online_Poker_5_Stud {
 
         System.out.println("IP:  " + ip);
 
-        if (PR.send("http://apod.frozensparks.com/pokergame.php", "Emanuel", ip)) {
+        if (PR.send("http://apod.frozensparks.com/pokergame.php", savedNamed.get(0), ip)) {
             System.out.println("THIS IS TEH POST RESULT:  " + PR.postResult);
 
             if ((PR.postResult).contains(",")) {
@@ -48,12 +53,12 @@ public class Online_Poker_5_Stud {
                 String string = PR.postResult;
                 String[] parts = string.split(",");
                 String IP = parts[0]; // 004
-                String part2 = parts[1]; // 034556
+                Oppname = parts[1]; // 034556
 
                 System.out.println("Trying to connect to " + IP);
 
-                CS = new SendSocket(IP);
-                send(CS.ps);
+                CS = new SendSocket(IP, savedNamed);
+                //send(CS.ps);
 
 
             } else {
@@ -67,7 +72,34 @@ public class Online_Poker_5_Stud {
                     e.printStackTrace();
                 }
 
-                server.verbinde();
+
+                HBox grid = new HBox();
+
+                grid.setPadding(new Insets(0, 10, 0, 10));
+
+                grid.getChildren().add(new Label("Waiting for other players..."));
+
+/*
+                //Set up the product preview image loader
+                BufferedImage bufferedImage;
+                File file = new File("main/res/images/circle-loading.gif");
+                try {
+                    bufferedImage = ImageIO.read(file);
+                    grid.getChildren().add(new ImageView(SwingFXUtils.toFXImage(bufferedImage, null)));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+*/
+                grid.getChildren().add(new ImageView(new Image("main/res/images/circle-loading.gif")));
+
+
+                Thread one = new Thread(() -> server.verbinde());
+
+                one.start();
+
+
+
 
             }
         }
@@ -83,6 +115,13 @@ public class Online_Poker_5_Stud {
             return server.getOnlineCards();
         else
             return CS.getOnlineCards();
+    }
+
+    public String getOppName() {
+        if (AmIHost)
+            return server.getOppName();
+        else
+            return Oppname;
     }
 
     static int getWinnerAsInt(ArrayList<ArrayList<Card>> Cards) {
@@ -128,6 +167,11 @@ public class Online_Poker_5_Stud {
 
         return getWinnerAsInt(Cards);
 
+    }
+
+
+    public boolean AmIHost() {
+        return (AmIHost);
     }
 
 

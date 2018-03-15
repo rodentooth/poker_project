@@ -19,6 +19,7 @@ public class poker_game_1 {
     private HBox controlArea;
     public AnchorPane anchorpane;
     public BorderPane root;
+    public Stage s;
 
 
     public poker_game_1(Stage primaryStage) {
@@ -26,6 +27,7 @@ public class poker_game_1 {
         players = new VBox();
       //  players.setPrefSize(1000, 200);
 
+        this.s = primaryStage;
 
         players.setStyle("-fx-background-image: url('main/res/images/background.jpg'); " +
                 "-fx-background-position: center center; " +

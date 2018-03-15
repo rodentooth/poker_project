@@ -14,6 +14,8 @@ public class ReceiveSocket {
     private final ServerSocket server;
     private Boolean stop = false;
     ArrayList<ArrayList<Card>> hands;
+    String s = "null";
+
 
     public ReceiveSocket(int port, int backlog, String bindAddr, ArrayList<ArrayList<Card>> hands) throws IOException {
         server = new ServerSocket(port, backlog, InetAddress.getByName(bindAddr));
@@ -60,7 +62,6 @@ public class ReceiveSocket {
 
             BufferedReader rein = new BufferedReader(new InputStreamReader(socket
                     .getInputStream()));
-            String s;
 
             while ((s = rein.readLine()) != null) {
                 if (stop)
@@ -84,6 +85,9 @@ public class ReceiveSocket {
         stop = true;
     }
 
+    public String getOppName() {
+        return s;
+    }
 }
 
 
