@@ -1,9 +1,11 @@
 package main.Controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Model.Game.Online_Poker_5_Stud;
@@ -30,36 +32,30 @@ public class main_menu_controller {
 
         this.view = view;
         this.model = model;
+        view.leftBox.requestFocus();
 
         view.playerDropdown.setDisable(true);
 
         view.tb1.setOnAction((ActionEvent e) -> {
-            view.offlineBtn.setDisable(true);
-            view.onlineBtn.setDisable(false);
-            view.playerDropdown.setDisable(true);
+            activateOfflein();
+        });
+        view.leftBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                activateOfflein();
 
-            view.Names.setVisible(false);
-            view.offlineBtn.setVisible(false);
-
-            view.playerDropdown.getSelectionModel().clearSelection();
-
-
-            view.leftBox.setStyle("-fx-background-color: #73a400");
-            view.rightBox.setStyle("-fx-background-color: #006200");
-            view.node3.getChildren().clear();
-            view.offlineBtn_box.getChildren().get(1).setVisible(true);
-
-
+            }
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
-            view.onlineBtn.setDisable(true);
-            view.playerDropdown.setDisable(false);
-            view.Names.setVisible(false);
-            view.offlineBtn.setVisible(false);
+            activateOnlein();
+        });
+        view.rightBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                activateOnlein();
 
-            view.rightBox.setStyle("-fx-background-color: #73a400");
-            view.leftBox.setStyle("-fx-background-color: #006200");
+            }
         });
 
 
@@ -83,6 +79,8 @@ public class main_menu_controller {
             view.Names.setVisible(true);
             view.offlineBtn.setVisible(true);
             view.offlineBtn_box.getChildren().get(1).setVisible(false);
+            view.offlineBtn.setDisable(false);
+
 
             if (!view.offlineBtn.isDisable()) {
                 view.offlineBtn_box.getChildren().get(1).setVisible(false);
@@ -133,12 +131,12 @@ public class main_menu_controller {
 
 // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()) {
-                savedNames.add(result.get());
-                System.out.println("Your name: " + result.get());
-            } else {
+            if (result.get().equals("")) {
                 savedNames.add("Unnamed Player");
 
+            } else if (result.isPresent()) {
+                savedNames.add(result.get());
+                System.out.println("Your name: " + result.get());
             }
 
 // The Java 8 way to get the response value (with lambda expression).
@@ -206,6 +204,42 @@ public class main_menu_controller {
         });
 */
 
+    }
+
+    private void activateOfflein() {
+
+        view.tb1.setSelected(true);
+        view.tb2.setSelected(false);
+
+        view.offlineBtn.setDisable(true);
+        view.onlineBtn.setDisable(false);
+        view.playerDropdown.setDisable(true);
+
+        view.Names.setVisible(false);
+        view.offlineBtn.setVisible(false);
+
+        view.playerDropdown.getSelectionModel().clearSelection();
+
+
+        view.leftBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
+        view.rightBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
+        view.node3.getChildren().clear();
+        view.offlineBtn_box.getChildren().get(1).setVisible(true);
+
+
+    }
+
+    private void activateOnlein() {
+        view.tb1.setSelected(false);
+        view.tb2.setSelected(true);
+
+        view.onlineBtn.setDisable(true);
+        view.playerDropdown.setDisable(false);
+        view.Names.setVisible(false);
+        view.offlineBtn.setVisible(false);
+
+        view.rightBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
+        view.leftBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
     }
 }
 

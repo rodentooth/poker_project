@@ -8,6 +8,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class poker_game_1 {
@@ -74,8 +77,10 @@ public class poker_game_1 {
         deck_txt_box.setAlignment(Pos.CENTER_LEFT);
         deck_txt_box.prefWidthProperty().bind(controlArea.widthProperty());
         deck_txt_box.setStyle("-fx-background-color: #ff0000");
-
+        deck_txt_box.setAlignment(Pos.CENTER);
         deck_txt = new Label("Deck");
+        deck_txt.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 20));
+
         deck_txt_box.getChildren().add(deck_txt);
 
 
@@ -90,7 +95,7 @@ public class poker_game_1 {
 
 
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Hello Brad!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

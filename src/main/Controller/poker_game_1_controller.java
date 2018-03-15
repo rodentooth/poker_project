@@ -61,7 +61,7 @@ public class poker_game_1_controller {
 
                 VBox winner_pane = get_Specific_player_pane(winner_index);
 
-                winner_pane.setStyle("-fx-background-color: #263700;" + "-fx-background-radius: 20;");
+                winner_pane.setStyle("-fx-background-color: #94bd00;" + "-fx-background-radius: 20;");
 
 
                 for (int i = 1; i < (all_hands.size() + 1); i++) {
@@ -245,7 +245,17 @@ public class poker_game_1_controller {
         stageTheLabelBelongs.sizeToScene();
     }
 
-    static VBox getvBox(int index, ObservableList<Node> children) {
+    static VBox getvBox(int index, ObservableList<Node> children, ArrayList<ArrayList<Card>> all_hands) {
+
+        if (((all_hands.size() <= 5) && (index % 2 == 0))) {
+
+
+        } else if (((all_hands.size() > 5) && (index % 4 == 0))) {
+
+        } else {
+
+
+        }
         int go_to_winner_pane;
         if (index % 2 == 0)
             go_to_winner_pane = 1;
@@ -257,12 +267,13 @@ public class poker_game_1_controller {
 
 
         return winner_pane;
+
     }
 
     private VBox get_Specific_player_pane(int index) {
 
 
-        return getvBox(index, view.players.getChildren());
+        return getvBox(index, view.players.getChildren(), all_hands);
 
     }
 }

@@ -129,7 +129,7 @@ public class main_menu {
         rightBox.setSpacing(25);
         rightBox.getChildren().addAll(container_game_setup, node2, node3, offlineBtn_box);
         rightBox.setAlignment(Pos.CENTER);
-        rightBox.setStyle("-fx-background-color: Green");
+        rightBox.setStyle("-fx-background-color: Green;" + "-fx-background-radius: 30;");
 
         rightBox.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
@@ -143,7 +143,7 @@ public class main_menu {
         leftBox.getChildren().addAll(onlineBtn);
         leftBox.setAlignment(Pos.CENTER);
         leftBox.prefWidthProperty().bind(centerBox.widthProperty());
-        leftBox.setStyle("-fx-background-color: Green");
+        leftBox.setStyle("-fx-background-color: Green;" + "-fx-background-radius: 30;");
         leftBox.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
 
@@ -152,6 +152,11 @@ public class main_menu {
         centerBox.setAlignment(Pos.CENTER);
 
         BorderPane root = new BorderPane();
+
+        root.setPadding(new Insets(20, 20, 20, 20));
+        BorderPane.setMargin(leftBox, new Insets(0, 0, 0, 20));
+        BorderPane.setMargin(rightBox, new Insets(0, 20, 0, 0));
+
         root.setStyle("-fx-background-image: url('main/res/images/background.jpg'); " +
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: stretch;" +

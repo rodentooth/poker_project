@@ -2,6 +2,7 @@ package main.View.Object_Appearance;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
@@ -12,7 +13,7 @@ public class Card_Apperance {
     public Pane Card_Apperance(Card c) {
 
 
-        Pane container = new Pane();
+        HBox container = new HBox();
         Pane inside_card2 = new Pane();
         //inside_card2.setAlignment(Pos.CENTER);
 
@@ -20,7 +21,7 @@ public class Card_Apperance {
         //inside_card.setPadding(new Insets(15, 12, 15, 12));
 
         ImageView imageView2 = new ImageView();
-        imageView2.setFitWidth(50);
+        //imageView2.setFitWidth(50);
         imageView2.setPreserveRatio(true);
         imageView2.setSmooth(true);
         imageView2.setCache(true);
@@ -38,7 +39,7 @@ public class Card_Apperance {
 
 
         ImageView imageView = new ImageView(new Image("main/res/Card_Images/cardBack.png"));
-        imageView.setFitWidth(50);
+        //imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);

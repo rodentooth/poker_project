@@ -121,7 +121,7 @@ public class online_poker_game_1_controller {
 
                 VBox winner_pane = get_Specific_player_pane(winner_index);
 
-                winner_pane.setStyle("-fx-background-color: #fffa00");
+                winner_pane.setStyle("-fx-background-color: #94bd00");
 
 
                 for (int i = 1; i < (all_hands.size() + 1); i++) {
@@ -317,7 +317,7 @@ public class online_poker_game_1_controller {
     private VBox get_Specific_player_pane(int index) {
 
 
-        return getvBox(index, view.players.getChildren());
+        return getvBox(index, view.players.getChildren(), all_hands);
 
     }
 }
