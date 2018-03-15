@@ -38,11 +38,12 @@ public class main_menu_controller {
             view.leftBox.setStyle("-fx-background-color: #fffa00");
             view.rightBox.setStyle("-fx-background-color: Green");
             view.node3.getChildren().clear();
+            view.offlineBtn_box.getChildren().add(view.enterPlayerNumber);
 
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
-            view.offlineBtn.setDisable(false);
+            //view.offlineBtn.setDisable(false);
             view.onlineBtn.setDisable(true);
             view.playerDropdown.setDisable(false);
             view.rightBox.setStyle("-fx-background-color: #fffa00");

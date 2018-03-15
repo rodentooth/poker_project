@@ -29,6 +29,7 @@ public class main_menu {
     public ToggleButton tb2;
     public VBox rightBox;
     public HBox leftBox;
+    public Label enterPlayerNumber;
 
     public main_menu(Stage primaryStage) {
 
@@ -67,6 +68,7 @@ public class main_menu {
         //Number of Players
         HBox container_game_setup = new HBox();
         Label lbl2 = new Label("How many Players?");
+        lbl2.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "2",
@@ -84,12 +86,14 @@ public class main_menu {
         container_game_setup.getChildren().add(lbl2);
         container_game_setup.getChildren().add(playerDropdown);
         container_game_setup.setAlignment(Pos.CENTER);
+        container_game_setup.setSpacing(40);
 
 
 
         //Names
         HBox node2 = new HBox();
         Label lbl3 = new Label("Names: ");
+        lbl3.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         lbl3.setAlignment(Pos.CENTER);
         node2.getChildren().add(lbl3);
         node2.setAlignment(Pos.CENTER);
@@ -104,7 +108,9 @@ public class main_menu {
         offlineBtn_box = new HBox();
         offlineBtn = new Button("Play Offline");
         offlineBtn.setDisable(true);
-        Label enterPlayerNumber = new Label("Please, enter number of players to continue.");
+        enterPlayerNumber = new Label("Please, enter number of players to continue.");
+        enterPlayerNumber.setTextFill(Color.RED);
+        enterPlayerNumber.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         offlineBtn_box.getChildren().addAll(offlineBtn, enterPlayerNumber);
         offlineBtn_box.setAlignment(Pos.CENTER);
 
