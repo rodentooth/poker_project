@@ -129,8 +129,10 @@ public class main_menu {
         rightBox.getChildren().addAll(container_game_setup, node2, node3, offlineBtn_box);
         rightBox.setAlignment(Pos.CENTER);
         rightBox.setStyle("-fx-background-color: Green");
+
         rightBox.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
+
 
 
         rightBox.prefWidthProperty().bind(centerBox.widthProperty());

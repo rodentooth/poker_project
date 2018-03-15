@@ -43,7 +43,6 @@ public class main_menu_controller {
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
-            //view.offlineBtn.setDisable(false);
             view.onlineBtn.setDisable(true);
             view.playerDropdown.setDisable(false);
             view.rightBox.setStyle("-fx-background-color: #fffa00");
