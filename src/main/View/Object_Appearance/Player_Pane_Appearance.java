@@ -36,10 +36,10 @@ public class Player_Pane_Appearance {
 
         HBox PlayerPane = new HBox();
 
-        PlayerPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        PlayerPane.setMaxSize(500, 100);
+        //PlayerPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        //PlayerPane.setMaxSize(500, 100);
 
-        PlayerPane.setMinSize(300, 80);
+        //PlayerPane.setMinSize(300, 80);
 
         PlayerPane.setPadding(new Insets(0, 12, 10, 12));
 
@@ -49,8 +49,9 @@ public class Player_Pane_Appearance {
         for (Card c : hand) {
 
             Pane p = card_creator.Card_Apperance(c);
-            p.setMinSize(40, 80);
-            p.setMaxSize(100, 200);
+
+            p.setMinSize(80, 130);
+            //p.setMaxSize(120, 260);
             PlayerPane.getChildren().add(p);
         }
         PlayerPane.setSpacing(20);
