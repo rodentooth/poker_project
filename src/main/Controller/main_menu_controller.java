@@ -67,23 +67,32 @@ public class main_menu_controller {
 
             view.node3.getChildren().clear();
 
-            System.out.println(view.playerDropdown.getValue());
-            number_of_players = Integer.valueOf((String) view.playerDropdown.getValue());
 
-            for (int i = 0; i < number_of_players; i++) {
-                TextField playerName = new TextField();
-                playerName.setPromptText("Player " + (i + 1));
-                view.node3.getChildren().add(playerName);
-            }
-
-            view.Names.setVisible(true);
-            view.offlineBtn.setVisible(true);
-            view.offlineBtn_box.getChildren().get(1).setVisible(false);
-            view.offlineBtn.setDisable(false);
+            try {
+                System.out.println(view.playerDropdown.getValue());
+                number_of_players = Integer.valueOf((String) view.playerDropdown.getValue());
 
 
-            if (!view.offlineBtn.isDisable()) {
+                for (int i = 0; i < number_of_players; i++) {
+                    TextField playerName = new TextField();
+                    playerName.setPromptText("Player " + (i + 1));
+                    view.node3.getChildren().add(playerName);
+                }
+
+                view.Names.setVisible(true);
+                view.offlineBtn.setVisible(true);
                 view.offlineBtn_box.getChildren().get(1).setVisible(false);
+                view.offlineBtn.setDisable(false);
+
+
+                if (!view.offlineBtn.isDisable()) {
+                    view.offlineBtn_box.getChildren().get(1).setVisible(false);
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("You hava changed the game mode. Nothing to worry about.");
+
+
             }
 
         });
@@ -212,6 +221,8 @@ public class main_menu_controller {
         view.tb2.setSelected(false);
 
         view.offlineBtn.setDisable(true);
+        view.offlineBtn.setVisible(false);
+
         view.onlineBtn.setDisable(false);
         view.playerDropdown.setDisable(true);
 
@@ -230,7 +241,7 @@ public class main_menu_controller {
     }
 
     private void activateOfflein() {
-        if (!view.tb1.isSelected()) {
+        if (!view.rightBox.getStyle().equals("-fx-background-color: #73a400;" + "-fx-background-radius: 30;")) {
 
 
             view.tb1.setSelected(false);
