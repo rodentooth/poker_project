@@ -184,7 +184,7 @@ public class main_menu {
 
 
         Scene scene = new Scene(root, 1200, 700);
-        primaryStage.setTitle("Poker Project");
+        primaryStage.setTitle("Poker Project - Main Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

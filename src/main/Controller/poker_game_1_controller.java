@@ -35,6 +35,7 @@ public class poker_game_1_controller {
     ArrayList<ArrayList<Card>> all_hands = null;
     Boolean once = true;
     Boolean goBacktoMainMenu = false;
+    Label lbl2;
 
     public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
@@ -46,19 +47,29 @@ public class poker_game_1_controller {
         view.deal_btn.setText("Reveal Cards");
 
 
+
         view.winner_btn.setOnAction((event) -> {
+
 
             if (!goBacktoMainMenu) {
                 int winner_index;
+
+
                 if (all_hands == null) {
 
                     view.deck_txt.setText("You have to deal out!");
 
                 } else {
 
+
+                    Ranking r = new Ranking();
+
+
                     //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
                     winner_index = model.getWinner(all_hands);
-                    view.deck_txt.setText("Player " + winner_index + " is winner!");
+                    int p = winner_index;
+
+                    view.deck_txt.setText(savedNames.get(winner_index - 1) + " winns with a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(p - 1)) - 10)])).replace("_", " "));
 
 
                     VBox winner_pane = get_Specific_player_pane(winner_index);
@@ -160,7 +171,9 @@ public class poker_game_1_controller {
                         view.deal_btn.setDisable(true);
                         timer.start();
 
+
                     }
+
                 }
                 once = false;
                 view.winner_btn.setDisable(false);
@@ -234,10 +247,10 @@ public class poker_game_1_controller {
             Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
             lbl1.setText(savedNames.get(i));
 
-            Label lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
+            lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
+
 
             Ranking r = new Ranking();
-
             lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
 
             //Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));

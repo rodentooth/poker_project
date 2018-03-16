@@ -95,7 +95,7 @@ public class poker_game_1 {
 
 
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Hello Brad!");
+        primaryStage.setTitle("Poker Project - Poker 5 Stud");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
