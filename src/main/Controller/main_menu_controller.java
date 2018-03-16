@@ -230,7 +230,7 @@ public class main_menu_controller {
     }
 
     private void activateOfflein() {
-        if (!view.tb2.isSelected()) {
+        if (!view.tb1.isSelected()) {
 
 
             view.tb1.setSelected(false);
