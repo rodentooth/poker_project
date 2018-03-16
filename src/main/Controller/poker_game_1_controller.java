@@ -17,6 +17,7 @@ import main.Model.Ranking.Hand_Ranks;
 import main.Model.Ranking.Ranking;
 import main.Model.Stack.Card;
 import main.View.Object_Appearance.Player_Pane_Appearance;
+import main.View.main_menu;
 import main.View.poker_game_1;
 
 import javax.swing.*;
@@ -33,7 +34,7 @@ public class poker_game_1_controller {
     VBox box1;
     ArrayList<ArrayList<Card>> all_hands = null;
     Boolean once = true;
-
+    Boolean goBacktoMainMenu = false;
 
     public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
@@ -42,45 +43,58 @@ public class poker_game_1_controller {
         this.model = model;
         view.players.setSpacing(10);
         view.players.setPadding(new Insets(10, 10, 10, 10));
+        view.deal_btn.setText("Reveal Cards");
 
 
         view.winner_btn.setOnAction((event) -> {
 
+            if (!goBacktoMainMenu) {
+                int winner_index;
+                if (all_hands == null) {
 
-            int winner_index;
-            if (all_hands == null) {
+                    view.deck_txt.setText("You have to deal out!");
 
-                view.deck_txt.setText("You have to deal out!");
+                } else {
 
+                    //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
+                    winner_index = model.getWinner(all_hands);
+                    view.deck_txt.setText("Player " + winner_index + " is winner!");
+
+
+                    VBox winner_pane = get_Specific_player_pane(winner_index);
+
+                    winner_pane.setStyle("-fx-background-color: #94bd00;" + "-fx-background-radius: 20;");
+
+
+                    for (int i = 1; i < (all_hands.size() + 1); i++) {
+
+                        Label winner_loser_label = (Label) (((HBox) (get_Specific_player_pane(i)).getChildren().get(3)).getChildren().get(0));
+
+                        if (winner_index == (i)) {
+                            winner_loser_label.setText("Winner");
+                        } else {
+                            winner_loser_label.setText("loser");
+                        }
+                    }
+
+
+                    view.winner_btn.setText("Play again");
+                    view.deal_btn.setText("Back to main menu");
+                    view.deal_btn.setDisable(false);
+
+                    //dealout(savedNames);
+
+
+                }
+                goBacktoMainMenu = true;
             } else {
 
-                //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
-                winner_index = model.getWinner(all_hands);
-                view.deck_txt.setText("Player " + winner_index + " is winner!");
-
-
-                VBox winner_pane = get_Specific_player_pane(winner_index);
-
-                winner_pane.setStyle("-fx-background-color: #94bd00;" + "-fx-background-radius: 20;");
-
-
-                for (int i = 1; i < (all_hands.size() + 1); i++) {
-
-                    Label winner_loser_label = (Label) (((HBox) (get_Specific_player_pane(i)).getChildren().get(3)).getChildren().get(0));
-
-                    if (winner_index == (i)) {
-                        winner_loser_label.setText("Winner");
-                    } else {
-                        winner_loser_label.setText("loser");
-                    }
-                }
-
-
-                view.deal_btn.setText("Play again");
-                view.deal_btn.setDisable(false);
-
-                //dealout(savedNames);
-
+                goBacktoMainMenu = false;
+                view.deal_btn.setText("Reveal Cards");
+                dealout(savedNames);
+                once = true;
+                view.winner_btn.setText("Get Winner");
+                view.winner_btn.setDisable(true);
 
 
             }
@@ -153,9 +167,8 @@ public class poker_game_1_controller {
 
 
             } else {
-                view.deal_btn.setText("Reveal Cards");
-                dealout(savedNames);
-                once = true;
+
+                main_menu_controller controller = new main_menu_controller(model, new main_menu(view.s));
 
             }
         });

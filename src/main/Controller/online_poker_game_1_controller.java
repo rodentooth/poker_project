@@ -116,7 +116,7 @@ public class online_poker_game_1_controller {
 
                 //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
                 winner_index = model.getWinner(all_hands);
-                view.deck_txt.setText(savedNames.get(winner_index) + " is winner!");
+                view.deck_txt.setText(savedNames.get(winner_index - 1) + " is winner!");
 
 
                 VBox winner_pane = get_Specific_player_pane(winner_index);
@@ -225,7 +225,6 @@ public class online_poker_game_1_controller {
             } else {
 
                 Poker_5_Stud model = new Poker_5_Stud();
-
                 main_menu_controller controller = new main_menu_controller(model, new main_menu(view.s));
 
             }
