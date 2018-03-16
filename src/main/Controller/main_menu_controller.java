@@ -32,6 +32,7 @@ public class main_menu_controller {
 
         this.view = view;
         this.model = model;
+
         view.leftBox.requestFocus();
 
         view.playerDropdown.setDisable(true);
@@ -65,7 +66,9 @@ public class main_menu_controller {
 
         view.playerDropdown.setOnAction((event) -> {
 
-            view.node3.getChildren().clear();
+            view.text_field_line1.getChildren().clear();
+            view.text_field_line2.getChildren().clear();
+            view.text_field_line3.getChildren().clear();
 
 
             try {
@@ -76,7 +79,14 @@ public class main_menu_controller {
                 for (int i = 0; i < number_of_players; i++) {
                     TextField playerName = new TextField();
                     playerName.setPromptText("Player " + (i + 1));
-                    view.node3.getChildren().add(playerName);
+                    if (i + 1 <= 3) {
+                        view.text_field_line1.getChildren().add(playerName);
+                    } else if (i + 1 > 3 && i + 1 <= 6) {
+                        view.text_field_line2.getChildren().add(playerName);
+                    } else if (i + 1 > 6) {
+                        view.text_field_line3.getChildren().add(playerName);
+                    }
+
                 }
 
                 view.Names.setVisible(true);
@@ -90,7 +100,7 @@ public class main_menu_controller {
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("You hava changed the game mode. Nothing to worry about.");
+                System.out.println("You have changed the game mode. Nothing to worry about.");
 
 
             }
@@ -104,12 +114,12 @@ public class main_menu_controller {
             for (int i = 0; i < number_of_players; i++) {
 
 
-                if (!(((TextField) (view.node3.getChildren().get(i))).getText().isEmpty())) {
-                    savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
+                if (!(((TextField) (view.text_field_line1.getChildren().get(i))).getText().isEmpty())) {
+                    savedNames.add(((TextField) (view.text_field_line1.getChildren().get(i))).getText());
                     System.out.println(savedNames.get(i));
                 } else {
-                    ((TextField) (view.node3.getChildren().get(i))).setText("Player " + (i + 1));
-                    savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
+                    ((TextField) (view.text_field_line1.getChildren().get(i))).setText("Player " + (i + 1));
+                    savedNames.add(((TextField) (view.text_field_line1.getChildren().get(i))).getText());
                     System.out.println(savedNames.get(i));
 
                 }
@@ -164,17 +174,41 @@ public class main_menu_controller {
         view.offlineBtn.setOnAction((event) -> {
 
 
-            for (int i = 0; i < number_of_players; i++) {
+            for (int i = 0; i < number_of_players && i < 3; i++) {
 
-
-                if (!(((TextField) (view.node3.getChildren().get(i))).getText().isEmpty())) {
-                    savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
+                if (!(((TextField) (view.text_field_line1.getChildren().get(i))).getText().isEmpty())) {
+                    savedNames.add(((TextField) (view.text_field_line1.getChildren().get(i))).getText());
                     System.out.println(savedNames.get(i));
                 } else {
-                    ((TextField) (view.node3.getChildren().get(i))).setText("Player " + (i + 1));
-                    savedNames.add(((TextField) (view.node3.getChildren().get(i))).getText());
+                    ((TextField) (view.text_field_line1.getChildren().get(i))).setText("Player " + (i + 1));
+                    savedNames.add(((TextField) (view.text_field_line1.getChildren().get(i))).getText());
                     System.out.println(savedNames.get(i));
+                }
+            }
 
+            if (number_of_players > 3) {
+                for (int i = 0; i < (number_of_players - 3) && i < 3; i++) {
+
+                    if (!(((TextField) (view.text_field_line2.getChildren().get(i))).getText().isEmpty())) {
+                        savedNames.add(((TextField) (view.text_field_line2.getChildren().get(i))).getText());
+                        System.out.println(savedNames.get(i + 3));
+                    } else {
+                        ((TextField) (view.text_field_line2.getChildren().get(i))).setText("Player " + (i + 4));
+                        savedNames.add(((TextField) (view.text_field_line2.getChildren().get(i))).getText());
+                        System.out.println(savedNames.get(i + 3));
+                    }
+                }
+            }
+            if (number_of_players > 6) {
+                for (int i = 0; i < (number_of_players - 6) && i < 6; i++) {
+                    if (!(((TextField) (view.text_field_line3.getChildren().get(i))).getText().isEmpty())) {
+                        savedNames.add(((TextField) (view.text_field_line3.getChildren().get(i))).getText());
+                        System.out.println(savedNames.get(i + 6));
+                    } else {
+                        ((TextField) (view.text_field_line3.getChildren().get(i))).setText("Player " + (i + 7));
+                        savedNames.add(((TextField) (view.text_field_line3.getChildren().get(i))).getText());
+                        System.out.println(savedNames.get(i + 6));
+                    }
                 }
             }
 
@@ -234,7 +268,7 @@ public class main_menu_controller {
 
         view.leftBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
         view.rightBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
-        view.node3.getChildren().clear();
+        view.text_field_line1.getChildren().clear();
         view.offlineBtn_box.getChildren().get(1).setVisible(true);
 
 

@@ -19,7 +19,9 @@ public class main_menu {
     public Button onlineBtn;
 	public Label deck_txt;
     public ComboBox playerDropdown;
-    public HBox node3;
+    public HBox text_field_line1;
+    public HBox text_field_line2;
+    public HBox text_field_line3;
     public HBox node4;
     public boolean playerNumberEntered = false;
     public Button offlineBtn;
@@ -32,10 +34,11 @@ public class main_menu {
     public Label enterPlayerNumber;
     public Label HowManyPlayers;
     public Label Names;
+
+
     public main_menu(Stage primaryStage) {
 
 
-        //TODO Knopf für online game  UND NÄÄÄme ich wirde schwarz ma
 
         //Offline/Online
         group = new ToggleGroup();
@@ -100,9 +103,23 @@ public class main_menu {
         node2.setAlignment(Pos.CENTER);
 
 
-        //Textfields for names
-        node3 = new HBox();
-        node3.setAlignment(Pos.CENTER);
+        //Textfields for names 1-3
+        text_field_line1 = new HBox();
+        text_field_line1.setAlignment(Pos.CENTER);
+        text_field_line1.setSpacing(5);
+        text_field_line1.setPadding(new Insets(0, 10, 0, 10));
+
+        // Textfields for names 4-6
+        text_field_line2 = new HBox();
+        text_field_line2.setAlignment(Pos.CENTER);
+        text_field_line2.setSpacing(5);
+        text_field_line2.setPadding(new Insets(0, 10, 0, 10));
+
+        // Textfields for names 7-10
+        text_field_line3 = new HBox();
+        text_field_line3.setAlignment(Pos.CENTER);
+        text_field_line3.setSpacing(5);
+        text_field_line3.setPadding(new Insets(0, 10, 0, 10));
 
 
         //Button to play offline
@@ -127,7 +144,7 @@ public class main_menu {
 
         rightBox = new VBox();
         rightBox.setSpacing(25);
-        rightBox.getChildren().addAll(container_game_setup, node2, node3, offlineBtn_box);
+        rightBox.getChildren().addAll(container_game_setup, node2, text_field_line1, text_field_line2, text_field_line3, offlineBtn_box);
         rightBox.setAlignment(Pos.CENTER);
         rightBox.setStyle("-fx-background-color: Green;" + "-fx-background-radius: 30;");
 
