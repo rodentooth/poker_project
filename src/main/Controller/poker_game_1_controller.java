@@ -247,26 +247,74 @@ public class poker_game_1_controller {
 
     static VBox getvBox(int index, ObservableList<Node> children, ArrayList<ArrayList<Card>> all_hands) {
 
-        if (((all_hands.size() <= 5) && (index % 2 == 0))) {
+
+        //TODO Hervorheben in dokumentation, algorithmus um player Pane zu finden
+
+        if (((all_hands.size() <= 5))) {
+
+            //nur 2er linien
+            int go_to_winner_pane;
+            if (index % 2 == 0)
+                go_to_winner_pane = 1;
+            else
+                go_to_winner_pane = 0;
+            int go_to_winner_section = (int) (Math.round((double) index / 2f) - 1);
+            HBox section = (HBox) children.get(go_to_winner_section);
+            VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
 
 
-        } else if (((all_hands.size() > 5) && (index % 4 == 0))) {
+            return winner_pane;
+
+
+        } else if (((all_hands.size() > 5) && (all_hands.size() % 4 == 0))) {
+            //4er und 2er linien
+            //nur 2er linien
+            int go_to_winner_pane;
+            if (index <= 4)
+                go_to_winner_pane = index - 1;
+            else
+                go_to_winner_pane = index - 5;
+
+            int go_to_winner_section;
+            if (index <= 4)
+                go_to_winner_section = 0;
+            else
+                go_to_winner_section = 1;
+
+
+            HBox section = (HBox) children.get(go_to_winner_section);
+            VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
+
+            return winner_pane;
+
 
         } else {
+            //3erlinien
 
+
+            int go_to_winner_pane = 0;
+            int go_to_winner_section = 0;
+
+            for (int i = 0; i < children.size() - 1; i++) {
+
+                HBox section = (HBox) children.get(i);
+
+                if (section.getChildren().size() < index) {
+                    go_to_winner_section++;
+                    go_to_winner_pane += section.getChildren().size();
+                    index -= section.getChildren().size();
+                }
+                go_to_winner_pane = index - 1;
+
+
+            }
+
+            HBox section = (HBox) children.get(go_to_winner_section);
+            VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
+
+            return winner_pane;
 
         }
-        int go_to_winner_pane;
-        if (index % 2 == 0)
-            go_to_winner_pane = 1;
-        else
-            go_to_winner_pane = 0;
-        int go_to_winner_section = (int) (Math.round((double) index / 2f) - 1);
-        HBox section = (HBox) children.get(go_to_winner_section);
-        VBox winner_pane = (VBox) (section.getChildren().get(go_to_winner_pane));
-
-
-        return winner_pane;
 
     }
 

@@ -37,23 +37,23 @@ public class main_menu_controller {
         view.playerDropdown.setDisable(true);
 
         view.tb1.setOnAction((ActionEvent e) -> {
-            activateOfflein();
+            activateOnlein();
         });
         view.leftBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                activateOfflein();
+                activateOnlein();
 
             }
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
-            activateOnlein();
+            activateOfflein();
         });
         view.rightBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                activateOnlein();
+                activateOfflein();
 
             }
         });
@@ -206,7 +206,7 @@ public class main_menu_controller {
 
     }
 
-    private void activateOfflein() {
+    private void activateOnlein() {
 
         view.tb1.setSelected(true);
         view.tb2.setSelected(false);
@@ -229,17 +229,22 @@ public class main_menu_controller {
 
     }
 
-    private void activateOnlein() {
-        view.tb1.setSelected(false);
-        view.tb2.setSelected(true);
+    private void activateOfflein() {
+        if (!view.tb2.isSelected()) {
 
-        view.onlineBtn.setDisable(true);
-        view.playerDropdown.setDisable(false);
-        view.Names.setVisible(false);
-        view.offlineBtn.setVisible(false);
 
-        view.rightBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
-        view.leftBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
+            view.tb1.setSelected(false);
+            view.tb2.setSelected(true);
+
+            view.onlineBtn.setDisable(true);
+            view.playerDropdown.setDisable(false);
+            view.Names.setVisible(false);
+            view.offlineBtn.setVisible(false);
+
+            view.rightBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
+            view.leftBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
+
+        }
     }
 }
 
