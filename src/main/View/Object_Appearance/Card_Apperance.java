@@ -46,7 +46,7 @@ public class Card_Apperance {
         imageView.fitWidthProperty().bind(inside_card2.widthProperty());
 
 
-        imageView2.getTransforms().add(new Translate(-50, 0, 0));
+        imageView2.getTransforms().add(new Translate(-30, 0, 0));
         //imageView.getTransforms().add(new Translate(50,0,0));
 
 
