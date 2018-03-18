@@ -265,6 +265,12 @@ public class poker_game_1_controller {
         Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
 
         stageTheLabelBelongs.sizeToScene();
+
+        if (all_hands.size() > 5) {
+            stageTheLabelBelongs.setMinWidth(1400);
+
+
+        }
     }
 
     static VBox getvBox(int index, ObservableList<Node> children, ArrayList<ArrayList<Card>> all_hands) {
