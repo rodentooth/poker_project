@@ -239,14 +239,6 @@ public class main_menu_controller {
         });
         /////////////////////////////////////////////finito///////////////
 
-/*
-        // register ourselves to handle window-closing event
-        view.getStage().setOnCloseRequest((event) -> {
-            view.stop();
-            Platform.exit();
-        });
-*/
-
     }
 
     private void activateOnlein() {

@@ -2,12 +2,13 @@ package main.Controller;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -31,11 +32,11 @@ public class poker_game_1_controller {
 
     Poker_5_Stud model;
     poker_game_1 view;
-    VBox box1;
     ArrayList<ArrayList<Card>> all_hands = null;
     Boolean once = true;
     Boolean goBacktoMainMenu = false;
     Label lbl2;
+    int revealedCards = 0;
 
     public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
@@ -46,6 +47,7 @@ public class poker_game_1_controller {
         view.players.setPadding(new Insets(10, 10, 10, 10));
         view.deal_btn.setText("Reveal Cards");
 
+        view.deck_txt.setTextFill(Color.WHITE);
 
 
         view.winner_btn.setOnAction((event) -> {
@@ -69,7 +71,7 @@ public class poker_game_1_controller {
                     winner_index = model.getWinner(all_hands);
                     int p = winner_index;
 
-                    view.deck_txt.setText(savedNames.get(winner_index - 1) + " winns with a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(p - 1)) - 10)])).replace("_", " "));
+                    view.deck_txt.setText(savedNames.get(winner_index - 1) + " wins with a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(p - 1)) - 10)])).replace("_", " "));
 
 
                     VBox winner_pane = get_Specific_player_pane(winner_index);
@@ -111,9 +113,6 @@ public class poker_game_1_controller {
             }
         });
 
-        Timeline time = new Timeline();
-        time.setCycleCount(1);
-        time.setAutoReverse(false);
 
         view.players.setMaxWidth(Double.MAX_VALUE);
         view.players.setMaxHeight(Double.MAX_VALUE);
@@ -126,53 +125,8 @@ public class poker_game_1_controller {
 
                     HBox player_pane = (((HBox) (get_Specific_player_pane(i)).getChildren().get(1)));
 
-                    for (int j = 0; j < (5); j++) {
-                        Pane p = (Pane) player_pane.getChildren().get(j);
-
-
-                        ImageView background = (ImageView) (((Pane) p.getChildren().get(0)).getChildren()).get(1);
-                        ImageView foreground = (ImageView) (((Pane) p.getChildren().get(0)).getChildren()).get(0);
-
-
-                        RotateTransition rt = new RotateTransition(Duration.millis(1500), background);
-                        rt.setByAngle(-90);
-                        rt.setAxis(Y_AXIS);
-                        rt.setCycleCount(1);
-
-                        RotateTransition rt_fg = new RotateTransition(Duration.millis(1500), foreground);
-                        rt_fg.setByAngle(-90);
-                        rt_fg.setAxis(Y_AXIS);
-                        rt_fg.setCycleCount(1);
-
-                        //FadeTransition ft = new FadeTransition(Duration.millis(1500),background);
-
-
-                        SequentialTransition s = new SequentialTransition(rt, rt_fg);
-
-
-                        Timer timer = new Timer((j + 1) * (i + 1) * 100, new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                //timer.stop();
-
-                                s.play();
-
-
-                            }
-                        });
-                        //timer.setInitialDelay();
-                        timer.setRepeats(false);
-
-                        rt.setOnFinished((javafx.event.ActionEvent event2) -> {
-                            //rt_fg.play();
-
-                        });
-
-                        view.deal_btn.setDisable(true);
-                        timer.start();
-
-
-                    }
+                    animate_pane(i, player_pane);
+                    view.deal_btn.setDisable(true);
 
                 }
                 once = false;
@@ -194,6 +148,7 @@ public class poker_game_1_controller {
     }
 
     private void dealout(ArrayList<String> savedNames) {
+        revealedCards = 0;
         view.winner_btn.setDisable(true);
 
         System.out.println("Players in our game: " + savedNames.size());
@@ -211,7 +166,6 @@ public class poker_game_1_controller {
             HBox section;
             if (((all_hands.size() <= 5) && (i % 2 == 0)) || ((all_hands.size() > 5) && (i % 4 == 0))) {
                 section = new HBox();
-                // section.setStyle("-fx-background-color: #00" + i + "0ff");
                 section.setPrefSize(1000, 300);
                 view.players.getChildren().add(section);
 
@@ -224,6 +178,7 @@ public class poker_game_1_controller {
 
             }
 
+            VBox box1;
 
             section.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
@@ -234,6 +189,39 @@ public class poker_game_1_controller {
 
             section.setSpacing(10);
             box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+
+            if (((all_hands.size() <= 5))) {
+                box1.setMinSize(600, 250);
+
+
+            } else {
+                box1.setMinSize(330, 100);
+                box1.setMaxSize(400, 100);
+
+            }
+
+            final Boolean[] hasTurned = {false};
+            box1.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+
+                    if (!hasTurned[0] && view.winner_btn.isDisable()) {
+                        once = false;
+                        hasTurned[0] = true;
+                        HBox player_pane = (((HBox) (box1.getChildren().get(1))));
+                        view.deal_btn.setDisable(true);
+                        animate_pane(0, player_pane);
+                        if (revealedCards >= all_hands.size() - 1) {
+                            view.winner_btn.setDisable(false);
+                        } else {
+                            revealedCards++;
+
+                        }
+
+                    }
+                }
+
+            });
 
             box1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
@@ -344,6 +332,50 @@ public class poker_game_1_controller {
 
     }
 
+    private void animate_pane(int i, HBox player_pane) {
+
+        for (int j = 0; j < (5); j++) {
+            Pane p = (Pane) player_pane.getChildren().get(j);
+
+
+            ImageView background = (ImageView) (((Pane) p.getChildren().get(0)).getChildren()).get(1);
+            ImageView foreground = (ImageView) (((Pane) p.getChildren().get(0)).getChildren()).get(0);
+
+
+            RotateTransition rt = new RotateTransition(Duration.millis(1500), background);
+            rt.setByAngle(-90);
+            rt.setAxis(Y_AXIS);
+            rt.setCycleCount(1);
+
+            RotateTransition rt_fg = new RotateTransition(Duration.millis(1500), foreground);
+            rt_fg.setByAngle(-90);
+            rt_fg.setAxis(Y_AXIS);
+            rt_fg.setCycleCount(1);
+
+            //FadeTransition ft = new FadeTransition(Duration.millis(1500),background);
+
+
+            SequentialTransition s = new SequentialTransition(rt, rt_fg);
+
+
+            Timer timer = new Timer((j + 1) * (i + 1) * 100, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //timer.stop();
+
+                    s.play();
+
+
+                }
+            });
+            //timer.setInitialDelay();
+            timer.setRepeats(false);
+            timer.start();
+
+
+        }
+
+    }
     private VBox get_Specific_player_pane(int index) {
 
 

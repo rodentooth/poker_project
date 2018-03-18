@@ -281,6 +281,7 @@ public class online_poker_game_1_controller {
             section.setSpacing(10);
             box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
 
+
             box1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
 

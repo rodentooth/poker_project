@@ -4,10 +4,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -55,11 +53,17 @@ public class poker_game_1 {
         controlArea.setAlignment(Pos.CENTER);
         controlArea.getStyleClass().add("controlArea");
         controlArea.setPrefSize(1000, 60);
+        controlArea.setStyle("-fx-background-image: url('main/res/images/controller_bg.jpg'); " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-size: cover, auto;");
+        controlArea.setBorder(new Border(new BorderStroke(Color.BLACK,
+                BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(10))));
 
 
         VBox winner_btn_box = new VBox();
         winner_btn_box.setAlignment(Pos.CENTER);
-        winner_btn_box.setStyle("-fx-background-color: #fffa00");
+        //winner_btn_box.setStyle("-fx-background-color: #fffa00");
         winner_btn_box.prefWidthProperty().bind(controlArea.widthProperty());
         winner_btn = new Button("Get Winner");
         winner_btn_box.getChildren().add(winner_btn);
@@ -67,7 +71,7 @@ public class poker_game_1 {
 
         VBox deal_btn_box = new VBox();
         deal_btn_box.setAlignment(Pos.CENTER);
-        deal_btn_box.setStyle("-fx-background-color: #02f41e");
+        //deal_btn_box.setStyle("-fx-background-color: #02f41e");
         deal_btn_box.prefWidthProperty().bind(controlArea.widthProperty());
         deal_btn = new Button("Deal");
         deal_btn_box.getChildren().add(deal_btn);
@@ -76,7 +80,7 @@ public class poker_game_1 {
         VBox deck_txt_box = new VBox();
         deck_txt_box.setAlignment(Pos.CENTER_LEFT);
         deck_txt_box.prefWidthProperty().bind(controlArea.widthProperty());
-        deck_txt_box.setStyle("-fx-background-color: #ff0000");
+        //deck_txt_box.setStyle("-fx-background-color: #ff0000");
         deck_txt_box.setAlignment(Pos.CENTER);
         deck_txt = new Label("Deck");
         deck_txt.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 20));
