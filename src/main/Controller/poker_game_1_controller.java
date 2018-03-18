@@ -192,11 +192,19 @@ public class poker_game_1_controller {
 
             if (((all_hands.size() <= 5))) {
                 box1.setMinSize(600, 250);
+                section.setMaxSize(1000, 300);
 
 
             } else {
-                box1.setMinSize(330, 100);
-                box1.setMaxSize(400, 100);
+
+                ((HBox) box1.getChildren().get(1)).setMinSize(300, 70);
+                ((HBox) box1.getChildren().get(1)).setMaxSize(300, 70);
+                ((HBox) box1.getChildren().get(1)).setSpacing(10);
+                box1.setMinSize(330, 80);
+                box1.setMaxSize(330, 80);
+                section.setMinSize(1000, 200);
+
+                section.setMaxSize(1000, 200);
 
             }
 
