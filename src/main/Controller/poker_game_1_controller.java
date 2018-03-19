@@ -86,7 +86,7 @@ public class poker_game_1_controller {
                         if (winner_index == (i)) {
                             winner_loser_label.setText("Winner");
                         } else {
-                            winner_loser_label.setText("loser");
+                            winner_loser_label.setText("Loser");
                         }
                     }
 
@@ -248,7 +248,7 @@ public class poker_game_1_controller {
 
             Ranking r = new Ranking();
             lbl2.setText("It is a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(i)) - 10)])).replace("_", " "));
-
+            lbl2.setVisible(false);
             //Label lbl3 = (Label) (((HBox) box1.getChildren().get(3)).getChildren().get(0));
             //lbl3.setText("You are a ...");
 
@@ -388,6 +388,7 @@ public class poker_game_1_controller {
 
 
         }
+        ((HBox) ((Pane) player_pane.getParent()).getChildren().get(2)).getChildren().get(0).setVisible(true);
 
     }
     private VBox get_Specific_player_pane(int index) {
