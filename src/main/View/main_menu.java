@@ -66,12 +66,6 @@ public class main_menu {
         deck_title.setPreserveRatio(true);
 
 
-
-
-
-
-
-
         container_title.setSpacing(20);
         container_title.setPadding(new Insets(20, 20, 20, 20));
         container_title.getChildren().add(deck_title);
