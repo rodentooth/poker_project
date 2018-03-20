@@ -82,7 +82,7 @@ public class main_menu {
         //Number of Players
         HBox container_game_setup = new HBox();
         HowManyPlayers = new Label("How many Players?");
-        HowManyPlayers.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        HowManyPlayers.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 25));
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "2",
@@ -100,14 +100,14 @@ public class main_menu {
         container_game_setup.getChildren().add(HowManyPlayers);
         container_game_setup.getChildren().add(playerDropdown);
         container_game_setup.setAlignment(Pos.CENTER);
-        container_game_setup.setSpacing(40);
+        container_game_setup.setSpacing(85);
 
 
 
         //Names
         HBox node2 = new HBox();
         Names = new Label("Names: ");
-        Names.setFont(Font.font("tahoma", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        Names.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 25));
         Names.setAlignment(Pos.CENTER);
         node2.getChildren().add(Names);
         node2.setAlignment(Pos.CENTER);
