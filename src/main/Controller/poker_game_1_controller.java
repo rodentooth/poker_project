@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static javafx.scene.transform.Rotate.Y_AXIS;
+import static javafx.scene.transform.Rotate.Z_AXIS;
 
 class poker_game_1_controller {
 
@@ -54,7 +55,24 @@ class poker_game_1_controller {
 
         if (bradmode) {
             view.winner_btn.setFocusTraversable(false);
+            final Boolean[] once = {true};
             view.winner_btn.setOnMouseEntered(event -> {
+                if (once[0]) {
+
+                    for (int i = 1; i < (all_hands.size() + 1); i++) {
+
+                        VBox player_pane = get_Specific_player_pane(i);
+
+                        RotateTransition rt = new RotateTransition(Duration.millis(1500), player_pane);
+                        rt.setByAngle(i * 800);
+                        rt.setAxis(Z_AXIS);
+                        rt.setCycleCount(Animation.INDEFINITE);
+                        rt.play();
+                        once[0] = false;
+                    }
+
+
+                }
 
                 if (view.winner_btn_box.getAlignment() == Pos.CENTER || view.winner_btn_box.getAlignment() == Pos.CENTER_RIGHT)
                     view.winner_btn_box.setAlignment(Pos.CENTER_LEFT);
@@ -379,8 +397,10 @@ class poker_game_1_controller {
             rt_fg.setAxis(Y_AXIS);
 
             if (bradmode) {
+                rt_fg.setByAngle(360);
+
                 rt_fg.setCycleCount(Animation.INDEFINITE);
-                rt_fg.setDuration(Duration.millis(500));
+                rt_fg.setDuration(Duration.millis(1000));
             }
 
             //FadeTransition ft = new FadeTransition(Duration.millis(1500),background);
