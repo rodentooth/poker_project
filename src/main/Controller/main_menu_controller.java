@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,6 +22,8 @@ public class main_menu_controller {
 
     Poker_5_Stud model;
     main_menu view;
+    private int cheerscount = 0;
+
 
     int number_of_players;
     public ArrayList<String> savedNames = new ArrayList<>();
@@ -33,9 +36,24 @@ public class main_menu_controller {
         this.view = view;
         this.model = model;
 
+        cheerscount = 0;
         view.leftBox.requestFocus();
 
         view.playerDropdown.setDisable(true);
+
+
+        view.deck_title.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (cheerscount < 5) {
+                    cheerscount++;
+                } else {
+                    view.deck_title.setImage(new Image("main/res/images/cheers.gif"));
+                }
+            }
+        });
+
+
 
         view.tb1.setOnAction((ActionEvent e) -> {
             activateOnlein();
