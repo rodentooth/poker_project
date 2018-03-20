@@ -174,7 +174,9 @@ public class main_menu {
                 "    -fx-text-fill: linear-gradient(white, #d0d0d0);\n" +
                 "    -fx-font-size: 20px;\n" +
                 "    -fx-padding: 10 20 10 20;");
-        onlineBtn.setDisable(true);
+
+
+        onlineBtn.setDisable(false);
         onlineBtn.setAlignment(Pos.CENTER);
         onlineBtn.setPrefSize(190, 50);
 
