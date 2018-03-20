@@ -84,6 +84,7 @@ public class poker_game_1 {
         deck_txt_box.setAlignment(Pos.CENTER);
         deck_txt = new Label("Deck");
         deck_txt.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        deck_txt.setTextFill(Color.WHITE);
 
         deck_txt_box.getChildren().add(deck_txt);
 
