@@ -30,7 +30,7 @@ public class Main extends Application {
         model = new Poker_5_Stud();
         view = new main_menu(primaryStage);
         controller = new main_menu_controller(model, view);
-//        view.start();
 
+        //garbage collector takes care of the objects. no need to destroy them
     }
 }

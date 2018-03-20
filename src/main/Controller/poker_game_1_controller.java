@@ -28,17 +28,17 @@ import java.util.ArrayList;
 
 import static javafx.scene.transform.Rotate.Y_AXIS;
 
-public class poker_game_1_controller {
+class poker_game_1_controller {
 
-    Poker_5_Stud model;
-    poker_game_1 view;
+    private Poker_5_Stud model;
+    private poker_game_1 view;
     ArrayList<ArrayList<Card>> all_hands = null;
-    Boolean once = true;
-    Boolean goBacktoMainMenu = false;
-    Label lbl2;
-    int revealedCards = 0;
+    private Boolean once = true;
+    private Boolean goBacktoMainMenu = false;
+    private Label lbl2;
+    private int revealedCards = 0;
 
-    public poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
+    poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
 
 
         this.view = view;
@@ -296,7 +296,6 @@ public class poker_game_1_controller {
 
         } else if (((all_hands.size() > 5) && (all_hands.size() % 4 == 0))) {
             //4er und 2er linien
-            //nur 2er linien
             int go_to_winner_pane;
             if (index <= 4)
                 go_to_winner_pane = index - 1;
