@@ -1,5 +1,8 @@
 package main.Controller;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.Model.Game.Online_Poker_5_Stud;
 import main.Model.Game.Poker_5_Stud;
 import main.Model.Stack.Card;
@@ -58,9 +62,22 @@ public class main_menu_controller {
 
 
                     bradmode = true;
-                    view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;");
-                    view.leftBox.setVisible(false);
 
+                    Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(0.3), evt -> view.rightBox.setStyle("-fx-background-color: RED;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(0.4), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")));
+                    timeline1.setCycleCount(Animation.INDEFINITE);
+                    timeline1.play();
+
+                    //view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;");
+                    view.leftBox.setVisible(false);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> view.tb2.setStyle("-fx-background-color: Yellow ")),
+                            new KeyFrame(Duration.seconds(0.3), evt -> view.tb2.setStyle("-fx-background-color: #0025ff ")),
+                            new KeyFrame(Duration.seconds(0.4), evt -> view.tb2.setStyle("-fx-background-color: RED ")));
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.play();
+
+                    view.tb1.setVisible(false);
 
                     Thread one = new Thread(() -> {
 
@@ -92,23 +109,23 @@ public class main_menu_controller {
 
 
         view.tb1.setOnAction((ActionEvent e) -> {
-            activateOnlein();
+            activateOnline();
         });
         view.leftBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                activateOnlein();
+                activateOnline();
 
             }
         });
 
         view.tb2.setOnAction((ActionEvent e) -> {
-            activateOfflein();
+            activateOffline();
         });
         view.rightBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                activateOfflein();
+                activateOffline();
 
             }
         });
@@ -293,7 +310,7 @@ public class main_menu_controller {
 
     }
 
-    private void activateOnlein() {
+    private void activateOnline() {
 
         view.tb1.setSelected(true);
         view.tb2.setSelected(false);
@@ -318,7 +335,7 @@ public class main_menu_controller {
 
     }
 
-    private void activateOfflein() {
+    private void activateOffline() {
         if (!view.rightBox.getStyle().equals("-fx-background-color: #73a400;" + "-fx-background-radius: 30;")) {
 
 
