@@ -127,14 +127,14 @@ public class main_menu_controller {
 
 
             System.out.println("You clicked me!");
-            view.deck_txt.setText("That's the main menu");
+
 
 
             //Here I want to swap the screen!
 
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) event.getSource()).getScene().getWindow();
             // OR
-            Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
+            //Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
             // these two of them return the same stage
             // Swap screen::
 
@@ -214,14 +214,13 @@ public class main_menu_controller {
 
 
             System.out.println("You clicked me!");
-            view.deck_txt.setText("That's the main menu");
 
 
             //Here I want to swap the screen!
 
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) event.getSource()).getScene().getWindow();
             // OR
-            Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
+            //Stage stageTheLabelBelongs = (Stage) view.deck_txt.getScene().getWindow();
             // these two of them return the same stage
             // Swap screen::
 

@@ -6,6 +6,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -18,7 +20,7 @@ import javafx.stage.Stage;
 public class main_menu {
 
     public Button onlineBtn;
-	public Label deck_txt;
+    public ImageView deck_title;
     public ComboBox playerDropdown;
     public HBox text_field_line1;
     public HBox text_field_line2;
@@ -59,20 +61,20 @@ public class main_menu {
 
         //Titel
         VBox container_title = new VBox();
-        deck_txt = new Label("Poker 5 Stud");
-        deck_txt.setFont(Font.font("tahoma", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        //deck_txt.setTextFill(url('main/res/images/gold.jpg'));
-        deck_txt.setStyle("-fx-background-image: url('main/res/images/GoldPlate.png'); " +
-                "-fx-background-position: center top; " +
-                "-fx-background-repeat: stretch;" +
-                "-fx-background-size: cover, auto;");
-        deck_txt.setPadding(new Insets(53, 53, 53, 53));
+        deck_title = new ImageView(new Image("main/res/images/title.png"));
+        deck_title.setFitHeight(300);
+        deck_title.setPreserveRatio(true);
+
+
+
+
+
 
 
 
         container_title.setSpacing(20);
         container_title.setPadding(new Insets(20, 20, 20, 20));
-        container_title.getChildren().add(deck_txt);
+        container_title.getChildren().add(deck_title);
         container_title.getChildren().add(toggleBox);
         container_title.setAlignment(Pos.CENTER);
 
