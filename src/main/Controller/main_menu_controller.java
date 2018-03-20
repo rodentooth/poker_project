@@ -67,7 +67,6 @@ public class main_menu_controller {
                     bradmode = true;
 
 
-
                     Thread one = new Thread(() -> {
 
 
@@ -89,15 +88,16 @@ public class main_menu_controller {
 
                     Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.926), evt -> view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;")),
                             new KeyFrame(Duration.seconds(1.852), evt -> view.rightBox.setStyle("-fx-background-color: RED;" + "-fx-background-radius: 30;")),
-                            new KeyFrame(Duration.seconds(2.778), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")));
+                            new KeyFrame(Duration.seconds(2.778), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(0.926), evt -> view.tb2.setStyle("-fx-background-color: #00fffa;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(1.852), evt -> view.tb2.setStyle("-fx-background-color: #d7ff00;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(2.778), evt -> view.tb2.setStyle("-fx-background-color: #ff004b;" + "-fx-background-radius: 30;")));
                     timeline1.setCycleCount(Animation.INDEFINITE);
                     timeline1.play();
 
 
                     view.tb1.setVisible(false);
                     view.leftBox.setVisible(false);
-
-
 
 
                 }
