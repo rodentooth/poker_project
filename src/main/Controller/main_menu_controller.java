@@ -1,5 +1,6 @@
 package main.Controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -61,9 +62,27 @@ public class main_menu_controller {
                     view.leftBox.setVisible(false);
 
 
-                    Media sound = new Media(Paths.get("src/main/res/music/8bit.mp3").toUri().toString());
-                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                    mediaPlayer.play();
+                    Thread one = new Thread(() -> {
+
+
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                Media sound = new Media(Paths.get("src/main/res/music/8bit.mp3").toUri().toString());
+                                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                                mediaPlayer.play();
+
+                            }
+                        });
+                    }
+                    );
+
+                    one.start();
+
+
+
 
 
 
