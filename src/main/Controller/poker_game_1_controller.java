@@ -64,7 +64,11 @@ class poker_game_1_controller {
                         VBox player_pane = get_Specific_player_pane(i);
 
                         RotateTransition rt = new RotateTransition(Duration.millis(1500), player_pane);
-                        rt.setByAngle(i * 800);
+                        rt.setByAngle(3000);
+
+                        if (i > 5 && i <= 8)
+                            rt.setByAngle(-3000);
+
                         rt.setAxis(Z_AXIS);
                         rt.setCycleCount(Animation.INDEFINITE);
                         rt.play();
@@ -397,7 +401,7 @@ class poker_game_1_controller {
             rt_fg.setAxis(Y_AXIS);
 
             if (bradmode) {
-                rt_fg.setByAngle(360);
+                rt_fg.setByAngle(i * 360);
 
                 rt_fg.setCycleCount(Animation.INDEFINITE);
                 rt_fg.setDuration(Duration.millis(1000));

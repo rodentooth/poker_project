@@ -8,6 +8,8 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main.Model.Game.Online_Poker_5_Stud;
 import main.Model.Game.Poker_5_Stud;
@@ -15,6 +17,7 @@ import main.Model.Stack.Card;
 import main.View.main_menu;
 import main.View.poker_game_1;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -56,6 +59,11 @@ public class main_menu_controller {
                     bradmode = true;
                     view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;");
                     view.leftBox.setVisible(false);
+
+
+                    Media sound = new Media(Paths.get("src/main/res/music/8bit.mp3").toUri().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                    mediaPlayer.play();
 
 
 
