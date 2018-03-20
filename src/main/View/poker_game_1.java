@@ -21,6 +21,7 @@ public class poker_game_1 {
     public AnchorPane anchorpane;
     public BorderPane root;
     public Stage s;
+    public VBox winner_btn_box;
 
 
     public poker_game_1(Stage primaryStage) {
@@ -61,7 +62,7 @@ public class poker_game_1 {
                 BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(10))));
 
 
-        VBox winner_btn_box = new VBox();
+        winner_btn_box = new VBox();
         winner_btn_box.setAlignment(Pos.CENTER);
         //winner_btn_box.setStyle("-fx-background-color: #fffa00");
         winner_btn_box.prefWidthProperty().bind(controlArea.widthProperty());

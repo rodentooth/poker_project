@@ -1,10 +1,12 @@
 package main.Controller;
 
+import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -37,8 +39,9 @@ class poker_game_1_controller {
     private Boolean goBacktoMainMenu = false;
     private Label lbl2;
     private int revealedCards = 0;
+    boolean bradmode;
 
-    poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames) {
+    poker_game_1_controller(Poker_5_Stud model, poker_game_1 view, ArrayList<String> savedNames, boolean braode) {
 
 
         this.view = view;
@@ -46,9 +49,20 @@ class poker_game_1_controller {
         view.players.setSpacing(10);
         view.players.setPadding(new Insets(10, 10, 10, 10));
         view.deal_btn.setText("Reveal Cards");
-
+        bradmode = braode;
         view.deck_txt.setTextFill(Color.WHITE);
 
+        if (bradmode) {
+            view.winner_btn.setFocusTraversable(false);
+            view.winner_btn.setOnMouseEntered(event -> {
+
+                if (view.winner_btn_box.getAlignment() == Pos.CENTER || view.winner_btn_box.getAlignment() == Pos.CENTER_RIGHT)
+                    view.winner_btn_box.setAlignment(Pos.CENTER_LEFT);
+                else
+                    view.winner_btn_box.setAlignment(Pos.CENTER_RIGHT);
+
+            });
+        }
 
         view.winner_btn.setOnAction((event) -> {
 
@@ -363,7 +377,11 @@ class poker_game_1_controller {
             RotateTransition rt_fg = new RotateTransition(Duration.millis(1500), foreground);
             rt_fg.setByAngle(-90);
             rt_fg.setAxis(Y_AXIS);
-            rt_fg.setCycleCount(1);
+
+            if (bradmode) {
+                rt_fg.setCycleCount(Animation.INDEFINITE);
+                rt_fg.setDuration(Duration.millis(500));
+            }
 
             //FadeTransition ft = new FadeTransition(Duration.millis(1500),background);
 
@@ -387,7 +405,8 @@ class poker_game_1_controller {
 
 
         }
-        ((HBox) ((Pane) player_pane.getParent()).getChildren().get(2)).getChildren().get(0).setVisible(true);
+        if (!bradmode)
+            ((HBox) ((Pane) player_pane.getParent()).getChildren().get(2)).getChildren().get(0).setVisible(true);
 
     }
     private VBox get_Specific_player_pane(int index) {

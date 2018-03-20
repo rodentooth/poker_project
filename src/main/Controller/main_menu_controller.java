@@ -23,6 +23,7 @@ public class main_menu_controller {
     Poker_5_Stud model;
     main_menu view;
     private int cheerscount = 0;
+    public boolean bradmode = false;
 
 
     int number_of_players;
@@ -49,10 +50,18 @@ public class main_menu_controller {
                     cheerscount++;
                 } else {
                     view.deck_title.setImage(new Image("main/res/images/cheers.gif"));
+                    view.deck_title.getParent().getParent().setStyle("-fx-background-image: url('main/res/images/cheersbg.gif'); ");
+
+
+                    bradmode = true;
+                    view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;");
+                    view.leftBox.setVisible(false);
+
+
+
                 }
             }
         });
-
 
 
         view.tb1.setOnAction((ActionEvent e) -> {
@@ -145,7 +154,6 @@ public class main_menu_controller {
 
 
             System.out.println("You clicked me!");
-
 
 
             //Here I want to swap the screen!
@@ -244,7 +252,7 @@ public class main_menu_controller {
 
             poker_game_1 gameView = new poker_game_1(stageTheEventSourceNodeBelongs);
 
-            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames);
+            poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames, bradmode);
 
 
             //Online_Poker_5_Stud model2 = new Online_Poker_5_Stud();
