@@ -88,8 +88,11 @@ public class main_menu_controller {
                     one.start();
 
                     Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.926), evt -> view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(0.926), evt -> view.tb2.setStyle("-fx-background-color: Yellow")),
                             new KeyFrame(Duration.seconds(1.852), evt -> view.rightBox.setStyle("-fx-background-color: RED;" + "-fx-background-radius: 30;")),
-                            new KeyFrame(Duration.seconds(2.778), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")));
+                            new KeyFrame(Duration.seconds(1.852), evt -> view.tb2.setStyle("-fx-background-color: #0025ff")),
+                            new KeyFrame(Duration.seconds(2.778), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(2.778), evt -> view.tb2.setStyle("-fx-background-color: Red")));
                     timeline1.setCycleCount(Animation.INDEFINITE);
                     timeline1.play();
 
