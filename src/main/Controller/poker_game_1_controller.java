@@ -54,6 +54,8 @@ class poker_game_1_controller {
         view.deck_txt.setTextFill(Color.WHITE);
 
         if (bradmode) {
+            view.players.setStyle("-fx-background-image: url('main/res/images/cheersbg2.gif'); ");
+
             view.winner_btn.setFocusTraversable(false);
             final Boolean[] once = {true};
             view.winner_btn.setOnMouseEntered(event -> {

@@ -51,6 +51,9 @@ public class main_menu_controller {
         view.playerDropdown.setDisable(true);
 
 
+        final MediaPlayer[] mediaPlayer = new MediaPlayer[1];
+
+
         view.deck_title.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -74,8 +77,8 @@ public class main_menu_controller {
 
 
                                 Media sound = new Media(Paths.get("src/main/res/music/8bit.mp3").toUri().toString());
-                                MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                                mediaPlayer.play();
+                                mediaPlayer[0] = new MediaPlayer(sound);
+                                mediaPlayer[0].play();
 
                             }
                         });
@@ -84,12 +87,9 @@ public class main_menu_controller {
 
                     one.start();
 
-                    Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;")),
-                            new KeyFrame(Duration.seconds(0.3), evt -> view.rightBox.setStyle("-fx-background-color: RED;" + "-fx-background-radius: 30;")),
-                            new KeyFrame(Duration.seconds(0.4), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")),
-                            new KeyFrame(Duration.seconds(0.2), evt -> view.tb2.setStyle("-fx-background-color: Yellow ")),
-                            new KeyFrame(Duration.seconds(0.3), evt -> view.tb2.setStyle("-fx-background-color: #0025ff ")),
-                            new KeyFrame(Duration.seconds(0.4), evt -> view.tb2.setStyle("-fx-background-color: RED ")));
+                    Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.926), evt -> view.rightBox.setStyle("-fx-background-color: #0025ff;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(1.852), evt -> view.rightBox.setStyle("-fx-background-color: RED;" + "-fx-background-radius: 30;")),
+                            new KeyFrame(Duration.seconds(2.778), evt -> view.rightBox.setStyle("-fx-background-color: Yellow;" + "-fx-background-radius: 30;")));
                     timeline1.setCycleCount(Animation.INDEFINITE);
                     timeline1.play();
 

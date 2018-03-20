@@ -37,7 +37,6 @@ public class poker_game_1 {
                 "-fx-background-size: cover, auto;");
 
 
-
         anchorpane = new AnchorPane();
 
         //players.getChildren().add(btn);
