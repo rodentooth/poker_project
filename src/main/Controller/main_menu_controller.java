@@ -111,6 +111,8 @@ public class main_menu_controller {
 
         view.tb1.setOnAction((ActionEvent e) -> {
             activateOnline();
+            view.centerBox.getChildren().clear();
+            view.centerBox.getChildren().add(view.leftBox);
         });
         view.leftBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -122,6 +124,8 @@ public class main_menu_controller {
 
         view.tb2.setOnAction((ActionEvent e) -> {
             activateOffline();
+            view.centerBox.getChildren().clear();
+            view.centerBox.getChildren().add(view.rightBox);
         });
         view.rightBox.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -322,8 +326,8 @@ public class main_menu_controller {
         view.playerDropdown.getSelectionModel().clearSelection();
 
 
-        view.leftBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
-        view.rightBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
+        //view.leftBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
+        //view.rightBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
         view.text_field_line1.getChildren().clear();
         view.offlineBtn_box.getChildren().get(1).setVisible(true);
 
@@ -342,8 +346,8 @@ public class main_menu_controller {
             view.Names.setVisible(false);
             view.offlineBtn.setVisible(false);
 
-            view.rightBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
-            view.leftBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
+            // view.rightBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
+            // view.leftBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");
 
         }
     }
