@@ -344,7 +344,7 @@ public class main_menu_controller {
             view.onlineBtn.setDisable(false);
             view.playerDropdown.setDisable(false);
             view.Names.setVisible(false);
-            view.offlineBtn.setVisible(false);
+            //view.offlineBtn.setVisible(true);
 
             // view.rightBox.setStyle("-fx-background-color: #73a400;" + "-fx-background-radius: 30;");
             // view.leftBox.setStyle("-fx-background-color: #006200;" + "-fx-background-radius: 30;");

@@ -10,7 +10,7 @@ import main.Model.Stack.Card;
 
 public class Card_Apperance {
 
-    public Pane Card_Apperance(Card c) {
+    public Pane Card_Apperance(Card c, int b) {
 
 
         HBox container = new HBox();
@@ -39,6 +39,11 @@ public class Card_Apperance {
 
 
         ImageView imageView = new ImageView(new Image("main/res/Card_Images/cardBack.png"));
+        if (b == 1)
+            imageView.setImage(new Image("main/res/Card_Images/cardBack2.png"));
+        if (b == 2)
+            imageView.setImage(new Image("main/res/Card_Images/riabg.gif"));
+
         //imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);

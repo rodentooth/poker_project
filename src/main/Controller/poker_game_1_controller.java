@@ -248,29 +248,33 @@ class poker_game_1_controller {
 
             if (savedNames.get(i).equalsIgnoreCase("brad")) {
                 all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Clubs, Rank.Ace), new Card(Suit.Clubs, Rank.King), new Card(Suit.Clubs, Rank.Queen), new Card(Suit.Clubs, Rank.Jack), new Card(Suit.Clubs, Rank.Ten))));
-                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
 
                 box1.setStyle("-fx-background-image: url('main/res/images/cheersbg.gif'); " + "-fx-background-radius: 30;" + "-fx-border-radius: 30;");
 
             } else if (savedNames.get(i).equalsIgnoreCase("Emanuel")) {
                 all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Diamonds, Rank.Ace), new Card(Suit.Diamonds, Rank.King), new Card(Suit.Diamonds, Rank.Queen), new Card(Suit.Diamonds, Rank.Jack), new Card(Suit.Diamonds, Rank.Ten))));
-                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
 
                 box1.setStyle("-fx-background-image: url('main/res/images/emanuelbg.gif'); " + " -fx-background-radius: 30;" + " -fx-border-radius: 30;");
 
             } else if (savedNames.get(i).equalsIgnoreCase("ria")) {
                 //all_hands.set(i,null);
-                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
                 Label winner_loser_label = (Label) (((HBox) (box1).getChildren().get(3)).getChildren().get(0));
                 winner_loser_label.setText("Can dogs play cards?");
                 box1.setStyle("-fx-background-image: url('main/res/images/riabg.png'); " + " -fx-background-radius: 30;" + " -fx-border-radius: 30;");
 
             } else if (savedNames.get(i).equalsIgnoreCase("joel")) {
-                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
                 box1.setStyle("-fx-background-image: url('main/res/images/joelbg.gif'); " + "-fx-background-radius: 30;" + "-fx-border-radius: 30;");
 
             } else {
-                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                if (bradmode)
+                    box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 2);
+                else
+                    box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
                 box1.setStyle("-fx-background-color: #003700;" +
                         "-fx-background-radius: 20;");
 

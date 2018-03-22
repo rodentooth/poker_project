@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Player_Pane_Appearance {
 
-    public VBox Create_Plpa(ArrayList<Card> hand) {
+    public VBox Create_Plpa(ArrayList<Card> hand, int b) {
 
 
         Card_Apperance card_creator = new Card_Apperance();
@@ -50,7 +50,7 @@ public class Player_Pane_Appearance {
 
 
         for (Card c : hand) {
-            Pane p = card_creator.Card_Apperance(c);
+            Pane p = card_creator.Card_Apperance(c, b);
             //p.setMinSize(30, 60);
             //p.setMaxSize(100, 200);
             PlayerPane.getChildren().add(p);
