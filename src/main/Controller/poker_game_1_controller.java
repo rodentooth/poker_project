@@ -262,6 +262,46 @@ class poker_game_1_controller {
 
                 box1.setStyle("-fx-background-image: url('main/res/images/emanuelbg.gif'); " + " -fx-background-radius: 30;" + " -fx-border-radius: 30;");
 
+            } else if (savedNames.get(i).equalsIgnoreCase("Royal Flush")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Diamonds, Rank.Ace), new Card(Suit.Diamonds, Rank.King), new Card(Suit.Diamonds, Rank.Queen), new Card(Suit.Diamonds, Rank.Jack), new Card(Suit.Diamonds, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Straight Flush")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Spades, Rank.Six), new Card(Suit.Spades, Rank.Seven), new Card(Suit.Spades, Rank.Eight), new Card(Suit.Spades, Rank.Nine), new Card(Suit.Spades, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Four of a Kind")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Clubs, Rank.Queen), new Card(Suit.Spades, Rank.Queen), new Card(Suit.Diamonds, Rank.Queen), new Card(Suit.Hearts, Rank.Queen), new Card(Suit.Spades, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Full House")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Hearts, Rank.Jack), new Card(Suit.Spades, Rank.Jack), new Card(Suit.Diamonds, Rank.Jack), new Card(Suit.Spades, Rank.Ace), new Card(Suit.Diamonds, Rank.Ace))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Flush")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Spades, Rank.Six), new Card(Suit.Spades, Rank.Ace), new Card(Suit.Spades, Rank.Eight), new Card(Suit.Spades, Rank.Jack), new Card(Suit.Spades, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Straight")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Diamonds, Rank.Six), new Card(Suit.Spades, Rank.Seven), new Card(Suit.Clubs, Rank.Eight), new Card(Suit.Spades, Rank.Nine), new Card(Suit.Hearts, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Three of a Kind")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Spades, Rank.Six), new Card(Suit.Hearts, Rank.Six), new Card(Suit.Clubs, Rank.Six), new Card(Suit.Spades, Rank.Nine), new Card(Suit.Hearts, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Two Pair")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Spades, Rank.Six), new Card(Suit.Hearts, Rank.Six), new Card(Suit.Clubs, Rank.King), new Card(Suit.Diamonds, Rank.King), new Card(Suit.Spades, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Pair")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Spades, Rank.Seven), new Card(Suit.Diamonds, Rank.Seven), new Card(Suit.Spades, Rank.Eight), new Card(Suit.Spades, Rank.Nine), new Card(Suit.Spades, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
+            } else if (savedNames.get(i).equalsIgnoreCase("High Card")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Spades, Rank.Queen), new Card(Suit.Diamonds, Rank.Jack), new Card(Suit.Hearts, Rank.Three), new Card(Suit.Spades, Rank.Eight), new Card(Suit.Clubs, Rank.Nine))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 0);
+
             } else if (savedNames.get(i).equalsIgnoreCase("ria")) {
                 //all_hands.set(i,null);
                 box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
