@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -37,6 +36,7 @@ public class main_menu {
     public Label enterPlayerNumber;
     public Label HowManyPlayers;
     public Label Names;
+    public HBox centerBox;
 
 
     public main_menu(Stage primaryStage) {
@@ -49,17 +49,43 @@ public class main_menu {
 
         tb1 = new ToggleButton("Online");
         tb1.setToggleGroup(group);
+        tb1.setStyle("-fx-background-color: \n" +
+                "        #090a0c,\n" +
+                "        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),\n" +
+                "        linear-gradient(#20262b, #191d22),\n" +
+                "        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 5,4,3,5;\n" +
+                "    -fx-background-insets: 0,1,2,0;\n" +
+                "    -fx-text-fill: white;\n" +
+                "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );\n" +
+                "    -fx-font-family: \"Tahoma\";\n" +
+                "    -fx-text-fill: linear-gradient(white, #d0d0d0);\n" +
+                "    -fx-font-size: 20px;\n" +
+                "    -fx-padding: 10 20 10 20;");
 
 
         tb2 = new ToggleButton("Offline");
         tb2.setToggleGroup(group);
+        tb2.setStyle("-fx-background-color: \n" +
+                "        #090a0c,\n" +
+                "        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),\n" +
+                "        linear-gradient(#20262b, #191d22),\n" +
+                "        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 5,4,3,5;\n" +
+                "    -fx-background-insets: 0,1,2,0;\n" +
+                "    -fx-text-fill: white;\n" +
+                "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );\n" +
+                "    -fx-font-family: \"Tahoma\";\n" +
+                "    -fx-text-fill: linear-gradient(white, #d0d0d0);\n" +
+                "    -fx-font-size: 20px;\n" +
+                "    -fx-padding: 10 20 10 20;");
 
         HBox toggleBox = new HBox();
         toggleBox.getChildren().addAll(tb1, tb2);
         toggleBox.setAlignment(Pos.CENTER);
 
 
-        //Titel
+        //Title
         VBox container_title = new VBox();
         deck_title = new ImageView(new Image("main/res/images/title.png"));
         deck_title.setFitHeight(300);
@@ -173,7 +199,7 @@ public class main_menu {
         onlineBtn.setPrefSize(190, 50);
 
 
-        HBox centerBox = new HBox();
+        centerBox = new HBox();
 
 
         rightBox = new VBox();
@@ -190,11 +216,7 @@ public class main_menu {
         rightBox.prefWidthProperty().bind(centerBox.widthProperty());
 
 
-        Line middleLine = new Line();
-        middleLine.setStartY(100);
-        middleLine.setEndY(400);
-        middleLine.setStrokeWidth(20);
-        middleLine.setVisible(false);
+
 
         leftBox = new HBox();
         leftBox.getChildren().addAll(onlineBtn);
@@ -205,12 +227,12 @@ public class main_menu {
                 BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
 
 
-        centerBox.getChildren().addAll(leftBox, middleLine, rightBox);
+        centerBox.getChildren().add(rightBox);
         centerBox.setAlignment(Pos.CENTER);
 
         BorderPane root = new BorderPane();
 
-        root.setPadding(new Insets(20, 20, 20, 20));
+        root.setPadding(new Insets(20, 300, 20, 300));
         BorderPane.setMargin(leftBox, new Insets(0, 0, 0, 20));
         BorderPane.setMargin(rightBox, new Insets(0, 20, 0, 0));
 
