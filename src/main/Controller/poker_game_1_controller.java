@@ -430,9 +430,12 @@ class poker_game_1_controller {
             timer.start();
 
 
+            s.setOnFinished(event -> {
+                if (!bradmode)
+                    ((HBox) ((Pane) player_pane.getParent()).getChildren().get(2)).getChildren().get(0).setVisible(true);
+            });
         }
-        if (!bradmode)
-            ((HBox) ((Pane) player_pane.getParent()).getChildren().get(2)).getChildren().get(0).setVisible(true);
+
 
     }
     private VBox get_Specific_player_pane(int index) {

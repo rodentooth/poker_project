@@ -24,6 +24,7 @@ import main.View.poker_game_1;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class main_menu_controller {
@@ -224,12 +225,16 @@ public class main_menu_controller {
 
 // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
-            if (result.get().equals("")) {
-                savedNames.add("Unnamed Player");
+            try {
+                if (result.get().equals("")) {
+                    savedNames.add("Unnamed Player");
 
-            } else if (result.isPresent()) {
-                savedNames.add(result.get());
-                System.out.println("Your name: " + result.get());
+                } else if (result.isPresent()) {
+                    savedNames.add(result.get());
+                    System.out.println("Your name: " + result.get());
+                }
+            } catch (NoSuchElementException e) {
+                savedNames.add("Unnamed Player");
             }
 
 // The Java 8 way to get the response value (with lambda expression).
@@ -346,7 +351,7 @@ public class main_menu_controller {
             view.tb1.setSelected(false);
             view.tb2.setSelected(true);
 
-            view.onlineBtn.setDisable(true);
+            view.onlineBtn.setDisable(false);
             view.playerDropdown.setDisable(false);
             view.Names.setVisible(false);
             view.offlineBtn.setVisible(false);
