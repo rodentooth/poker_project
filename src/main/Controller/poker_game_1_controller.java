@@ -144,6 +144,10 @@ class poker_game_1_controller {
                         } else {
                             winner_loser_label.setText("Loser");
                         }
+                        if ((savedNames.get(i - 1).equalsIgnoreCase("ria"))) {
+                            winner_loser_label.setText("Maybe they can. Just call woof();");
+
+                        }
                     }
 
 
@@ -263,6 +267,12 @@ class poker_game_1_controller {
                 box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
                 Label winner_loser_label = (Label) (((HBox) (box1).getChildren().get(3)).getChildren().get(0));
                 winner_loser_label.setText("Can dogs play cards?");
+                HBox ria_cards = (HBox) (box1).getChildren().get(1);
+                (box1).getChildren().get(2).setVisible(false);
+                for (int y = 0; y < 5; y++) {
+                    ((HBox) ria_cards.getChildren().get(y)).getChildren().get(0).setVisible(false);
+                }
+
                 box1.setStyle("-fx-background-image: url('main/res/images/riabg.png'); " + " -fx-background-radius: 30;" + " -fx-border-radius: 30;");
 
             } else if (savedNames.get(i).equalsIgnoreCase("joel")) {
