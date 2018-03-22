@@ -142,18 +142,20 @@ public class Online_Poker_5_Stud {
 
             }
             if (winner == 0) {
-                System.out.println("Tie!");
+                System.out.println("Tie! Save the other winner and go on");
                 int W2 = 0;
                 for (ArrayList<Card> B : Cards) {
                     int winner2 = r.compare_hands(Cards.get(W2), B);
                     if (winner2 == 1)
                         System.out.println("Hand 1 wins!");
                     if (winner2 == 2)
-                        W = Cards.indexOf(B);
+                        W2 = Cards.indexOf(B);
 
                 }
                 if (W2 == W) {
                     System.out.println("Player " + Cards.indexOf(Cards.get(i)) + " and Player " + Cards.indexOf(Cards.get(W)) + " are winner!!");
+                    String s = (i + 1) + "" + (W + 1);
+                    return Integer.valueOf(s);
                 }
             }
         }

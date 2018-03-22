@@ -156,7 +156,8 @@ public class Ranking {
 
                     } else {
                         //tie
-                        break;
+                        return 0;
+
                     }
                 }
             }

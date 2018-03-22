@@ -49,9 +49,7 @@ public class Player_Pane_Appearance {
         PlayerPane.setPadding(new Insets(0, 12, 10, 12));
 
 
-
         for (Card c : hand) {
-
             Pane p = card_creator.Card_Apperance(c);
             //p.setMinSize(30, 60);
             //p.setMaxSize(100, 200);

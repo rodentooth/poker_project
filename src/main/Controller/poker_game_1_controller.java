@@ -19,14 +19,15 @@ import main.Model.Game.Poker_5_Stud;
 import main.Model.Ranking.Hand_Ranks;
 import main.Model.Ranking.Ranking;
 import main.Model.Stack.Card;
+import main.Model.Stack.Rank;
+import main.Model.Stack.Suit;
 import main.View.Object_Appearance.Player_Pane_Appearance;
 import main.View.main_menu;
 import main.View.poker_game_1;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static javafx.scene.transform.Rotate.Y_AXIS;
 import static javafx.scene.transform.Rotate.Z_AXIS;
@@ -104,24 +105,41 @@ class poker_game_1_controller {
 
                     Ranking r = new Ranking();
 
-
-                    //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
                     winner_index = model.getWinner(all_hands);
-                    int p = winner_index;
 
-                    view.deck_txt.setText(savedNames.get(winner_index - 1) + " wins with a " + (String.valueOf(Hand_Ranks.values()[Math.abs(r.rank_hand(all_hands.get(p - 1)) - 10)])).replace("_", " "));
+                    int W1 = -1;
+                    int W2 = -1;
 
 
-                    VBox winner_pane = get_Specific_player_pane(winner_index);
+                    if (winner_index > 10) {
+                        String s = String.valueOf(winner_index);
+                        W1 = Integer.valueOf(String.valueOf(s.charAt(0)));
+                        W2 = Integer.valueOf(String.valueOf(s.charAt(1)));
+                        view.deck_txt.setText(savedNames.get(W1 - 1) + " and " + savedNames.get(W2 - 1) + " are winners!");
 
-                    winner_pane.setStyle("-fx-background-color: #94bd00;" + "-fx-background-radius: 20;");
+
+                        VBox winner_pane1 = get_Specific_player_pane(W1);
+                        winner_pane1.setStyle("-fx-background-color: #94bd00");
+
+                        VBox winner_pane2 = get_Specific_player_pane(W2);
+                        winner_pane2.setStyle("-fx-background-color: #94bd00");
+
+
+                    } else {
+                        view.deck_txt.setText(savedNames.get(winner_index - 1) + " is winner!");
+
+                        VBox winner_pane = get_Specific_player_pane(winner_index);
+
+                        winner_pane.setStyle("-fx-background-color: #94bd00");
+                    }
+
 
 
                     for (int i = 1; i < (all_hands.size() + 1); i++) {
 
                         Label winner_loser_label = (Label) (((HBox) (get_Specific_player_pane(i)).getChildren().get(3)).getChildren().get(0));
 
-                        if (winner_index == (i)) {
+                        if (winner_index == (i) || i == W1 || i == W2) {
                             winner_loser_label.setText("Winner");
                         } else {
                             winner_loser_label.setText("Loser");
@@ -226,7 +244,37 @@ class poker_game_1_controller {
             AnchorPane.setTopAnchor(section, 10.0);
 
             section.setSpacing(10);
-            box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+
+
+            if (savedNames.get(i).equalsIgnoreCase("brad")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Clubs, Rank.Ace), new Card(Suit.Clubs, Rank.King), new Card(Suit.Clubs, Rank.Queen), new Card(Suit.Clubs, Rank.Jack), new Card(Suit.Clubs, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+
+                box1.setStyle("-fx-background-image: url('main/res/images/cheersbg.gif'); " + "-fx-background-radius: 30;" + "-fx-border-radius: 30;");
+
+            } else if (savedNames.get(i).equalsIgnoreCase("Emanuel")) {
+                all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Diamonds, Rank.Ace), new Card(Suit.Diamonds, Rank.King), new Card(Suit.Diamonds, Rank.Queen), new Card(Suit.Diamonds, Rank.Jack), new Card(Suit.Diamonds, Rank.Ten))));
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+
+                box1.setStyle("-fx-background-image: url('main/res/images/emanuelbg.gif'); " + " -fx-background-radius: 30;" + " -fx-border-radius: 30;");
+
+            } else if (savedNames.get(i).equalsIgnoreCase("ria")) {
+                //all_hands.set(i,null);
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                Label winner_loser_label = (Label) (((HBox) (box1).getChildren().get(3)).getChildren().get(0));
+                winner_loser_label.setText("Can dogs play cards?");
+                box1.setStyle("-fx-background-image: url('main/res/images/riabg.png'); " + " -fx-background-radius: 30;" + " -fx-border-radius: 30;");
+
+            } else if (savedNames.get(i).equalsIgnoreCase("joel")) {
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1.setStyle("-fx-background-image: url('main/res/images/joelbg.gif'); " + "-fx-background-radius: 30;" + "-fx-border-radius: 30;");
+
+            } else {
+                box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i));
+                box1.setStyle("-fx-background-color: #003700;" +
+                        "-fx-background-radius: 20;");
+
+            }
 
             if (((all_hands.size() <= 5))) {
                 box1.setMinSize(600, 250);
@@ -272,14 +320,13 @@ class poker_game_1_controller {
             box1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
 
-            box1.setStyle("-fx-background-color: #003700;" +
-                    "-fx-background-radius: 20;");
             box1.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(20))));
 
 
             Label lbl1 = (Label) (((HBox) box1.getChildren().get(0)).getChildren().get(0));
             lbl1.setText(savedNames.get(i));
+
 
             lbl2 = (Label) (((HBox) box1.getChildren().get(2)).getChildren().get(0));
 
@@ -415,15 +462,8 @@ class poker_game_1_controller {
             SequentialTransition s = new SequentialTransition(rt, rt_fg);
 
 
-            Timer timer = new Timer((j + 1) * (i + 1) * 100, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //timer.stop();
-
-                    s.play();
-
-
-                }
+            Timer timer = new Timer((j + 1) * (i + 1) * 100, e -> {
+                s.play();
             });
             //timer.setInitialDelay();
             timer.setRepeats(false);

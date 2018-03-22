@@ -287,10 +287,6 @@ public class main_menu_controller {
                 }
             }
 
-
-            System.out.println("You clicked me!");
-
-
             //Here I want to swap the screen!
 
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -302,12 +298,6 @@ public class main_menu_controller {
             poker_game_1 gameView = new poker_game_1(stageTheEventSourceNodeBelongs);
 
             poker_game_1_controller game_1_controller = new poker_game_1_controller(model, gameView, savedNames, bradmode);
-
-
-            //Online_Poker_5_Stud model2 = new Online_Poker_5_Stud();
-            //online_poker_game_1_controller game_2_controller = new online_poker_game_1_controller(model2, gameView, savedNames);
-
-            //stageTheLabelBelongs.setScene(new Scene(new Pane()));
 
 
         });

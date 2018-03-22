@@ -114,14 +114,32 @@ public class online_poker_game_1_controller {
 
             } else {
 
+
                 //SETTING the winner card Pane to Yellow and telling who's the winner in the deck_txt
                 winner_index = model.getWinner(all_hands);
                 view.deck_txt.setText(savedNames.get(winner_index - 1) + " is winner!");
 
-
                 VBox winner_pane = get_Specific_player_pane(winner_index);
 
                 winner_pane.setStyle("-fx-background-color: #94bd00");
+
+                if (winner_index > 10) {
+                    String s = String.valueOf(winner_index);
+                    int W1 = Integer.valueOf(s.substring(1));
+                    int W2 = Integer.valueOf(s.substring(0, 1));
+                    view.deck_txt.setText(savedNames.get(W1 - 1) + " and " + savedNames.get(W2 - 1) + " is winner!");
+
+
+                    VBox winner_pane1 = get_Specific_player_pane(W1);
+                    winner_pane1.setStyle("-fx-background-color: #94bd00");
+
+                    VBox winner_pane2 = get_Specific_player_pane(W2);
+                    winner_pane2.setStyle("-fx-background-color: #94bd00");
+
+
+                }
+
+
 
 
                 for (int i = 1; i < (all_hands.size() + 1); i++) {
