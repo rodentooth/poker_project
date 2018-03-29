@@ -254,7 +254,7 @@ class poker_game_1_controller {
                 all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Clubs, Rank.Ace), new Card(Suit.Clubs, Rank.King), new Card(Suit.Clubs, Rank.Queen), new Card(Suit.Clubs, Rank.Jack), new Card(Suit.Clubs, Rank.Ten))));
                 box1 = Player_Pane_Apperance.Create_Plpa(all_hands.get(i), 1);
 
-                box1.setStyle("-fx-background-image: url('main/res/images/cheersbg.gif'); " + "-fx-background-radius: 30;" + "-fx-border-radius: 30;");
+                box1.setStyle("-fx-background-image: url('main/res/images/bradbg.gif'); " + "-fx-background-radius: 30;" + "-fx-border-radius: 30;");
 
             } else if (savedNames.get(i).equalsIgnoreCase("Emanuel")) {
                 all_hands.set(i, new ArrayList<Card>(Arrays.asList(new Card(Suit.Diamonds, Rank.Ace), new Card(Suit.Diamonds, Rank.King), new Card(Suit.Diamonds, Rank.Queen), new Card(Suit.Diamonds, Rank.Jack), new Card(Suit.Diamonds, Rank.Ten))));

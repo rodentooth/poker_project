@@ -82,7 +82,7 @@ public class Ranking {
 
                         if (rank_hand1 == Hand_Ranks.Four_of_a_kind)
                             hand1.remove(hand1.indexOf(first_card_in_pair_hand1) + 3);
-                        if (rank_hand1 == Hand_Ranks.Three_of_a_kind)
+                        if (rank_hand1 == Hand_Ranks.Three_of_a_Kind)
                             hand1.remove(hand1.indexOf(first_card_in_pair_hand1) + 2);
                         hand1.remove(hand1.indexOf(first_card_in_pair_hand1) + 1);
                         hand1.remove(hand1.indexOf(first_card_in_pair_hand1));
@@ -93,7 +93,7 @@ public class Ranking {
 
                         if (rank_hand2 == Hand_Ranks.Four_of_a_kind)
                             hand2.remove(hand2.indexOf(first_card_in_pair_hand2) + 3);
-                        if (rank_hand2 == Hand_Ranks.Three_of_a_kind)
+                        if (rank_hand2 == Hand_Ranks.Three_of_a_Kind)
                             hand2.remove(hand2.indexOf(first_card_in_pair_hand2) + 2);
                         hand2.remove(hand2.indexOf(first_card_in_pair_hand2) + 1);
                         hand2.remove(hand2.indexOf(first_card_in_pair_hand2));
@@ -456,10 +456,10 @@ public class Ranking {
         //get the enum rank of the card
 
         return rank == Hand_Ranks.Four_of_a_kind ||
-                rank == Hand_Ranks.Three_of_a_kind ||
-                rank == Hand_Ranks.Two_pair ||
+                rank == Hand_Ranks.Three_of_a_Kind ||
+                rank == Hand_Ranks.Two_Pairs ||
                 rank == Hand_Ranks.Pair ||
-                rank == Hand_Ranks.High_card;
+                rank == Hand_Ranks.High_Card;
     }
 
 
@@ -507,7 +507,7 @@ public class Ranking {
          */
         if (hand.size() > 0) {
 
-        	if(rank == Hand_Ranks.Full_house) {
+            if (rank == Hand_Ranks.Full_House) {
                 if (hand.get(1).getRank() == hand.get(2).getRank()) {
         			return hand.get(0);
         		} else {
